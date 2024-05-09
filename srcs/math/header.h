@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   header.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:40:31 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/08 20:45:52 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/09 16:21:17 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@
 
 typedef float	t_vec[4];
 typedef float	t_mtrx[4][4];
+
+typedef struct s_submtrx
+{
+	t_mtrx	old;
+	t_mtrx	*new;
+	int		old_mtsize;
+	int		excl_x;
+	int		excl_y;
+	int		sign;
+}		t_submtrx;
 
 /*----BASIC OPERATIONS-----*/
 void	create_tupple(t_vec *result, float x, float y, float z);

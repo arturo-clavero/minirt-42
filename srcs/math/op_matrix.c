@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_matrix.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:31:56 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/08 21:29:25 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/09 16:24:35 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	matrix_by_tupple(t_mtrx m1, t_vec v2, t_vec *result, int mt_size)
 
 void	create_identity_matrix(t_mtrx *matrix, int mt_size)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = -1;
@@ -81,30 +81,80 @@ void	transpose(t_mtrx matrix, t_mtrx *result, int mt_size)
 	}
 }
 
-void	sub_matrix(int i, t_mtrx old, t_mtrx *new, int mt_size)
+void	sub_matrix(t_submtrx sub)
 {
-	int j = -1;
-	while ()
+	int	old_x;
+	int	old_y;
+	int	new_x;
+	int	new_y;
+
+	new_y = 0;
+	new_x = -1;
+	old_y = -1;
+	while (++old_y < sub.old_mtsize)
+	{
+		if (old_y == sub.excl_y)
+			continue ;
+		old_x = -1;
+		while (++old_x < sub.old_mtsize && ++new_x > 0)
+		{
+			if (old_x == sub.excl_x && --new_x >= 0)
+				continue ;
+			(*sub.new)[new_y][new_x] = sub.old[old_y][old_x];
+			if (new_x >= (sub.old_mtsize - 1) && ++new_y > 0)
+				new_x = 0;
+		}
+	}
+	sub.sign = 1;
+	if ((sub.excl_x + sub.excl_y) % 2 != 0)
+		sub.sign = -1;
 }
 
 //always send result as 0 first call 
 float	determinant(t_mtrx old, int mt_size, float result)
 {
-	t_mtrx	new;
-	int		i;
+	t_submtrx	sub;
+	t_mtrx		new;
+	int			i;
 
 	if (mt_size < 3)
 		return (EXIT_FAILURE);
+	i = -1;
+	copy_matrix(&sub.old, old);
+	sub.excl_y = 0;
+	sub.new = &new;
+	sub.old_mtsize = mt_size;
 	while (++i < mt_size)
 	{
-		sub_matrix(i, old, &new, mt_size);
+		sub.excl_x = i;
+		sub_matrix(sub);
 		if (mt_size > 3)
 			result += determinant(new, mt_size - 1, result);
 		else
 			result += (((new[0][0] * new[1][1]) - \
-			(new[0][1] * new[1][0])) * old[0][i]);
+			(new[0][1] * new[1][0])) * old[0][i] * ((i % 2) / (i % 2) * -1));
 	}
 	return (result);
+}
+
+float	cofactor(t_mtrx old, int excl_x, int excl_y, int mt_size)
+{
+	t_submtrx	sub;
+	t_mtrx		new;
+	int			sign;
+
+	if (mt_size < 3)
+		return (EXIT_FAILURE);
+	copy_matrix(&sub.old, old);
+	sub.new = &new;
+	sub.excl_x = excl_x;
+	sub.excl_y = excl_y;
+	sub.old_mtsize = mt_size;
+	sub_matrix(sub);
+	if (mt_size > 3)
+		return (determinant(*sub.new, mt_size - 1, 0));
+	return (((*sub.new)[0][0] * (*sub.new)[1][1]) - \
+	((*sub.new)[0][1] * (*sub.new)[1][0]) * sub.sign);
 }
 
 int	inverting_matrix(t_mtrx matrix, t_mtrx *result, int mt_size)
@@ -113,7 +163,7 @@ int	inverting_matrix(t_mtrx matrix, t_mtrx *result, int mt_size)
 	int		i;
 	int		j;
 
-	det = determinant(matrix, mt_size);//TODO
+	det = determinant(matrix, mt_size, 0);
 	if (det == 0)
 		return (EXIT_FAILURE);
 	i = -1;
@@ -121,7 +171,7 @@ int	inverting_matrix(t_mtrx matrix, t_mtrx *result, int mt_size)
 	{
 		j = -1;
 		while (++j < mt_size)
-			(*result)[i][j] = co_factor(matrix, j, i, mt_size) / det;
+			(*result)[i][j] = cofactor(matrix, j, i, mt_size) / det;
 	}
 	return (EXIT_SUCCESS);
 }
