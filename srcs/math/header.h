@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:40:31 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/09 16:21:17 by artclave         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:52:18 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # define TYPE 3
 # define POINT 1
 # define VECTOR 0
+# define EPSILON 0.00001
 
 typedef float	t_vec[4];
 typedef float	t_mtrx[4][4];
@@ -55,5 +56,23 @@ void	negate(t_vec vec, t_vec *result);
 
 /*-----COLOR OPERATIONS-----*/
 void	blend_colors(t_vec color1, t_vec color2, t_vec *result);
+
+/*-----BASIC MATH----------------*/
+int		float_comparison(float a, float b);
+
+/*------MATRIX OPERATIONS----------*/
+void	matrix_by_matrix(t_mtrx m1, t_mtrx m2, t_mtrx *result, int mt_size);
+void	matrix_by_tupple(t_mtrx m1, t_vec v2, t_vec *result, int mt_size);
+void	create_identity_matrix(t_mtrx *matrix, int mt_size);
+void	transpose(t_mtrx matrix, t_mtrx *result, int mt_size);
+void	sub_matrix(t_submtrx sub);
+void	copy_matrix(t_mtrx *dst, t_mtrx src, int mt_size);
+float	determinant(t_mtrx old, int mt_size, float result);
+float	cofactor(t_mtrx old, int excl_x, int excl_y, int mt_size);
+int		inverting_matrix(t_mtrx matrix, t_mtrx *result, int mt_size);
+int		matrix_comparison(t_mtrx m1, t_mtrx m2, int size1, int size2);
+
+/*----------TESTING UTILS----------*/
+void	print_matrix(t_mtrx m, int mt_size);
 
 #endif

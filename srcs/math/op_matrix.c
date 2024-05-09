@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 20:31:56 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/09 16:24:35 by artclave         ###   ########.fr       */
+/*   Updated: 2024/05/09 17:24:02 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,20 @@ void	sub_matrix(t_submtrx sub)
 		sub.sign = -1;
 }
 
+void	copy_matrix(t_mtrx *dst, t_mtrx src, int mt_size)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < mt_size)
+	{
+		j = -1;
+		while (++j < mt_size)
+			(*dst)[i][j] = src[i][j];
+	}
+}
+
 //always send result as 0 first call 
 float	determinant(t_mtrx old, int mt_size, float result)
 {
@@ -120,7 +134,7 @@ float	determinant(t_mtrx old, int mt_size, float result)
 	if (mt_size < 3)
 		return (EXIT_FAILURE);
 	i = -1;
-	copy_matrix(&sub.old, old);
+	copy_matrix(&sub.old, old, mt_size);
 	sub.excl_y = 0;
 	sub.new = &new;
 	sub.old_mtsize = mt_size;
@@ -145,7 +159,7 @@ float	cofactor(t_mtrx old, int excl_x, int excl_y, int mt_size)
 
 	if (mt_size < 3)
 		return (EXIT_FAILURE);
-	copy_matrix(&sub.old, old);
+	copy_matrix(&sub.old, old, mt_size);
 	sub.new = &new;
 	sub.excl_x = excl_x;
 	sub.excl_y = excl_y;
@@ -172,6 +186,51 @@ int	inverting_matrix(t_mtrx matrix, t_mtrx *result, int mt_size)
 		j = -1;
 		while (++j < mt_size)
 			(*result)[i][j] = cofactor(matrix, j, i, mt_size) / det;
+	}
+	return (EXIT_SUCCESS);
+}
+
+int	float_comparison(float a, float b)
+{
+	if (fabs(a - b) < EPSILON)
+		return (EXIT_SUCCESS);
+	return (EXIT_FAILURE);
+}
+
+void	print_matrix(t_mtrx m, int mt_size)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < mt_size)
+	{
+		j = -1;
+		while (++j < mt_size)
+		{
+			printf("%.2f ", m[i][j]);
+		}
+		printf("\n");
+	}
+	printf("\n");
+}
+
+int	matrix_comparison(t_mtrx m1, t_mtrx m2, int size1, int size2)
+{
+	int	i;
+	int	j;
+
+	if (size1 != size2)
+		return (EXIT_FAILURE);
+	i = -1;
+	while (++i < size1)
+	{
+		j = -1;
+		while (++j < size1)
+		{
+			if (float_comparison(m1[i][j], m2[i][j]) == EXIT_FAILURE)
+				return (EXIT_FAILURE);
+		}
 	}
 	return (EXIT_SUCCESS);
 }

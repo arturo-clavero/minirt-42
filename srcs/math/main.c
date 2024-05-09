@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:36:04 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/08 20:03:33 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/09 17:25:19 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,23 @@
 
 int	main(void)
 {
-	t_vec	tup1;
-	t_vec	tup2;
-	t_vec	result;
-	int		i;
+	t_mtrx	m1 = {{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
+	t_mtrx	m2 = ;
+	int		mt_size1;
+	int		mt_size2;
 
-	create_tupple(&tup1, 1, 0.2, 0.4);
-	create_tupple(&tup2, 0.9, 1, 0.1);
-	//float x = dot_product(tup1, tup2);
-	blend_colors(tup2, tup1, &result);
-	i = -1;
-	printf("1: ");
-	while (++i < 4)
-		printf("%.2f ", tup1[i]);
-	printf("\n");
-	i = -1;
-	printf("2: ");
-	while (++i < 4)
-		printf("%.2f ", tup2[i]);
-	printf("\n");
-	i = -1;
-	printf("-> ");
-	while (++i < 4)
-		printf("%.2f ", result[i]);
-	printf("\n");
-//	printf("-> %f\n", x);
+	mt_size1 = 3;
+	mt_size2 = 4;
+//	create_matrix_4x4(&m1, );
+	//copy_matrix(&m2, m1, mt_size1);
+//	m2[0][0] = 1.00001;
+	printf("m1:\n");
+	print_matrix(m1, mt_size2);
+	//printf("m2:\n");
+	//print_matrix(m2, mt_size1);
+	//if (matrix_comparison(m1, m2, mt_size1, mt_size2) == EXIT_FAILURE)
+	//	printf("NOT EQUAL!\n");
+//	else
+	//	printf("EQUAL!\n");
 	return (0);
 }
