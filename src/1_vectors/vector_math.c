@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   op_vectors.c                                       :+:      :+:    :+:   */
+/*   vector_math.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:16:28 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/08 19:55:36 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/15 19:16:49 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ float	dot_product(t_vec vec1, t_vec vec2)
 	i = -1;
 	while (++i < 3)
 		result += vec1[i] * vec2[i];
+	if (result == -0)
+		result = 0;
 	return (result);
 }
 
@@ -30,6 +32,7 @@ void	cross_product(t_vec v1, t_vec v2, t_vec *result)
 	(*result)[Y] = (v1[Z] * v2[X]) - (v1[X] * v2[Z]);
 	(*result)[Z] = (v1[X] * v2[Y]) - (v1[Y] * v2[X]);
 	(*result)[TYPE] = VECTOR;
+	//clear_negative_zeros_t_vec(result);
 }
 
 float	inv_magnitude(t_vec vec)
@@ -46,6 +49,8 @@ float	inv_magnitude(t_vec vec)
 	i = 0x5f3759df - (i >> 1);
 	y = *(float *)&i;
 	y = y * (1.5F - (x2 * y * y));
+	if (y == -0)
+		y = 0;
 	return (y);
 }
 
@@ -58,6 +63,7 @@ void	normalize(t_vec vec, t_vec *result)
 	i = -1;
 	while (++i < 4)
 		(*result)[i] = vec[i] * mag;
+	//clear_negative_zeros_t_vec(result);
 }
 
 void	negate(t_vec vec, t_vec *result)
@@ -71,4 +77,5 @@ void	negate(t_vec vec, t_vec *result)
 	i = -1;
 	while (++i < 4)
 		(*result)[i] = zero[i] - vec[i];
+	//clear_negative_zeros_t_vec(result);
 }
