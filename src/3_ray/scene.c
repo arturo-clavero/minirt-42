@@ -129,16 +129,13 @@ void	new_sphere(t_mlx *mlx)
 void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx)
 {
 	t_vec	target;
-	//t_vec	dir;
 
-	init_ray(mlx->ray);
 	create_tupple(&ray->og, 0, 0, -5);
 	target[X] = mlx->vp_min[X] + (mlx->pixel_size * pixel[X]);
 	target[Y] = mlx->vp_min[Y] - (mlx->pixel_size * pixel[Y]);
 	target[Z] = mlx->vp_wall;
 	target[TYPE] = POINT;
 	substract(target, ray->og, &ray->dir);
-	//normalize(dir, &ray->dir);
 	copy_t_vec(&mlx->ray->target, target);
 }
 
@@ -170,7 +167,7 @@ void	free_intersections(t_ray *ray)
 
 void	new_light(t_light *light)
 {
-	create_tupple(&light->og, 0, 0, -10);
+	create_tupple(&light->og, -10, 10, 0);
 	create_vector(&light->color, 1, 1, 1);
 	light->ambient = 0.1;
 	light->specular = 0.9;
@@ -182,15 +179,12 @@ void	init_scene(t_mlx *mlx)
 {
 	t_objlist	*obj;
 	float		pixel[2];
-	t_mtrx		mt[MAX_TRANSF];
 	t_light		light;
-	//t_vec		temp;
 
-	(void)mt;
 	new_sphere(mlx);
 	new_light(&light);
 	init_viewport(mlx);
-	pixel[X] = - 1;
+	pixel[X] = -1;
 	while (++pixel[X] < mlx->win_size[X])
 	{
 		pixel[Y] = -1;
@@ -205,36 +199,13 @@ void	init_scene(t_mlx *mlx)
 			}
 			if (mlx->ray->closest)
 			{
-				calc_light_vectors(&light, *(mlx->ray), mlx->ray->closest->object);
+				calc_light_vectors(&light, *(mlx->ray), \
+				mlx->ray->closest->object);
 				compute_final_color(light, mlx->ray->closest->object, mlx->ray);
 				ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \
 				mlx->ray->color);
 			}
-			/*else
-			{
-				printf("pixel %.4f, %.4f\n", pixel[X], pixel[Y]);
-				print_intersections(mlx->ray);
-				create_vector(&temp, 1, 0, 0);
-				ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], temp);
-				mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image.img, 0, 0);
-				mlx_loop(mlx->mlx);
-				while (1)
-					;
-			}*/
 			free_intersections(mlx->ray);
-		/*	printf("ambient %.2f\ndiffuse %.2f\nspecular %.2f\nshine %.2f\n", light.ambient, light.diffuse, light.specular, light.shine);
-			printf("for pixels (%.4f, %.4f, %.4f)>\n", pixel[X], pixel[Y], pixel[Z]);
-			printf("with ray origin ");
-			print_t_vec(light.og);
-			printf("\n");
-			printf("point \n");
-			print_t_vec(light.point);
-			printf("normal: \n");
-			print_t_vec(light.normal);
-			printf("eye: \n");
-			print_t_vec(light.eye);
-			printf("color \n");
-			print_t_vec(light.color);*/
 		}
 	}
 }

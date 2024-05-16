@@ -6,27 +6,11 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:50:23 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 16:46:36 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/16 23:12:10 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
-void	init_ray(t_ray *ray)
-{
-	create_tupple(&ray->og, 0, 0, -5);
-	create_vector(&ray->dir, 0, 0, 1);
-	ray->hit = NULL;
-	ray->closest = NULL;
-}
-
-void	point_at_distance(float distance, t_ray *ray, t_vec *point)
-{
-	t_vec	result;
-
-	scalar_mult(ray->dir, distance, &result);
-	add(ray->og, result, point);
-}
 
 void	update_closest_hit(t_intersect **closest, t_intersect *new)
 {
@@ -68,21 +52,10 @@ int	intersects_sphere(t_ray *ray, t_obj sph)
 	t_vec		quadratic;
 	float		hit;
 
-	//print_ray(ray);
 	ray->hit = NULL;
 	ray->closest = NULL;
 	clear_negative_zeros_t_vec(&ray->dir);
 	substract(ray->og, sph.og, &sph_to_ray);
-/*	printf("sphere to ray:\n");
-	print_t_vec(sph_to_ray);
-	printf("\n");
-	printf("ray dir:\n");
-	print_t_vec(ray->dir);
-	printf("\n");
-	printf("target: \n");
-	print_t_vec(ray->target);
-	printf("\n");*/
-	//normalize(sph_to_ray, &sph_to_ray);
 	quadratic[A] = dot_product(ray->dir, ray->dir);
 	quadratic[B] = 2 * (dot_product(ray->dir, sph_to_ray));
 	quadratic[C] = dot_product(sph_to_ray, sph_to_ray) - 1;
@@ -102,11 +75,12 @@ int	intersects_sphere(t_ray *ray, t_obj sph)
 //void	chain_transform(t_mtrx mt[MAX_TRANSF], t_vec *vec, int total)
 void	copy_ray(t_ray *dst, t_ray *src)
 {
-	init_ray(dst);
+	dst->closest = NULL;
+	dst->hit = NULL;
 	copy_t_vec(&dst->dir, src->dir);
 	copy_t_vec(&dst->og, src->og);
 }
-
+/*
 void	transform_object(t_mtrx mt[MAX_TRANSF], int total, \
 t_obj obj, t_ray *new_ray)
 {
@@ -126,3 +100,4 @@ t_obj obj, t_ray *new_ray)
 	matrix_by_t_vec(inv_obj, new_ray->og, &temp, 4);
 	copy_t_vec(&new_ray->og, temp);
 }
+*/
