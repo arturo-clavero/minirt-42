@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:36:04 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 13:54:35 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/16 15:48:32 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ int	main(void)
 	print_t_vec(light.reflect);
 }*/
 
-
 //RENDER SCENE
 
 int	main(void)
@@ -75,3 +74,42 @@ int	main(void)
 	mlx_loop(mlx.mlx);
 	return (0);
 }
+
+
+/*
+void	new_light(t_light *light)
+{
+	create_tupple(&light->og, 0, 0, -5);
+	create_vector(&light->color, 1, 0, 0);
+	light->intensity = .5;
+	light->ambient = 0;
+	light->diffuse = 1;
+	light->specular = 0;
+	light->shine = 0;
+}
+
+int	main(void)
+{
+	t_obj		sph;
+	t_light		light;
+	t_ray		ray;
+
+	sph.type = SPHERE;
+	create_tupple(&sph.og, 0, 0, 0);
+	sph.r = 1;
+	sph.is_transformed = FALSE;
+	create_vector(&sph.color, 1, 1, 1);
+	new_light(&light);
+	init_ray(&ray);
+	create_tupple(&ray.og, 0, 0, -5);
+	create_tupple(&ray.target, 0, 0, 0);
+	substract(ray.target, ray.og, &ray.dir);
+	normalize(ray.dir, &ray.dir);
+	intersects_sphere(&ray, sph);
+	if (ray.closest)
+	{
+		calc_light_values(&light, ray.closest->object, &ray);
+		print_t_vec(ray.color);
+	}
+}
+*/

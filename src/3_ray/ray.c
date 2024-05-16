@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:50:23 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 00:10:16 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/16 16:46:36 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	point_at_distance(float distance, t_ray *ray, t_vec *point)
 
 void	update_closest_hit(t_intersect **closest, t_intersect *new)
 {
-	//if (new->dist < 0)
-	//	return ;
+	if (new->dist < 0)
+		return ;
 	if (*closest == NULL)
 		*closest = new;
 	else if (new->dist < (*closest)->dist)
@@ -71,8 +71,18 @@ int	intersects_sphere(t_ray *ray, t_obj sph)
 	//print_ray(ray);
 	ray->hit = NULL;
 	ray->closest = NULL;
+	clear_negative_zeros_t_vec(&ray->dir);
 	substract(ray->og, sph.og, &sph_to_ray);
-	//print_t_vec(sph_to_ray);
+/*	printf("sphere to ray:\n");
+	print_t_vec(sph_to_ray);
+	printf("\n");
+	printf("ray dir:\n");
+	print_t_vec(ray->dir);
+	printf("\n");
+	printf("target: \n");
+	print_t_vec(ray->target);
+	printf("\n");*/
+	//normalize(sph_to_ray, &sph_to_ray);
 	quadratic[A] = dot_product(ray->dir, ray->dir);
 	quadratic[B] = 2 * (dot_product(ray->dir, sph_to_ray));
 	quadratic[C] = dot_product(sph_to_ray, sph_to_ray) - 1;

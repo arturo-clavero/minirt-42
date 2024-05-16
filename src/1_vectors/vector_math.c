@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:16:28 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/15 19:16:49 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/16 16:51:42 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ float	dot_product(t_vec vec1, t_vec vec2)
 	result = 0;
 	i = -1;
 	while (++i < 3)
+	{
 		result += vec1[i] * vec2[i];
+	}
 	if (result == -0)
 		result = 0;
 	return (result);
@@ -59,10 +61,13 @@ void	normalize(t_vec vec, t_vec *result)
 	float	mag;
 	int		i;
 
-	mag = inv_magnitude(vec);
+	i = -1;
+	mag = 0;
+	while (++i < 4)
+		mag += vec[i] * vec[i];
 	i = -1;
 	while (++i < 4)
-		(*result)[i] = vec[i] * mag;
+		(*result)[i] = vec[i] / mag;
 	//clear_negative_zeros_t_vec(result);
 }
 
