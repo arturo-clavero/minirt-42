@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:42 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 14:05:20 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/16 20:26:36 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include "header.h"
 
-# define SHADE -42
 # define AMBIENT 0
+# define DIFFUSE 1
+# define SPECULAR 2
 
 typedef struct s_light
 {

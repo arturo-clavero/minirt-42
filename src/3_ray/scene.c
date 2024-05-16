@@ -133,22 +133,12 @@ void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx)
 
 	init_ray(mlx->ray);
 	create_tupple(&ray->og, 0, 0, -1.5);
-	//printf("min x = %.2f, min y = %.2f, pizel_size = %.2f\n", mlx->vp_min[X], mlx->vp_min[Y], mlx->pixel_size);
 	target[X] = mlx->vp_min[X] + (mlx->pixel_size * pixel[X]);
-	//printf("target[%d] = %.2f\n", X, target[X]);
 	target[Y] = mlx->vp_min[Y] - (mlx->pixel_size * pixel[Y]);
-	//printf("%.2f - (%.2f * %.2f)\n", mlx->vp_min[Y], mlx->pixel_size, pixel[Y]);
-	//printf("target[%d] = %.2f\n", Y, target[Y]);
 	target[Z] = mlx->vp_wall;
 	target[TYPE] = POINT;
-	//printf("og: ");
-//	print_t_vec(ray->og);
 	substract(target, ray->og, &dir);
-//	//printf("ray dir: ");
-	//print_t_vec(dir);
 	normalize(dir, &ray->dir);
-	//printf("normalised: ");
-//	print_t_vec(ray->dir);
 	copy_t_vec(&mlx->ray->target, target);
 }
 
@@ -215,7 +205,6 @@ void	init_scene(t_mlx *mlx)
 			}
 			if (mlx->ray->closest)
 			{
-				calc_light_values(&light, mlx->ray->closest->object, mlx->ray);
 				ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \
 				mlx->ray->color);
 			}

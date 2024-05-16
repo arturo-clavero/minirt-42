@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:36:04 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 15:48:32 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/16 19:50:14 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(void)
 }*/
 
 //RENDER SCENE
-
+/*
 int	main(void)
 {
 	t_mlx	mlx;
@@ -73,7 +73,7 @@ int	main(void)
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image.img, 0, 0);
 	mlx_loop(mlx.mlx);
 	return (0);
-}
+}*/
 
 
 /*
