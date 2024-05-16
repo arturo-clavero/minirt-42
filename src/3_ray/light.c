@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 22:17:22 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/16 22:23:05 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,6 @@ void	create_sphere(t_obj *sph)
 	create_vector(&sph->color, 1, 1, 1);
 }
 
-void	calc_light_dir(t_light *light)
-{
-	substract(light->og, light->point, &light->dir);
-	normalize(light->dir, &light->dir);
-}
-
 void	calc_light_reflection(t_vec in, t_vec normal, t_vec *result)
 {
 	t_vec	temp;
@@ -68,31 +62,24 @@ void	calc_light_vectors(t_light *light, t_ray ray, t_obj obj)
 void	compute_final_color(t_light light, t_obj obj, t_ray *ray)
 {
 	t_vec	base_color;
-	t_mtrx	color;
+	t_vec	temp;
 	float	dot;
 
 	blend_colors(light.color, obj.color, &base_color);
-	calc_light_dir(&light);
-	scalar_mult(base_color, light.ambient, &color[AMBIENT]);
+	substract(light.og, light.point, &light.dir);
+	normalize(light.dir, &light.dir);
+	scalar_mult(base_color, light.ambient, &ray->color);
 	dot = dot_product(light.dir, light.normal);
 	if (dot < 0)
-	{
-		create_vector(&color[DIFFUSE], 0, 0, 0);
-		create_vector(&color[SPECULAR], 0, 0, 0);
-	}
-	else
-	{
-		scalar_mult(base_color, (light.diffuse * dot), &color[DIFFUSE]);
-		calc_light_reflection(light.dir, light.normal, &light.reflect);
-		dot = dot_product(light.reflect, light.eye);
-		if (dot <= 0)
-			create_vector(&color[SPECULAR], 0, 0, 0);
-		else
-			scalar_mult(light.color, (pow(dot, light.shine) \
-			* light.specular), &color[SPECULAR]);
-	}
-	add(color[AMBIENT], color[DIFFUSE], &ray->color);
-	add(ray->color, color[SPECULAR], &ray->color);
+		return ;
+	scalar_mult(base_color, (light.diffuse * dot), &temp);
+	add(ray->color, temp, &ray->color);
+	calc_light_reflection(light.dir, light.normal, &light.reflect);
+	dot = dot_product(light.reflect, light.eye);
+	if (dot <= 0)
+		return ;
+	scalar_mult(light.color, (pow(dot, light.shine) * light.specular), &temp);
+	add(ray->color, temp, &ray->color);
 }
 
 int	main(void)
