@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 22:23:05 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/16 23:00:55 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,23 @@ void	calc_light_reflection(t_vec in, t_vec normal, t_vec *result)
 	copy_t_vec(result, temp);
 }
 
+void	store_hit_point(t_ray ray, t_vec *result)
+{
+	t_vec	temp;
+
+	scalar_mult(ray.dir, ray.closest->dist, &temp);
+	add(ray.og, temp, result);
+	//ray.og + ray.dir * hit
+}
+
 void	calc_light_vectors(t_light *light, t_ray ray, t_obj obj)
 {
-	copy_t_vec(&light->point, ray.target);
+	//printf("hit is at t : %.2f\n", ray.closest->dist);
+	store_hit_point(ray, &light->point);
 	substract(light->point, obj.og, &light->normal);
 	normalize(light->normal, &light->normal);
 	negate(ray.dir, &light->eye);
+	normalize(light->eye, &light->eye);
 	//normalize eye?
 }
 
@@ -81,7 +92,7 @@ void	compute_final_color(t_light light, t_obj obj, t_ray *ray)
 	scalar_mult(light.color, (pow(dot, light.shine) * light.specular), &temp);
 	add(ray->color, temp, &ray->color);
 }
-
+/*
 int	main(void)
 {
 	t_light	light;
@@ -106,3 +117,4 @@ int	main(void)
 	compute_final_color(light, sph, &ray);
 	print_t_vec(ray.color);
 }
+*/

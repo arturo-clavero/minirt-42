@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:42 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 20:26:36 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/16 22:28:18 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_light
 	float	shine;//between 10 and 200
 }		t_light;
 
-void	calc_light_values(t_light	*light, t_obj obj, t_ray *ray);
+void	calc_light_vectors(t_light *light, t_ray ray, t_obj obj);
+void	compute_final_color(t_light light, t_obj obj, t_ray *ray);
 
 #endif

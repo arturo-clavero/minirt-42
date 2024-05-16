@@ -119,7 +119,7 @@ void	new_sphere(t_mlx *mlx)
 	t_obj	sph;
 
 	sph.type = SPHERE;
-	create_tupple(&sph.og, 0, 0, 0);
+	create_tupple(&sph.og, 0, 0, 1);
 	sph.r = 1;
 	sph.is_transformed = FALSE;
 	create_vector(&sph.color, 1, 1, 1);
@@ -129,16 +129,16 @@ void	new_sphere(t_mlx *mlx)
 void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx)
 {
 	t_vec	target;
-	t_vec	dir;
+	//t_vec	dir;
 
 	init_ray(mlx->ray);
-	create_tupple(&ray->og, 0, 0, -1.5);
+	create_tupple(&ray->og, 0, 0, -5);
 	target[X] = mlx->vp_min[X] + (mlx->pixel_size * pixel[X]);
 	target[Y] = mlx->vp_min[Y] - (mlx->pixel_size * pixel[Y]);
 	target[Z] = mlx->vp_wall;
 	target[TYPE] = POINT;
-	substract(target, ray->og, &dir);
-	normalize(dir, &ray->dir);
+	substract(target, ray->og, &ray->dir);
+	//normalize(dir, &ray->dir);
 	copy_t_vec(&mlx->ray->target, target);
 }
 
@@ -170,11 +170,11 @@ void	free_intersections(t_ray *ray)
 
 void	new_light(t_light *light)
 {
-	create_tupple(&light->og, 0, 0, -5);
+	create_tupple(&light->og, 0, 0, -10);
 	create_vector(&light->color, 1, 1, 1);
 	light->ambient = 0.1;
 	light->specular = 0.9;
-	light->diffuse = 1;
+	light->diffuse = 0.9;
 	light->shine = 200;
 }
 
@@ -205,6 +205,8 @@ void	init_scene(t_mlx *mlx)
 			}
 			if (mlx->ray->closest)
 			{
+				calc_light_vectors(&light, *(mlx->ray), mlx->ray->closest->object);
+				compute_final_color(light, mlx->ray->closest->object, mlx->ray);
 				ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \
 				mlx->ray->color);
 			}
@@ -220,6 +222,19 @@ void	init_scene(t_mlx *mlx)
 					;
 			}*/
 			free_intersections(mlx->ray);
+		/*	printf("ambient %.2f\ndiffuse %.2f\nspecular %.2f\nshine %.2f\n", light.ambient, light.diffuse, light.specular, light.shine);
+			printf("for pixels (%.4f, %.4f, %.4f)>\n", pixel[X], pixel[Y], pixel[Z]);
+			printf("with ray origin ");
+			print_t_vec(light.og);
+			printf("\n");
+			printf("point \n");
+			print_t_vec(light.point);
+			printf("normal: \n");
+			print_t_vec(light.normal);
+			printf("eye: \n");
+			print_t_vec(light.eye);
+			printf("color \n");
+			print_t_vec(light.color);*/
 		}
 	}
 }
