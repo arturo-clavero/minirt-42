@@ -33,7 +33,7 @@ void	new_sphere(t_mlx *mlx)
 	sph.r = 1;
 	sph.is_transformed = FALSE;
 	sph.ray = malloc(sizeof(t_ray));
-	create_vector(&sph.color, 1, 1, 1);
+	create_vector(&sph.color, 1, 0, 0);
 	add_obj_to_list(sph, &mlx->obj_list);
 }
 
@@ -82,9 +82,9 @@ void	new_light(t_light *light)
 {
 	create_tupple(&light->og, -10, 10, 0);
 	create_vector(&light->color, 1, 1, 1);
-	light->ambient = 0.1;
-	light->specular = 0.9;
-	light->diffuse = 0.9;
+	light->ambient = 0.2;
+	light->specular = 1;
+	light->diffuse = 1;
 	light->shine = 200;
 }
 
@@ -96,10 +96,8 @@ void	init_scene(t_mlx *mlx)
 	t_light		light;
 
 	new_sphere(mlx);
-	/*
-	translation(&mt[0], 5, 0, 0);
-	print_matrix(mt[0], 4);
-	transform_object(mt, 1, &mlx->obj_list->obj);*/
+	scalar(&mt[0], 3, 3, 3);
+	transform_object(mt, 1, &mlx->obj_list->obj);
 	new_light(&light);
 	init_viewport(mlx);
 	pixel[X] = -1;
@@ -115,8 +113,6 @@ void	init_scene(t_mlx *mlx)
 				transform_ray(mlx->ray, obj->obj.ray, obj->obj);
 				intersects_sphere(mlx->ray, obj->obj.ray, obj->obj);
 				obj = obj->next;
-				print_intersections(mlx->ray);
-				return ;
 			}
 			if (mlx->ray->closest)
 			{
@@ -124,7 +120,7 @@ void	init_scene(t_mlx *mlx)
 				mlx->ray->closest);
 				compute_final_color(light, mlx->ray->closest->object, 
 				mlx->ray->closest->object.ray);
-				create_tupple(&mlx->ray->closest->object.ray->color, 1, 1, 1);
+				//create_tupple(&mlx->ray->closest->object.ray->color, 1, 1, 1);
 				ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \
 				mlx->ray->closest->object.ray->color);
 			}
