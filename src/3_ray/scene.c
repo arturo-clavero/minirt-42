@@ -24,22 +24,6 @@ void	add_obj_to_list(t_obj obj, t_objlist **list)
 	}
 }
 
-void	new_sphere(t_mlx *mlx)
-{
-	t_obj	sph;
-	t_mtrx	mt[MAX_TRANSF];
-
-	sph.type = SPHERE;
-	create_tupple(&sph.og, 0, 0, 0);
-	sph.r = 1;
-	sph.is_transformed = FALSE;
-	sph.ray = malloc(sizeof(t_ray));
-	create_vector(&sph.color, 1, 0, 0);
-	add_obj_to_list(sph, &mlx->obj_list);
-	scalar(&mt[0], 3, 3, 3);
-	transform_object(mt, 1, &mlx->obj_list->obj);
-}
-
 void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx)
 {
 	t_vec	target;
@@ -111,9 +95,59 @@ void	get_pixel_color(t_mlx *mlx, float pixel[2])
 	}
 }
 
+void	new_sphere(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF])
+{
+	t_obj		sph;
+	//t_objlist 	*list;
+
+	sph.type = SPHERE;
+	create_tupple(&sph.og, 0, 0, 0);
+	sph.r = 1;
+	sph.is_transformed = FALSE;
+	sph.ray = malloc(sizeof(t_ray));
+	create_vector(&sph.color, 1, 0, 0);
+	if (trans > 0)
+		transform_object(mt, trans, &sph);
+	add_obj_to_list(sph, &mlx->obj_list);
+}
+
 void	parsing(t_mlx *mlx)
 {
-	new_sphere(mlx);
+	t_mtrx mt1[MAX_TRANSF];
+
+	translation(&mt1[0], 3, 0, -1);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], -3, 0, -1);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], 0, 3, -1);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], 0, -3, -1);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], -3, 3, -1);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], 3, 3, -1);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], 3, -3, -1);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], -3, -3, -1);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], 6, 0, -2);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], -6, 0, -2);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], 0, 6, -2);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], 0, -6, -2);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], -6, 6, -2);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], 6, 6, -2);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], 6, -6, -2);
+	new_sphere(mlx, 1, mt1);
+	translation(&mt1[0], -6, -6, -2);
+	new_sphere(mlx, 1, mt1);
+	new_sphere(mlx, 0, mt1);
 	new_light(mlx->light);
 	init_viewport(mlx);
 }
