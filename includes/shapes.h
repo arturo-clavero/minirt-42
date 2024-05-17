@@ -1,27 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   scene.h                                            :+:      :+:    :+:   */
+/*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/16 02:16:02 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/17 18:59:31 by arturo           ###   ########.fr       */
+/*   Created: 2024/05/17 18:56:56 by arturo            #+#    #+#             */
+/*   Updated: 2024/05/17 18:58:31 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCENE_H
-# define SCENE_H
+#ifndef SHAPES_H
+# define SHAPES_H
 
 # include "header.h"
 
-void	init_scene(t_mlx *mlx);
+# define SPHERE 1
 
-//====PARSING====//
-void	init_viewport(t_mlx *mlx);
-void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx);
-void	new_sphere(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF]);
-void	add_obj_to_list(t_obj obj, t_objlist **list);
-void	parsing(t_mlx *mlx);
+typedef struct s_ray t_ray;
+
+typedef struct s_obj
+{
+	int		type;
+	float	r;
+	t_vec	og;
+	t_mtrx	mt_trans;
+	t_mtrx	inv_trans;
+	t_vec	color;
+	t_ray	*ray;
+	bool	is_transformed;
+}		t_obj;
+
+typedef struct s_dlist
+{
+	t_obj			obj;
+	struct s_dlist	*next;
+	struct s_dlist	*prev;
+}	t_objlist;
+
+int			intersects_sphere(t_ray *parent_ray, t_ray *child_ray, t_obj sph);
 
 #endif

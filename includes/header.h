@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:40:31 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 12:20:56 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/17 18:58:47 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,11 @@
 
 # include "vector.h"
 # include "matrix.h"
+# include "shapes.h"
 # include "ray.h"
 # include "mlx.h"
 # include "light.h"
-# include "window.h"
+# include "mlx_utils.h"
 # include "scene.h"
 //delete debug!
 # include "debug.h"
