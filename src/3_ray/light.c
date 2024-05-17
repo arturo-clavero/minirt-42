@@ -6,19 +6,19 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 23:09:07 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/17 05:57:31 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	calc_light_vectors(t_light *light, t_ray ray, t_obj obj)
+void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest)
 {
 	t_vec	temp;
 
-	scalar_mult(ray.dir, ray.closest->dist, &temp);
+	scalar_mult(ray.dir, closest->dist, &temp);
 	add(ray.og, temp, &light->point);
-	substract(light->point, obj.og, &light->normal);
+	substract(light->point, closest->object.og, &light->normal);
 	normalize(light->normal, &light->normal);
 	negate(ray.dir, &light->eye);
 	normalize(light->eye, &light->eye);
