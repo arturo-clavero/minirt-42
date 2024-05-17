@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 02:15:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/17 13:17:27 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/17 17:17:40 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ void	initialize_mlx(t_mlx *mlx)
 	&mlx->image.bits_per_pixel, &mlx->image.line_length, &mlx->image.endian);
 	mlx->obj_list = NULL;
 	mlx->ray = malloc(sizeof(t_ray));
+	mlx->light = malloc(sizeof(t_light));
 }

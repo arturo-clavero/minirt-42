@@ -27,6 +27,7 @@ void	add_obj_to_list(t_obj obj, t_objlist **list)
 void	new_sphere(t_mlx *mlx)
 {
 	t_obj	sph;
+	t_mtrx	mt[MAX_TRANSF];
 
 	sph.type = SPHERE;
 	create_tupple(&sph.og, 0, 0, 0);
@@ -35,6 +36,8 @@ void	new_sphere(t_mlx *mlx)
 	sph.ray = malloc(sizeof(t_ray));
 	create_vector(&sph.color, 1, 0, 0);
 	add_obj_to_list(sph, &mlx->obj_list);
+	scalar(&mt[0], 3, 3, 3);
+	transform_object(mt, 1, &mlx->obj_list->obj);
 }
 
 void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx)
@@ -59,12 +62,10 @@ void	init_viewport(t_mlx *mlx)
 	mlx->vp_min[X] = -mlx->vp_size[X] / 2;
 	mlx->vp_min[Y] = mlx->vp_size[Y] / 2;
 	mlx->vp_wall = 10;
-	mlx->win_size[X] = 800;
-	mlx->win_size[Y] = 800;
 	mlx->pixel_size = mlx->vp_size[X] / mlx->win_size[X];
 }
 
-void	free_intersections(t_ray *ray)
+void	clean_ray(t_ray *ray)
 {
 	t_intersect	*temp;
 
@@ -88,18 +89,39 @@ void	new_light(t_light *light)
 	light->shine = 200;
 }
 
+void	get_pixel_color(t_mlx *mlx, float pixel[2])
+{
+	t_objlist	*obj;
+
+	obj = mlx->obj_list;
+	while (obj)
+	{
+		transform_ray(mlx->ray, obj->obj.ray, obj->obj);
+		intersects_sphere(mlx->ray, obj->obj.ray, obj->obj);
+		obj = obj->next;
+	}
+	if (mlx->ray->closest)
+	{
+		calc_light_vectors(mlx->light, *(mlx->ray->closest->object.ray), \
+		mlx->ray->closest);
+		compute_final_color(*(mlx->light), mlx->ray->closest->object, \
+		mlx->ray->closest->object.ray);
+		ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \
+		mlx->ray->closest->object.ray->color);
+	}
+}
+
+void	parsing(t_mlx *mlx)
+{
+	new_sphere(mlx);
+	new_light(mlx->light);
+	init_viewport(mlx);
+}
+
 void	init_scene(t_mlx *mlx)
 {
-	t_mtrx		mt[MAX_TRANSF];
-	t_objlist	*obj;
 	float		pixel[2];
-	t_light		light;
 
-	new_sphere(mlx);
-	scalar(&mt[0], 3, 3, 3);
-	transform_object(mt, 1, &mlx->obj_list->obj);
-	new_light(&light);
-	init_viewport(mlx);
 	pixel[X] = -1;
 	while (++pixel[X] < mlx->win_size[X])
 	{
@@ -107,24 +129,9 @@ void	init_scene(t_mlx *mlx)
 		while (++pixel[Y] < mlx->win_size[Y])
 		{
 			new_ray(mlx->ray, pixel, mlx);
-			obj = mlx->obj_list;
-			while (obj)
-			{
-				transform_ray(mlx->ray, obj->obj.ray, obj->obj);
-				intersects_sphere(mlx->ray, obj->obj.ray, obj->obj);
-				obj = obj->next;
-			}
-			if (mlx->ray->closest)
-			{
-				calc_light_vectors(&light, *(mlx->ray->closest->object.ray), 
-				mlx->ray->closest);
-				compute_final_color(light, mlx->ray->closest->object, 
-				mlx->ray->closest->object.ray);
-				//create_tupple(&mlx->ray->closest->object.ray->color, 1, 1, 1);
-				ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \
-				mlx->ray->closest->object.ray->color);
-			}
-			free_intersections(mlx->ray);
+			get_pixel_color(mlx, pixel);
+			clean_ray(mlx->ray);
 		}
 	}
 }
+
