@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/17 18:52:31 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/19 19:04:12 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ void	parsing(t_mlx *mlx)
 	translation(&mt1[0], 6, 0, -1);
 	new_sphere(mlx, 1, mt1);
 	translation(&mt1[0], -6, 0, -1);
-	new_sphere(mlx, 1, mt1);
+	scalar(&mt1[1], 3, 3, 3);
+	new_sphere(mlx, 2, mt1);
 	new_sphere(mlx, 0, mt1);
 	new_light(mlx->light);
 	init_viewport(mlx);
