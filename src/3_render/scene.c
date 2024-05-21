@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/19 18:52:35 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/21 08:35:14 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx)
 {
+	t_vec	target;
+
+	ray->hit = NULL;
 	ray->closest = NULL;
 	create_tupple(&ray->og, 0, 0, -5);
-	ray->og[X] = mlx->vp_min[X] + (mlx->pixel_size * pixel[X]);
-	ray->og[Y] = mlx->vp_min[Y] - (mlx->pixel_size * pixel[Y]);
-	create_vector(&ray->dir, 0, 0, 1);
+	target[X] = mlx->vp_min[X] + (mlx->pixel_size * pixel[X]);
+	target[Y] = mlx->vp_min[Y] - (mlx->pixel_size * pixel[Y]);
+	target[Z] = mlx->vp_wall;
+	target[TYPE] = POINT;
+	substract(target, ray->og, &ray->dir);
+	normalize(ray->dir, &ray->dir);
 }
 
 void	clean_ray(t_ray *ray)

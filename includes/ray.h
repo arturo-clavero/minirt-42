@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:11:07 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/17 18:57:58 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/21 08:40:21 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ typedef struct s_ray
 {
 	t_vec		og;
 	t_vec		dir;
-	t_vec		target;
 	t_vec		color;
 	t_intersect	*closest;
 	t_intersect	*hit;

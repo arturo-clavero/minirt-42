@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:16:28 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 21:36:43 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/20 19:41:37 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	normalize(t_vec vec, t_vec *result)
 	i = -1;
 	while (++i < 3)
 		(*result)[i] = vec[i] / mag;
+	(*result)[3] = vec[3];
 	//clear_negative_zeros_t_vec(result);
 }
 

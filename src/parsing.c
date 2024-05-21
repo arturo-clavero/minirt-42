@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/19 19:04:12 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/21 09:05:52 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	transform_object(t_mtrx mt[MAX_TRANSF], int total, \
 t_obj *obj)
 {
 	t_mtrx	temp_mt;
+	//t_vec	temp_v;
 	t_mtrx	new_trans;
 
 	chain_transform(mt, &new_trans, total);
@@ -27,6 +28,9 @@ t_obj *obj)
 	copy_matrix(&obj->mt_trans, new_trans, 4);
 	obj->is_transformed = TRUE;
 	invert_matrix(obj->mt_trans, &obj->inv_trans, 4);
+	//matrix_by_t_vec(obj->inv_trans, obj->og, &temp_v, 4);
+	//copy_t_vec(&obj->og, temp_v);
+	
 }
 
 void	add_obj_to_list(t_obj obj, t_objlist **list)
@@ -83,20 +87,23 @@ void	new_sphere(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF])
 	sph.ray = malloc(sizeof(t_ray));
 	create_vector(&sph.color, 1, 0, 0);
 	if (trans > 0)
+	{
 		transform_object(mt, trans, &sph);
+	}
 	add_obj_to_list(sph, &mlx->obj_list);
 }
 
 void	parsing(t_mlx *mlx)
 {
-	t_mtrx	mt1[MAX_TRANSF];
+	t_mtrx	mt[MAX_TRANSF];
 
-	translation(&mt1[0], 6, 0, -1);
+	translation(&mt[0], 0, 1, 0);
+	scalar(&mt[1], 3, 3, 3);
+	//new_sphere(mlx, 0, mt1);
+	/*translation(&mt1[0], -6, 0, -1);
 	new_sphere(mlx, 1, mt1);
-	translation(&mt1[0], -6, 0, -1);
-	scalar(&mt1[1], 3, 3, 3);
-	new_sphere(mlx, 2, mt1);
-	new_sphere(mlx, 0, mt1);
+	scalar(&mt1[0], 2, 2, 2);*/
+	new_sphere(mlx, 2, mt);
 	new_light(mlx->light);
 	init_viewport(mlx);
 }

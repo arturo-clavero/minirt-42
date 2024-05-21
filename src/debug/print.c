@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 21:37:12 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/15 23:20:32 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/21 07:50:03 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	print_t_vec(t_vec vec)
 		if (fabs(vec[i]) < 100.00)
 			printf(" ");
 		if (i < 3)
-			printf("%.2f ", vec[i]);
+			printf("%f ", vec[i]);
 	}
 	if (vec[3] == VECTOR)
 		printf("(vector)\n");

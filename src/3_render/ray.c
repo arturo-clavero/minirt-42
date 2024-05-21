@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:50:23 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/17 18:52:55 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/21 08:40:59 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	copy_ray(t_ray *dst, t_ray *src)
 	dst->hit = NULL;
 	copy_t_vec(&dst->dir, src->dir);
 	copy_t_vec(&dst->og, src->og);
-	copy_t_vec(&dst->target, src->target);
 }
 
 void	transform_ray(t_ray *parent, t_ray *child, t_obj obj)
@@ -66,6 +65,4 @@ void	transform_ray(t_ray *parent, t_ray *child, t_obj obj)
 	copy_t_vec(&child->dir, temp);
 	matrix_by_t_vec(obj.inv_trans, child->og, &temp, 4);
 	copy_t_vec(&child->og, temp);
-	matrix_by_t_vec(obj.inv_trans, child->target, &temp, 4);
-	copy_t_vec(&child->target, temp);
 }
