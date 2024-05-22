@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:03:19 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 22:45:03 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 22:48:30 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,9 +116,6 @@ void	cam_transform(t_camera *cam, t_vec orientation, t_vec og)
 	    return ;
 	chain_transform(mt, &cam->mt_trans, total);
 	invert_matrix(cam->mt_trans, &cam->inv_trans, 4);
-	print_matrix(cam->mt_trans, 4);
-	print_matrix(cam->inv_trans, 4);
-	printf("total> %d\n", total);
 }
 
 /*

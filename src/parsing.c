@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 22:47:31 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 22:48:55 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	parsing(t_mlx *mlx)
 
 	init_viewport(mlx);
 	create_tupple(&og, 0, 0, 0);//change according to camera ORIGIN
-	create_vector(&or, 0, 0, -1);//change accorfint to camera ORIENTATION
+	create_vector(&or, 0, 0, 1);//change accorfint to camera ORIENTATION
 	cam_transform(&cam, or, og);
 	cam.half_window[X] = mlx->win_size[X];
 	cam.half_window[Y] = mlx->win_size[Y];
