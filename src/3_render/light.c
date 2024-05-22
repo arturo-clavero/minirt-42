@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 15:09:12 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 16:52:17 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,22 @@
 //TODO!
 void	calc_light_normal(t_camera cam, t_light *light, t_intersect *closest)
 {
-	
-//	t_vec	obj_point;
-//	t_vec	obj_normal;
-//	t_mtrx	back_to_world;
+	t_vec	child_point;
+	t_vec	child_normal;
+	t_mtrx	back_to_parent;
 
-	//if (closest->object.is_transformed == FALSE)
-//	t_vec temp;
 	(void)cam;
-//	matrix_by_t_vec(closest->object.inv_trans, closest->object.og, &temp, 4);
-//	copy_t_vec(&closest->object.og, temp);
-	//printf("sphere og>\n");
-	//print_t_vec(closest->object.og);
-//	matrix_by_t_vec(closest->object.inv_trans, light->point, &temp, 4);
-//	copy_t_vec(&light->point, temp);
-	//printf("point hit \n");
-	//print_t_vec(light->point);
-	substract(light->point, closest->object.og, &light->normal);
-	
-	/*matrix_by_t_vec(closest->object.inv_trans, light->normal, &temp, 4);
-	copy_t_vec(&light->normal, temp);
-	matrix_by_t_vec(cam.inv_trans, light->normal, &temp, 4);
-	copy_t_vec(&light->normal, temp);*/
-	//printf("before normalize> \n");
-	//print_t_vec(light->normal);
-	/*else
+	if (closest->object.is_transformed == FALSE)
+		substract(light->point, closest->object.og, &light->normal);
+	else
 	{
-		matrix_by_t_vec(closest->object.inv_trans, light->point, &obj_point, 4);
-		substract(obj_point, closest->object.og, &obj_normal);
-		transpose(closest->object.inv_trans, &back_to_world, 4);
-		matrix_by_t_vec(back_to_world, obj_normal, &light->normal, 4);
+		matrix_by_t_vec(closest->object.inv_trans, light->point, &child_point, 4);
+		substract(child_point, closest->object.og, &child_normal);
+		transpose(closest->object.inv_trans, &back_to_parent, 4);
+		matrix_by_t_vec(back_to_parent, child_normal, &light->normal, 4);
 		light->normal[TYPE] = VECTOR;
-		print_t_vec(light->normal);
-		printf("\n");
-	}*/
+	}
 	normalize(light->normal, &light->normal);
-//	printf("after normalize> \n");
-//	print_t_vec(light->normal);
-//	/*if (dot_product(light->normal, light->eye) < 0) //if inside a sphere
-	//{
-	//	substract(closest->object.og, light->normal, &light->normal);
-	//	light->normal[TYPE] = VECTOR;
-	//}*/
 }
 
 void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest, t_camera cam)
@@ -95,7 +69,7 @@ void	compute_final_color(t_light light, t_obj obj, t_ray *ray)
 	normalize(light.dir, &light.dir);
 	scalar_mult(base_color, light.ambient, &ray->color);
 	dot = dot_product(light.dir, light.normal);
-	if (dot < 0 || light.is_shadow == TRUE)
+	if (dot < 0) //|| light.is_shadow == TRUE)
 		return ;
 	scalar_mult(base_color, (light.diffuse * dot), &temp);
 	add(ray->color, temp, &ray->color);
