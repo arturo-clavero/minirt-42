@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 21:39:15 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/15 19:15:56 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 11:43:42 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	sub_matrix(t_submtrx *sub)
 
 float	determinant(t_mtrx m, int mt_size)
 {
-	int	x;
-	int	y;
-	int	sum;
+	int		x;
+	int		y;
+	float	sum;
 
 	if (mt_size == 2)
 		return ((m[0][0] * m[1][1]) - (m[0][1] * m[1][0]));

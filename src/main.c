@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:36:04 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/17 17:26:38 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 12:05:56 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	main(void)
 	mlx_loop(mlx.mlx);
 	return (0);
 }
-
 
 /*
 void	new_light(t_light *light)

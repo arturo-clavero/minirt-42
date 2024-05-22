@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/21 08:35:14 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 12:55:07 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,37 @@ void	clean_ray(t_ray *ray)
 	}
 }
 
+void	intersect_all(t_ray *parent_ray, t_ray *child_ray, t_obj obj)
+{
+	if (obj.type == SPHERE)
+		intersects_sphere(parent_ray, child_ray, obj);
+}
+
+void	is_point_in_shadow(t_light *light, t_mlx *mlx)
+{
+	t_ray		shadow_ray;
+	t_ray		child;
+	float		light_ray_len;
+	t_objlist	*objlist;
+
+	light->is_shadow = FALSE;
+	shadow_ray.closest = NULL;
+	shadow_ray.hit = NULL;
+	copy_t_vec(&shadow_ray.og, light->point);
+	substract(light->og, shadow_ray.og, &shadow_ray.dir);
+	light_ray_len = sqrtf(dot_product(shadow_ray.dir, shadow_ray.dir));
+	objlist = mlx->obj_list;
+	while (objlist)
+	{
+		transform_ray(&shadow_ray, &child, objlist->obj);
+		intersect_all(&shadow_ray, &child, objlist->obj);
+		objlist = objlist->next;
+	}
+	if (shadow_ray.closest && shadow_ray.closest->dist < light_ray_len)
+		light->is_shadow = TRUE;
+	clean_ray(&shadow_ray);
+}
+
 void	get_pixel_color(t_mlx *mlx, float pixel[2])
 {
 	t_objlist	*obj;
@@ -49,13 +80,14 @@ void	get_pixel_color(t_mlx *mlx, float pixel[2])
 	while (obj)
 	{
 		transform_ray(mlx->ray, obj->obj.ray, obj->obj);
-		intersects_sphere(mlx->ray, obj->obj.ray, obj->obj);
+		intersect_all(mlx->ray, obj->obj.ray, obj->obj);
 		obj = obj->next;
 	}
 	if (mlx->ray->closest)
 	{
 		calc_light_vectors(mlx->light, *(mlx->ray->closest->object.ray), \
-		mlx->ray->closest);
+		mlx->ray->closest, mlx->cam);
+		is_point_in_shadow(mlx->light, mlx);
 		compute_final_color(*(mlx->light), mlx->ray->closest->object, \
 		mlx->ray->closest->object.ray);
 		ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \
@@ -73,7 +105,9 @@ void	init_scene(t_mlx *mlx)
 		pixel[Y] = -1;
 		while (++pixel[Y] < mlx->win_size[Y])
 		{
-			new_ray(mlx->ray, pixel, mlx);
+			//pixel[X] = mlx->win_size[X] / 2;
+			//pixel[Y] = mlx->win_size[Y] / 2;
+			new_parent_ray(mlx->cam, mlx->ray, pixel);
 			get_pixel_color(mlx, pixel);
 			clean_ray(mlx->ray);
 		}

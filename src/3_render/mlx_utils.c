@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:51:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/17 18:51:15 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 07:19:50 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	initialize_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
 	mlx->win_size[X] = 800;
-	mlx->win_size[Y] = 800;
+	mlx->win_size[Y] = 400;
 	mlx->win = mlx_new_window(mlx->mlx, \
 	mlx->win_size[X], mlx->win_size[Y], "TEST");
 	mlx->image.img = mlx_new_image(mlx->mlx, \

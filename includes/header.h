@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:40:31 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/17 18:58:47 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 12:41:40 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 # include "shapes.h"
 # include "ray.h"
 # include "mlx.h"
+# include "camera.h"
 # include "light.h"
 # include "mlx_utils.h"
 # include "scene.h"
