@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 16:50:51 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 17:16:09 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,7 @@ void	get_pixel_color(t_mlx *mlx, float pixel[2])
 	}
 	if (mlx->ray->closest)
 	{
-		//RAY IS PARENT RAY
-		
+		//RAY USED FOR LIGHT CALCS IS PARENT RAY
 		calc_light_vectors(mlx->light, *(mlx->ray), \
 		mlx->ray->closest, mlx->cam);
 		is_point_in_shadow(mlx->light, mlx);
@@ -102,17 +101,6 @@ void	get_pixel_color(t_mlx *mlx, float pixel[2])
 		mlx->ray);
 		ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \
 		mlx->ray->color);
-		
-	//RAY IS CHILD RAY
-	/*
-		calc_light_vectors(mlx->light, *(mlx->ray->closest->object.ray), \
-		mlx->ray->closest, mlx->cam);
-		is_point_in_shadow(mlx->light, mlx);
-		compute_final_color(*(mlx->light), mlx->ray->closest->object, \
-		mlx->ray->closest->object.ray);
-		ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \
-		mlx->ray->closest->object.ray->color);
-		*/
 	}
 }
 

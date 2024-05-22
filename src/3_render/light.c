@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 16:52:17 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 17:25:12 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	calc_light_normal(t_camera cam, t_light *light, t_intersect *closest)
 	t_vec	child_point;
 	t_vec	child_normal;
 	t_mtrx	back_to_parent;
+	t_vec	zero;
 
 	(void)cam;
 	if (closest->object.is_transformed == FALSE)
@@ -31,6 +32,11 @@ void	calc_light_normal(t_camera cam, t_light *light, t_intersect *closest)
 		light->normal[TYPE] = VECTOR;
 	}
 	normalize(light->normal, &light->normal);
+	if (dot_product(light->normal, light->eye) < 0)
+	{
+		create_vector(&zero, 0, 0, 0);
+		substract(zero, light->normal, &light->normal);
+	}
 }
 
 void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest, t_camera cam)

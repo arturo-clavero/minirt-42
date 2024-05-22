@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 16:39:03 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 17:24:03 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,12 @@ void	parsing(t_mlx *mlx)
 	cam.fov = M_PI * 0.5;
 	calc_pixel_size(&cam);
 	mlx->cam = cam;
-	translation(&mt[0], -2.5, 0, 0);
+	translation(&mt[0], 0, 0, -4.5);
 	//new_sphere(mlx, 1, mt);
 	//translation(&mt[0], 19, 0, 0);
 	new_sphere(mlx, 1, mt);
 	//scalar(&mt[0], 2, 2, 2);
-	new_sphere(mlx, 0, mt);
+//	new_sphere(mlx, 0, mt);
 	new_light(mlx->light);
 	//init_viewport(mlx);
 }
