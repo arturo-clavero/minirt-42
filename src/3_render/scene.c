@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 17:16:09 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 22:37:02 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@ void	new_parent_ray(t_camera cam, t_ray *ray, float pixel[2])
 	offset[Y] = (pixel[Y] + 0.5) * cam.pixel_size;
 	target[X] = -cam.half_canvas[X] + offset[X];
 	target[Y] = cam.half_canvas[Y] - offset[Y];
-	target[Z] = cam.og[Z] + 1;
-	copy_t_vec(&ray->og, cam.og);
+	target[Z] = 1;
+	create_tupple(&ray->og, 0, 0, 0);
 	substract(target, ray->og, &ray->dir);
 	if (cam.default_orient == FALSE)
 	{
+		matrix_by_t_vec(cam.inv_trans, ray->og, &temp, 4);
+		copy_t_vec(&ray->og, temp);
+		//	substract(target, ray->og, &ray->dir);
 		matrix_by_t_vec(cam.inv_trans, ray->dir, &temp, 4);
 		copy_t_vec(&ray->dir, temp);
 	}

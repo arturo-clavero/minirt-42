@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:03:19 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 15:10:46 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 22:45:03 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,10 +66,10 @@ void	calc_pixel_size(t_camera *cam)
 		cam->half_canvas[X] = half_view * aspect_ratio;
 		cam->half_canvas[Y] = half_view;
 	}
-	cam->pixel_size = ((cam->half_canvas[X] * 2) / cam->half_window[X]) / 2;
+	cam->pixel_size = ((cam->half_canvas[X] * 2) / cam->half_window[X]);
 }
 
-void	cam_transform(t_camera *cam, t_vec orientation)
+void	cam_transform(t_camera *cam, t_vec orientation, t_vec og)
 {
 	int		total;
 	t_vec	rot;
@@ -77,14 +77,23 @@ void	cam_transform(t_camera *cam, t_vec orientation)
 	t_mtrx	mt[MAX_TRANSF];
 	float	rad;
 
-	cam->default_orient = TRUE;
-	if (orientation[X] == 0 && orientation[Y] == 0 && orientation[Z] == 1)
-		return ;
-	cam->default_orient = FALSE;
 	total = 0;
+	cam->default_orient = TRUE;
+	if ((og[X] != 0 || og[Y] != 0 || og[Z] != 0) && ++total > 0)
+	{
+		cam->default_orient = FALSE;
+		print_t_vec(og);
+		translation(&mt[total - 1], -og[X], -og[Y], -og[Z]);
+		printf("translate (%d)\n", total -1);
+		print_matrix(mt[total - 1], 4);
+	}
+	if (!(orientation[X] == 0 && orientation[Y] == 0 && orientation[Z] == 1))
+		cam->default_orient = FALSE;
+	if (cam->default_orient == TRUE)
+		return ;
 	create_vector(&def, 0, 0, 1);
 	cross_product(orientation, def, &rot);
-	if (rot[Z] == 0 && rot[Y] == 0 && rot[X] == 0 && ++total > 0)
+	if (rot[Z] == 0 && rot[Y] == 0 && rot[X] == 0 && orientation[Z] == -1 && ++total > 0)
 	{
 		rad = M_PI;
 		rotation(&mt[total - 1], rad, 'y'); //x or y axis rotation work here as long as its 180 also negative 180 is same as pos 180
@@ -103,8 +112,13 @@ void	cam_transform(t_camera *cam, t_vec orientation)
 			rad += (2 * M_PI);
 		rotation(&mt[total - 1], rad, 'x');
 	}
+	if (cam->default_orient == TRUE)
+	    return ;
 	chain_transform(mt, &cam->mt_trans, total);
 	invert_matrix(cam->mt_trans, &cam->inv_trans, 4);
+	print_matrix(cam->mt_trans, 4);
+	print_matrix(cam->inv_trans, 4);
+	printf("total> %d\n", total);
 }
 
 /*

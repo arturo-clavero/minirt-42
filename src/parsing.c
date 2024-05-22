@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 17:24:03 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 22:47:31 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,18 +93,19 @@ void	parsing(t_mlx *mlx)
 {
 	t_camera	cam;
 	t_vec		or;
+	t_vec       og;
 	t_mtrx		mt[MAX_TRANSF];
 
 	init_viewport(mlx);
-	create_tupple(&cam.og, 0, 0, -5);
-	create_vector(&or, 0, 0, 1);
-	cam_transform(&cam, or);
-	cam.half_window[X] = mlx->win_size[X] / 2;
-	cam.half_window[Y] = mlx->win_size[Y] / 2;
+	create_tupple(&og, 0, 0, 0);//change according to camera ORIGIN
+	create_vector(&or, 0, 0, -1);//change accorfint to camera ORIENTATION
+	cam_transform(&cam, or, og);
+	cam.half_window[X] = mlx->win_size[X];
+	cam.half_window[Y] = mlx->win_size[Y];
 	cam.fov = M_PI * 0.5;
 	calc_pixel_size(&cam);
 	mlx->cam = cam;
-	translation(&mt[0], 0, 0, -4.5);
+	translation(&mt[0], 0, 0, 10);
 	//new_sphere(mlx, 1, mt);
 	//translation(&mt[0], 19, 0, 0);
 	new_sphere(mlx, 1, mt);
