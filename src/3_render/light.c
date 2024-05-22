@@ -6,12 +6,13 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 12:54:13 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 15:09:12 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
+//TODO!
 void	calc_light_normal(t_camera cam, t_light *light, t_intersect *closest)
 {
 	
@@ -20,14 +21,14 @@ void	calc_light_normal(t_camera cam, t_light *light, t_intersect *closest)
 //	t_mtrx	back_to_world;
 
 	//if (closest->object.is_transformed == FALSE)
-	t_vec temp;
+//	t_vec temp;
 	(void)cam;
-	matrix_by_t_vec(closest->object.inv_trans, closest->object.og, &temp, 4);
-	copy_t_vec(&closest->object.og, temp);
+//	matrix_by_t_vec(closest->object.inv_trans, closest->object.og, &temp, 4);
+//	copy_t_vec(&closest->object.og, temp);
 	//printf("sphere og>\n");
 	//print_t_vec(closest->object.og);
-	matrix_by_t_vec(closest->object.inv_trans, light->point, &temp, 4);
-	copy_t_vec(&light->point, temp);
+//	matrix_by_t_vec(closest->object.inv_trans, light->point, &temp, 4);
+//	copy_t_vec(&light->point, temp);
 	//printf("point hit \n");
 	//print_t_vec(light->point);
 	substract(light->point, closest->object.og, &light->normal);
@@ -67,6 +68,9 @@ void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest, t_camer
 	negate(ray.dir, &light->eye);
 	normalize(light->eye, &light->eye);
 	calc_light_normal(cam, light, closest);
+	//adding an offset to avoid shadow acne
+	scalar_mult(light->normal, EPSILON, &temp);
+	add(light->point, temp, &light->point);
 }
 
 void	calc_light_reflection(t_vec in, t_vec normal, t_vec *result)
@@ -91,7 +95,7 @@ void	compute_final_color(t_light light, t_obj obj, t_ray *ray)
 	normalize(light.dir, &light.dir);
 	scalar_mult(base_color, light.ambient, &ray->color);
 	dot = dot_product(light.dir, light.normal);
-	if (dot < 0)
+	if (dot < 0 || light.is_shadow == TRUE)
 		return ;
 	scalar_mult(base_color, (light.diffuse * dot), &temp);
 	add(ray->color, temp, &ray->color);

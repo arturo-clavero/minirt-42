@@ -6,24 +6,32 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 12:55:07 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 15:11:05 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx)
+void	new_parent_ray(t_camera cam, t_ray *ray, float pixel[2])
 {
+	float	offset[2];
 	t_vec	target;
+	t_vec	temp;
 
 	ray->hit = NULL;
 	ray->closest = NULL;
-	create_tupple(&ray->og, 0, 0, -5);
-	target[X] = mlx->vp_min[X] + (mlx->pixel_size * pixel[X]);
-	target[Y] = mlx->vp_min[Y] - (mlx->pixel_size * pixel[Y]);
-	target[Z] = mlx->vp_wall;
-	target[TYPE] = POINT;
+	offset[X] = (pixel[X] + 0.5) * cam.pixel_size;
+	offset[Y] = (pixel[Y] + 0.5) * cam.pixel_size;
+	target[X] = -cam.half_canvas[X] + offset[X];
+	target[Y] = cam.half_canvas[Y] - offset[Y];
+	target[Z] = cam.og[Z] + 1;
+	copy_t_vec(&ray->og, cam.og);
 	substract(target, ray->og, &ray->dir);
+	if (cam.default_orient == FALSE)
+	{
+		matrix_by_t_vec(cam.inv_trans, ray->dir, &temp, 4);
+		copy_t_vec(&ray->dir, temp);
+	}
 	normalize(ray->dir, &ray->dir);
 }
 
