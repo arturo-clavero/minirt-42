@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 20:08:46 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 20:27:31 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	parsing(t_mlx *mlx)
 	//scalar(&mt[0], 2, 2, 2);
 	//translation(&mt[0], -3, 2, -2);
 //	new_sphere(mlx, 0, mt);
-	
+	rotation(&mt[0], M_PI / 4, 'x');
 	new_cylinder(mlx, 0, mt);
 //	new_plane(mlx, 0, mt);
 	new_light(mlx->light);

@@ -6,31 +6,25 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 11:16:15 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 20:26:02 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-//TODO!
-void	calc_light_normal(t_camera cam, t_light *light, t_intersect *closest)
+void	calc_sph_normal(t_light *light, t_intersect *closest)
 {
 	t_vec	child_point;
 	t_vec	child_normal;
-	t_mtrx	back_to_parent;
 	t_vec	zero;
+	t_mtrx	back_to_parent;
 
-	(void)cam;
-	if (closest->object.type == PLANE)
-	{
-		create_vector(&light->normal, 0, 1, 0);
-		return ;
-	}
 	if (closest->object.is_transformed == FALSE)
 		substract(light->point, closest->object.og, &light->normal);
 	else
 	{
-		matrix_by_t_vec(closest->object.inv_trans, light->point, &child_point, 4);
+		matrix_by_t_vec(closest->object.inv_trans, \
+		light->point, &child_point, 4);
 		substract(child_point, closest->object.og, &child_normal);
 		transpose(closest->object.inv_trans, &back_to_parent, 4);
 		matrix_by_t_vec(back_to_parent, child_normal, &light->normal, 4);
@@ -44,7 +38,21 @@ void	calc_light_normal(t_camera cam, t_light *light, t_intersect *closest)
 	}
 }
 
-void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest, t_camera cam)
+void	calc_cyl_normal(t_light *light, t_intersect *closest)
+{
+	float	hit;
+
+	hit = (light->point[X] * light->point[X]) + \
+	(light->point[Z] * light->point[Z]);
+	if (hit < 1 && light->point[Y] >= closest->object.max - EPSILON)
+		create_vector(&light->normal, 0, 1, 0);
+	else if (hit < 1 && light->point[Y] <= closest->object.max - EPSILON)
+		create_vector(&light->normal, 0, -1, 0);
+	else
+		create_vector(&light->normal, light->point[X], 0, light->point[Z]);
+}
+
+void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest)
 {
 	t_vec	temp;
 
@@ -52,10 +60,12 @@ void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest, t_camer
 	add(ray.og, temp, &light->point);
 	negate(ray.dir, &light->eye);
 	normalize(light->eye, &light->eye);
-	calc_light_normal(cam, light, closest);
-	//adding an offset to avoid shadow acne
-	//scalar_mult(light->normal, EPSILON, &temp);
-	//add(light->point, temp, &light->point);
+	if (closest->object.type == SPHERE)
+		calc_sph_normal(light, closest);
+	else if (closest->object.type == PLANE)
+		create_vector(&light->normal, 0, 1, 0);
+	else if (closest->object.type == CYLINDER)
+		calc_cyl_normal(light, closest);
 }
 
 void	calc_light_reflection(t_vec in, t_vec normal, t_vec *result)

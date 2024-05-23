@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:42 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 12:41:10 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 20:26:50 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_light
 	bool	is_shadow;
 }		t_light;
 
-void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest, t_camera cam);
+void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest);
 void	compute_final_color(t_light light, t_obj obj, t_ray *ray);
 
 #endif

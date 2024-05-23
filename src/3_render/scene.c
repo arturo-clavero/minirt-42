@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 20:04:14 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 20:28:44 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void	get_pixel_color(t_mlx *mlx, float pixel[2])
 	{
 		//RAY USED FOR LIGHT CALCS IS PARENT RAY
 		calc_light_vectors(mlx->light, *(mlx->ray), \
-		mlx->ray->closest, mlx->cam);
+		mlx->ray->closest);
 		is_point_in_shadow(mlx->light, mlx);
 		compute_final_color(*(mlx->light), mlx->ray->closest->object, \
 		mlx->ray);
