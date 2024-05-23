@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 11:32:57 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 20:04:14 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,6 @@ void	clean_ray(t_ray *ray)
 	}
 }
 
-void	intersect_all(t_ray *parent_ray, t_ray *child_ray, t_obj obj)
-{
-	if (obj.type == SPHERE)
-		intersects_sphere(parent_ray, child_ray, obj);
-}
-
-
 int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
 {
 	t_objlist	*list;
@@ -72,8 +65,12 @@ int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
 			intersects_sphere(parent_ray, &child_ray, list->obj);
 		else if (list->obj.type == PLANE)
 			intersects_plane(parent_ray, &child_ray, list->obj);
+		else if (list->obj.type == CYLINDER)
+		{
+			intersects_cylinder_body(parent_ray, &child_ray, list->obj);
+			intersects_cylinder_caps(parent_ray, &child_ray, list->obj);
+		}
 		list = list->next;
-		//free intersections in child ray
 	}
 	if (parent_ray->closest)
 		return (TRUE);

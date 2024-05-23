@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 11:30:33 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 20:08:46 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,21 @@ void	new_sphere(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF])
 	add_obj_to_list(sph, &mlx->obj_list);
 }
 
+void	new_cylinder(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF])
+{
+	t_obj	cyl;
+
+	cyl.type = CYLINDER;
+	create_tupple(&cyl.og, 0, 0, 0);
+	cyl.max = 1;
+	cyl.min = -1;
+	cyl.is_transformed = FALSE;
+	create_vector(&cyl.color, 0, 0, 1);
+	if (trans > 0)
+		transform_object(mt, trans, &cyl);
+	add_obj_to_list(cyl, &mlx->obj_list);
+}
+
 void	parsing(t_mlx *mlx)
 {
 	t_camera	cam;
@@ -106,7 +121,7 @@ void	parsing(t_mlx *mlx)
 	t_mtrx		mt[MAX_TRANSF];
 
 	init_viewport(mlx);
-	create_tupple(&og, 0, 3, -10);//change according to camera ORIGIN
+	create_tupple(&og, 0, 0, -5);//change according to camera ORIGIN
 	create_vector(&or, 0, 0, 1);//change accorfint to camera ORIENTATION
 	cam_transform(&cam, or, og);
 	cam.half_window[X] = mlx->win_size[X];
@@ -114,14 +129,16 @@ void	parsing(t_mlx *mlx)
 	cam.fov = M_PI * 0.5;
 	calc_pixel_size(&cam);
 	mlx->cam = cam;
-	translation(&mt[0], 0, 1, 1);
-	scalar(&mt[1], 4, 4, 4);
+	//translation(&mt[0], 0, 1, 1);
+	//scalar(&mt[1], 4, 4, 4);
 	//new_sphere(mlx, 1, mt);
-	new_sphere(mlx, 2, mt);
+	//new_sphere(mlx, 2, mt);
 	//scalar(&mt[0], 2, 2, 2);
-	translation(&mt[0], -3, 2, -2);
-	new_sphere(mlx, 1, mt);
-	new_plane(mlx, 0, mt);
+	//translation(&mt[0], -3, 2, -2);
+//	new_sphere(mlx, 0, mt);
+	
+	new_cylinder(mlx, 0, mt);
+//	new_plane(mlx, 0, mt);
 	new_light(mlx->light);
 	//init_viewport(mlx);
 }
