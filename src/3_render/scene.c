@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 22:37:02 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 23:29:11 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,27 +60,27 @@ void	intersect_all(t_ray *parent_ray, t_ray *child_ray, t_obj obj)
 
 void	is_point_in_shadow(t_light *light, t_mlx *mlx)
 {
-	t_ray		shadow_ray;
-	t_ray		child;
-	float		light_ray_len;
+	t_ray	shadow_ray;
+	t_ray	child;
+	t_vec	temp;
+	float	v_magnitude;
 	t_objlist	*objlist;
 
 	light->is_shadow = FALSE;
-	shadow_ray.closest = NULL;
 	shadow_ray.hit = NULL;
+	shadow_ray.closest = NULL;
+	substract(light->og, light->point, &temp);
+	v_magnitude = sqrtf(dot_product(temp, temp));
+	normalize(temp, &shadow_ray.dir);
 	copy_t_vec(&shadow_ray.og, light->point);
-	substract(light->og, shadow_ray.og, &shadow_ray.dir);
-	light_ray_len = sqrtf(dot_product(shadow_ray.dir, shadow_ray.dir));
 	objlist = mlx->obj_list;
 	while (objlist)
 	{
-		transform_ray(&shadow_ray, &child, objlist->obj);
 		intersect_all(&shadow_ray, &child, objlist->obj);
 		objlist = objlist->next;
 	}
-	if (shadow_ray.closest && shadow_ray.closest->dist < light_ray_len)
+	if (shadow_ray.closest && shadow_ray.closest->dist < v_magnitude)
 		light->is_shadow = TRUE;
-	clean_ray(&shadow_ray);
 }
 
 void	get_pixel_color(t_mlx *mlx, float pixel[2])

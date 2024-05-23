@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 22:48:55 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/22 23:30:38 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	init_viewport(t_mlx *mlx)
 
 void	new_light(t_light *light)
 {
-	create_tupple(&light->og, -10, 0, 0);
+	create_tupple(&light->og, -10, 0, 10);
 	create_vector(&light->color, 1, 1, 1);
 	light->ambient = 0.2;
 	light->specular = 1;
@@ -107,10 +107,10 @@ void	parsing(t_mlx *mlx)
 	mlx->cam = cam;
 	translation(&mt[0], 0, 0, 10);
 	//new_sphere(mlx, 1, mt);
-	//translation(&mt[0], 19, 0, 0);
 	new_sphere(mlx, 1, mt);
 	//scalar(&mt[0], 2, 2, 2);
-//	new_sphere(mlx, 0, mt);
+	translation(&mt[0], 3, 0, 10);
+	new_sphere(mlx, 1, mt);
 	new_light(mlx->light);
 	//init_viewport(mlx);
 }
