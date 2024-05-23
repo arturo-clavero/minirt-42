@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 23:27:00 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 09:11:04 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest, t_camer
 	normalize(light->eye, &light->eye);
 	calc_light_normal(cam, light, closest);
 	//adding an offset to avoid shadow acne
-	scalar_mult(light->normal, EPSILON, &temp);
-	add(light->point, temp, &light->point);
+	//scalar_mult(light->normal, EPSILON, &temp);
+	//add(light->point, temp, &light->point);
 }
 
 void	calc_light_reflection(t_vec in, t_vec normal, t_vec *result)

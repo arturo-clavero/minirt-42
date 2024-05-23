@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 23:29:11 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 09:10:09 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,43 +58,47 @@ void	intersect_all(t_ray *parent_ray, t_ray *child_ray, t_obj obj)
 		intersects_sphere(parent_ray, child_ray, obj);
 }
 
+
+int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
+{
+	t_objlist	*list;
+	t_ray		child_ray;
+
+	list = mlx->obj_list;
+	while (list)
+	{
+		transform_ray(parent_ray, &child_ray, list->obj);
+		if (list->obj.type == SPHERE)
+			intersects_sphere(parent_ray, &child_ray, list->obj);
+		list = list->next;
+		//free intersections in child ray
+	}
+	if (parent_ray->closest)
+		return (TRUE);
+	return (FALSE);
+}
+
 void	is_point_in_shadow(t_light *light, t_mlx *mlx)
 {
 	t_ray	shadow_ray;
-	t_ray	child;
 	t_vec	temp;
-	float	v_magnitude;
-	t_objlist	*objlist;
+	float	light_to_point_dist;
 
 	light->is_shadow = FALSE;
 	shadow_ray.hit = NULL;
 	shadow_ray.closest = NULL;
 	substract(light->og, light->point, &temp);
-	v_magnitude = sqrtf(dot_product(temp, temp));
+	light_to_point_dist = sqrtf(dot_product(temp, temp));
 	normalize(temp, &shadow_ray.dir);
 	copy_t_vec(&shadow_ray.og, light->point);
-	objlist = mlx->obj_list;
-	while (objlist)
-	{
-		intersect_all(&shadow_ray, &child, objlist->obj);
-		objlist = objlist->next;
-	}
-	if (shadow_ray.closest && shadow_ray.closest->dist < v_magnitude)
+	if (find_intersection(&shadow_ray, mlx) == TRUE \
+	&& shadow_ray.closest->dist < light_to_point_dist)
 		light->is_shadow = TRUE;
 }
 
 void	get_pixel_color(t_mlx *mlx, float pixel[2])
 {
-	t_objlist	*obj;
-
-	obj = mlx->obj_list;
-	while (obj)
-	{
-		transform_ray(mlx->ray, obj->obj.ray, obj->obj);
-		intersect_all(mlx->ray, obj->obj.ray, obj->obj);
-		obj = obj->next;
-	}
-	if (mlx->ray->closest)
+	if (find_intersection(mlx->ray, mlx) == TRUE)
 	{
 		//RAY USED FOR LIGHT CALCS IS PARENT RAY
 		calc_light_vectors(mlx->light, *(mlx->ray), \
