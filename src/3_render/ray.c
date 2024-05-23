@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:50:23 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 15:11:29 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 21:24:25 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_intersect **closest, t_obj sph)
 	t_intersect	*ne;
 	t_intersect	*prev;
 
+	if (d < 0.01)
+		return ;
 	ne = (t_intersect *)malloc(sizeof(t_intersect));
 	if (!ne)
 		return ;

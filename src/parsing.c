@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 20:50:31 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 23:11:44 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	new_cylinder(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF])
 
 void	new_light(t_light *light)
 {
-	create_tupple(&light->og, -10, 7, 0);
+	create_tupple(&light->og, 0, 0, -2);
 	create_vector(&light->color, 1, 1, 1);
 	light->ambient = 0.2;
 	light->specular = 1;
@@ -122,7 +122,7 @@ void	parsing(t_mlx *mlx)
 	t_mtrx		mt[MAX_TRANSF];
 
 	init_viewport(mlx);
-	create_tupple(&og, 0, 5, -5);//change according to camera ORIGIN
+	create_tupple(&og, 0, 10, -10);//change according to camera ORIGIN
 	create_vector(&or, 0, -0.5, 0.5);//change accorfint to camera ORIENTATION
 	cam_transform(&cam, or, og);
 	cam.half_window[X] = mlx->win_size[X];
@@ -140,7 +140,42 @@ void	parsing(t_mlx *mlx)
 	rotation(&mt[0], M_PI / 4, 'x');
 	new_cylinder(mlx, 0, mt);
 	translation(&mt[0], 0, -1, 0);
-	new_plane(mlx, 1, mt);
+	/*translation(&mt[0], 3, 0, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], -3, 0, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], 0, 3, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], 0, -3, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], -3, 3, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], 3, 3, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], 3, -3, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], -3, -3, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], 8, 0, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], -8, 0, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], 0, 8, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], 0, -8, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], -8, 8, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], 8, 8, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], 8, -8, 0);
+	new_sphere(mlx, 1, mt);
+	translation(&mt[0], -8, -8, 0);
+	new_sphere(mlx, 1, mt);
+	new_sphere(mlx, 0, mt);*/
+	rotation(&mt[1], M_PI / 2, 'x');
+	translation(&mt[0], 0, 0, 10);
+	new_plane(mlx, 2, mt);
 	new_light(mlx->light);
 	//init_viewport(mlx);
 }
