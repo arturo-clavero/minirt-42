@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 20:28:44 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 20:46:41 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,8 @@ int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
 void	is_point_in_shadow(t_light *light, t_mlx *mlx)
 {
 	t_ray	shadow_ray;
-	t_vec	temp;
 	float	light_to_point_dist;
+	t_vec	temp;
 
 	light->is_shadow = FALSE;
 	shadow_ray.hit = NULL;
