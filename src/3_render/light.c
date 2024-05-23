@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 09:11:04 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 11:16:15 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,11 @@ void	calc_light_normal(t_camera cam, t_light *light, t_intersect *closest)
 	t_vec	zero;
 
 	(void)cam;
+	if (closest->object.type == PLANE)
+	{
+		create_vector(&light->normal, 0, 1, 0);
+		return ;
+	}
 	if (closest->object.is_transformed == FALSE)
 		substract(light->point, closest->object.og, &light->normal);
 	else

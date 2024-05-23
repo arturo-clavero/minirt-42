@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:56:56 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/17 18:58:31 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 10:48:56 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "header.h"
 
 # define SPHERE 1
+# define PLANE 2
 
 typedef struct s_ray t_ray;
 
@@ -27,7 +28,6 @@ typedef struct s_obj
 	t_mtrx	mt_trans;
 	t_mtrx	inv_trans;
 	t_vec	color;
-	t_ray	*ray;
 	bool	is_transformed;
 }		t_obj;
 
@@ -39,5 +39,6 @@ typedef struct s_dlist
 }	t_objlist;
 
 int			intersects_sphere(t_ray *parent_ray, t_ray *child_ray, t_obj sph);
+void		intersects_plane(t_ray *parent_ray, t_ray *child_ray, t_obj pl);
 
 #endif

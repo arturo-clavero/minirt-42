@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:05 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 08:31:10 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 11:17:27 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,14 @@ int	intersects_sphere(t_ray *parent_ray, t_ray *child_ray, t_obj sph)
 	add_intersection_to_ray(hit, &parent_ray->hit, &parent_ray->closest, sph);
 	return (EXIT_SUCCESS);
 }
-/*
-void	intersects_plane(t_ray *parent_ray, t_ray *child_ray, t_obj sph)
+
+void	intersects_plane(t_ray *parent_ray, t_ray *child_ray, t_obj pl)
 {
 	float	hit;
-	
-	if (fabs(child_ray->dir[Y] < EPSILON))
+
+	if (fabs(child_ray->dir[Y]) < EPSILON)
 		return ;
 	hit = -child_ray->og[Y] / child_ray->dir[Y];
-}*/
+	//if (hit > 0.01)
+		add_intersection_to_ray(hit, &parent_ray->hit, &parent_ray->closest, pl);
+}
