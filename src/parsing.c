@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 23:11:44 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/23 23:29:12 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,6 @@ void	new_cylinder(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF])
 		transform_object(mt, trans, &cyl);
 	add_obj_to_list(cyl, &mlx->obj_list);
 }
-
 
 void	new_light(t_light *light)
 {

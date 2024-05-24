@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 23:14:50 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/24 10:59:53 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	calc_cyl_normal(t_light *light, t_intersect *closest)
 	hit = (point[X] * point[X]) + (point[Z] * point[Z]);
 	if (hit < 1 && point[Y] >= closest->object.max - EPSILON)
 		create_vector(&light->normal, 0, 1, 0);
-	else if (hit < 1 && point[Y] <= closest->object.max - EPSILON)
+	else if (hit < 1 && point[Y] <= closest->object.min + EPSILON)
 		create_vector(&light->normal, 0, -1, 0);
 	else
 		create_vector(&light->normal, point[X], 0, point[Z]);
@@ -62,6 +62,8 @@ void	calc_cyl_normal(t_light *light, t_intersect *closest)
 		copy_t_vec(&light->normal, temp);
 		light->normal[TYPE] = VECTOR;
 	}
+	normalize(light->normal, &temp);
+	copy_t_vec(&light->normal, temp);
 }
 
 void	calc_plane_normal(t_light *light, t_intersect *closest)
@@ -73,13 +75,12 @@ void	calc_plane_normal(t_light *light, t_intersect *closest)
 	{
 		matrix_by_t_vec(closest->object.inv_trans, light->normal, &temp, 4);
 		copy_t_vec(&light->normal, temp);
-		printf("normal\n");
-		print_t_vec(light->normal);
-
 		/*transpose(closest->object.inv_trans, &back_to_parent, 4);
 		matrix_by_t_vec(back_to_parent, light->normal, &temp, 4);
 		copy_t_vec(&light->normal, temp);
 		light->normal[TYPE] = VECTOR;*/
+		normalize(light->normal, &temp);
+		copy_t_vec(&light->normal, temp);
 	}
 }
 
