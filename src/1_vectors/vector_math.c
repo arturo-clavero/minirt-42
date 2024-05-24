@@ -6,12 +6,17 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:16:28 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/20 19:41:37 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/24 11:18:03 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
-
+/// @brief
+// Combines 2 vectors together into a float number that measures
+// how "similar" 2 vectors are
+// Bonus use> 
+//		1)magnitude (or length) of a vector
+//		 = fsqrt(dot_product(vector1, vector1));
 float	dot_product(t_vec vec1, t_vec vec2)
 {
 	float	result;
@@ -28,34 +33,21 @@ float	dot_product(t_vec vec1, t_vec vec2)
 	return (result);
 }
 
+/// @brief stores the cross product of v1 x v2 in result vector
+/// result vector will be perpendicular to both v1 and v2
+// Bonus use>
+//		1) calculate the angle between two vectors, 
+//		2) determine a vector normal to a plane,
 void	cross_product(t_vec v1, t_vec v2, t_vec *result)
 {
 	(*result)[X] = (v1[Y] * v2[Z]) - (v1[Z] * v2[Y]);
 	(*result)[Y] = (v1[Z] * v2[X]) - (v1[X] * v2[Z]);
 	(*result)[Z] = (v1[X] * v2[Y]) - (v1[Y] * v2[X]);
 	(*result)[TYPE] = VECTOR;
-	//clear_negative_zeros_t_vec(result);
 }
 
-float	inv_magnitude(t_vec vec)
-{
-	long	i;
-	float	x2;
-	float	y;
-	float	number;
-
-	number = dot_product(vec, vec);
-	x2 = number * 0.5F;
-	y = number;
-	i = *(long *)&y;
-	i = 0x5f3759df - (i >> 1);
-	y = *(float *)&i;
-	y = y * (1.5F - (x2 * y * y));
-	if (y == -0)
-		y = 0;
-	return (y);
-}
-
+/// @brief Normalizes vec and stores it in result
+/// A normalized vector is a vector that has a magnitude (or length) of 1
 void	normalize(t_vec vec, t_vec *result)
 {
 	float	mag;
@@ -70,9 +62,10 @@ void	normalize(t_vec vec, t_vec *result)
 	while (++i < 3)
 		(*result)[i] = vec[i] / mag;
 	(*result)[3] = vec[3];
-	//clear_negative_zeros_t_vec(result);
 }
 
+/// @brief Result will have opposite direction to vec, but same magnitude (or length)
+//Example> if vec->direction = (1, -2, 3), then result->direction = (-1, 2, -3);
 void	negate(t_vec vec, t_vec *result)
 {
 	int		i;
@@ -84,5 +77,4 @@ void	negate(t_vec vec, t_vec *result)
 	i = -1;
 	while (++i < 4)
 		(*result)[i] = zero[i] - vec[i];
-	//clear_negative_zeros_t_vec(result);
 }
