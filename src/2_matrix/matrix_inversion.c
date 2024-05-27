@@ -6,12 +6,15 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 21:39:15 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 11:43:42 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 15:01:35 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
+//creates a matrix deleting row index sub->excl_x, and column index sub->excl_y
+//from original matrix sub->old
+//the new sub-matrix will be stored in sub->new
 void	sub_matrix(t_submtrx *sub)
 {
 	int	old_x;
@@ -40,6 +43,12 @@ void	sub_matrix(t_submtrx *sub)
 		sub->sign = -1;
 }
 
+//calculates the "cofactor" of each row along a fixed column (y = 0) of a matrix
+//then multiplies each cofactor with its corresponding element. 
+//The sum of the products obtained by the operations == the determinant.
+//Unless the matrix is 2x2, then the determinant is calculated like so>
+//top left by bottom right elements - the top right by the bottom left elements.
+//The determinant is needed to calculate the inverse of a matrix
 float	determinant(t_mtrx m, int mt_size)
 {
 	int		x;
@@ -58,6 +67,8 @@ float	determinant(t_mtrx m, int mt_size)
 	return (sum);
 }
 
+//Eliminates row 'x' and column 'y' of a matrix
+//calculates the determinant of the modified matrix
 float	cofactor(t_mtrx m1, int y, int x, int mt_size)
 {
 	t_submtrx	sub;
@@ -76,6 +87,11 @@ float	cofactor(t_mtrx m1, int y, int x, int mt_size)
 	return (minor * sign);
 }
 
+//Inverted matrices are used to transform rays 
+//	by the opposite transformation of an object.
+//If we want to move an object by an x of +2
+//	we instead transform the ray by x of -2,
+//	as all intersection fts expect objects in a default position and scale
 int	invert_matrix(t_mtrx mt, t_mtrx *inv, int mt_size)
 {
 	float	det;
@@ -92,6 +108,5 @@ int	invert_matrix(t_mtrx mt, t_mtrx *inv, int mt_size)
 		while (++x < mt_size)
 			(*inv)[y][x] = cofactor(mt, x, y, mt_size) / det;
 	}
-	//clear_negative_zeros_mt(inv);
 	return (EXIT_SUCCESS);
 }
