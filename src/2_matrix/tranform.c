@@ -6,12 +6,13 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 21:46:38 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/15 19:16:19 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 15:24:27 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
+//creates transformation matrix to "move" a vector in the x y and z direction 
 void	translation(t_mtrx *trans, float x, float y, float z)
 {
 	create_identity_matrix(trans, 4);
@@ -20,6 +21,9 @@ void	translation(t_mtrx *trans, float x, float y, float z)
 	(*trans)[2][3] = z;
 }
 
+//creates a transformation matrix that makes a vector bigger or smaller 
+//in x y and z direction 
+//value of 0.5 would be half the size, 1 is the same size, 2 is double the size
 void	scalar(t_mtrx *scl, float x, float y, float z)
 {
 	create_identity_matrix(scl, 4);
@@ -28,6 +32,7 @@ void	scalar(t_mtrx *scl, float x, float y, float z)
 	(*scl)[2][2] = z;
 }
 
+//rotates the matrix by radians "rad", in the specified axis ('x' or 'y' or 'z')
 void	rotation(t_mtrx *rot, float rad, char axis)
 {
 	create_identity_matrix(rot, 4);
@@ -52,9 +57,15 @@ void	rotation(t_mtrx *rot, float rad, char axis)
 		(*rot)[1][0] = sin(rad);
 		(*rot)[0][1] = -sin(rad);
 	}
-	//clear_negative_zeros_mt(rot);
 }
 
+//"slants" a vector in a specific direction using these values>
+//shr[0] == slanting "x-axis" relative to the "y-axis"
+//shr[1] == slanting "x-axis" relative to the "z-axis"
+//shr[2] == slanting "y-axis" relative to the "x-axis"
+//shr[3] == slanting "y-axis" relative to the "z-axis"
+//shr[4] == slanting "z-axis" relative to the "x-axis"
+//shr[5] == slanting "z-axis" relative to the "y-axis"
 void	shearing(t_mtrx *mt, float shr[6])
 {
 	int		s;
@@ -75,9 +86,12 @@ void	shearing(t_mtrx *mt, float shr[6])
 			s++;
 		}
 	}
-	//clear_negative_zeros_mt(mt);
 }
 
+//creates one transformation matrix representing multiple transformations
+//chain transfromations are multiplied in reverse order
+// chain of (rotation + translation + scaling)
+// = (scaling * translation * rotation)
 void	chain_transform(t_mtrx mt[MAX_TRANSF], t_mtrx *final, int total)
 {
 	int		i;
