@@ -6,10 +6,9 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:51:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 07:19:50 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 16:30:46 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "header.h"
 
@@ -40,7 +39,7 @@ void	initialize_mlx(t_mlx *mlx)
 	mlx->win_size[X] = 800;
 	mlx->win_size[Y] = 400;
 	mlx->win = mlx_new_window(mlx->mlx, \
-	mlx->win_size[X], mlx->win_size[Y], "TEST");
+	mlx->win_size[X], mlx->win_size[Y], "MINI-RT");
 	mlx->image.img = mlx_new_image(mlx->mlx, \
 	mlx->win_size[X], mlx->win_size[Y]);
 	mlx->image.address = mlx_get_data_addr(mlx->image.img, \

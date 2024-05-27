@@ -6,46 +6,24 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:50:23 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 21:24:25 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 16:09:59 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	update_closest_hit(t_intersect **closest, t_intersect *new)
+void	clean_ray(t_ray *ray)
 {
-	if (new->dist < 0)
-		return ;
-	if (*closest == NULL)
-		*closest = new;
-	else if (new->dist < (*closest)->dist)
-		*closest = new;
-}
+	t_intersect	*temp;
 
-void	add_intersection_to_ray(float d, t_intersect **hit, \
-t_intersect **closest, t_obj sph)
-{
-	t_intersect	*ne;
-	t_intersect	*prev;
-
-	if (d < 0.01)
+	if (ray->hit == NULL)
 		return ;
-	ne = (t_intersect *)malloc(sizeof(t_intersect));
-	if (!ne)
-		return ;
-	ne->dist = d;
-	ne->object = sph;
-	ne->next = NULL;
-	if (*hit == NULL)
-		*hit = ne;
-	else
+	while (ray->hit)
 	{
-		prev = *hit;
-		while (prev->next)
-			prev = prev->next;
-		prev->next = ne;
+		temp = ray->hit->next;
+		free(ray->hit);
+		ray->hit = temp;
 	}
-	update_closest_hit(closest, ne);
 }
 
 void	copy_ray(t_ray *dst, t_ray *src)
@@ -67,4 +45,29 @@ void	transform_ray(t_ray *parent, t_ray *child, t_obj obj)
 	copy_t_vec(&child->dir, temp);
 	matrix_by_t_vec(obj.inv_trans, child->og, &temp, 4);
 	copy_t_vec(&child->og, temp);
+}
+
+void	new_parent_ray(t_camera cam, t_ray *ray, float pixel[2])
+{
+	float	offset[2];
+	t_vec	target;
+	t_vec	temp;
+
+	ray->hit = NULL;
+	ray->closest = NULL;
+	offset[X] = (pixel[X] + 0.5) * cam.pixel_size;
+	offset[Y] = (pixel[Y] + 0.5) * cam.pixel_size;
+	target[X] = -cam.half_canvas[X] + offset[X];
+	target[Y] = cam.half_canvas[Y] - offset[Y];
+	target[Z] = 1;
+	create_tupple(&ray->og, 0, 0, 0);
+	substract(target, ray->og, &ray->dir);
+	if (cam.default_orient == FALSE)
+	{
+		matrix_by_t_vec(cam.inv_trans, ray->og, &temp, 4);
+		copy_t_vec(&ray->og, temp);
+		matrix_by_t_vec(cam.inv_trans, ray->dir, &temp, 4);
+		copy_t_vec(&ray->dir, temp);
+	}
+	normalize(ray->dir, &ray->dir);
 }

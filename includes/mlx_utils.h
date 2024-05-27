@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:55:45 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/21 14:31:14 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 16:26:27 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,28 @@
 # define MLX_UTILS_H
 
 # include "header.h"
+
+typedef struct s_obj	t_obj;
+typedef struct s_dlist	t_objlist;
+typedef struct s_ray	t_ray;
+typedef struct s_camera	t_camera;
+typedef struct s_light	t_light;
+
+typedef struct s_camera
+{
+	float	vp_min[2];
+	float	vp_size[2];
+	float	half_window[2];
+	float	half_canvas[2];
+	float	fov;
+	float	pixel_size;
+	bool	default_orient;
+	t_mtrx	mt_trans;
+	t_mtrx	inv_trans;
+	t_vec	from;
+	t_vec	up;
+	t_vec	to;
+}		t_camera;
 
 typedef struct s_data
 {
@@ -28,6 +50,7 @@ typedef struct s_mlx
 {
 	void		*mlx;
 	void		*win;
+	float		half_window[2];
 	float		win_size[2];
 	float		vp_size[2];
 	float		vp_min[2];

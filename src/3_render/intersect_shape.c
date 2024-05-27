@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:05 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/24 10:57:16 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 15:34:04 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	intersects_cylinder_body(t_ray *parent, t_ray *child, t_obj cyl)
 	float		hit;
 	float		y;
 
-	//normalize(child->dir, &child->dir);
 	quadratic[A] = (child->dir[X] * child->dir[X]) + \
 	(child->dir[Z] * child->dir[Z]);
 	if (quadratic[A] < 0.001 && quadratic[A] > -0.009)
