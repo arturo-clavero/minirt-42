@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:36:04 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/22 13:13:33 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 22:06:38 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,12 @@ int	main(void)
 int	main(void)
 {
 	t_mlx	mlx;
+	t_pars	*pars;
 
+	pars = NULL;
 	initialize_mlx(&mlx);
-	parsing(&mlx);
+	parsing(&pars);
+	lexer(pars, &mlx);
 	init_scene(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image.img, 0, 0);
 	mlx_loop(mlx.mlx);

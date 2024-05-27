@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:03:19 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/27 15:26:33 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 22:15:32 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,39 @@ void	calc_pixel_size(t_camera *cam)
 	cam->pixel_size = ((cam->half_canvas[X] * 2) / cam->half_window[X]);
 }
 
-void	cam_transform(t_camera *cam, t_vec orientation, t_vec og)
+void	rotate_obj(t_vec orientation, t_mtrx (*mt)[MAX_TRANSF], int *total_ptr)
 {
+	float	rad;
 	int		total;
 	t_vec	rot;
 	t_vec	def;
+
+	create_vector(&def, 0, 0, 1);
+	cross_product(orientation, def, &rot);
+	total = *total_ptr;
+	if (rot[Z] < 0 && ++total > 0)
+		rotation(&((*mt)[total - 1]), M_PI, 'y');
+	if (rot[Y] != 0 && ++total > 0)
+	{
+		rad = rot[Y] * M_PI / 2;
+		if (rad < 0)
+			rad += (2 * M_PI);
+		rotation(&((*mt)[total - 1]), rad, 'y');
+	}
+	if (rot[X] != 0 && ++total > 0)
+	{
+		rad = rot[X] * M_PI / 2;
+		if (rad < 0)
+			rad += (2 * M_PI);
+		rotation(&((*mt)[total - 1]), rad, 'x');
+	}
+	*total_ptr = total;
+}
+
+void	cam_transform(t_camera *cam, t_vec orientation, t_vec og)
+{
+	int		total;
 	t_mtrx	mt[MAX_TRANSF];
-	float	rad;
 
 	total = 0;
 	cam->default_orient = TRUE;
@@ -88,29 +114,7 @@ void	cam_transform(t_camera *cam, t_vec orientation, t_vec og)
 		cam->default_orient = FALSE;
 	if (cam->default_orient == TRUE)
 		return ;
-	create_vector(&def, 0, 0, 1);
-	cross_product(orientation, def, &rot);
-	if (rot[Z] == 0 && rot[Y] == 0 && rot[X] == 0 && orientation[Z] == -1 && ++total > 0)
-	{
-		rad = M_PI;
-		rotation(&mt[total - 1], rad, 'y'); //x or y axis rotation work here as long as its 180 also negative 180 is same as pos 180
-	}
-	if (rot[Y] != 0 && ++total > 0)
-	{
-		rad = rot[Y] * M_PI / 2;
-		if (rad < 0)
-			rad += (2 * M_PI);
-		rotation(&mt[total - 1], rad, 'y');
-	}
-	if (rot[X] != 0 && ++total > 0)
-	{
-		rad = rot[X] * M_PI / 2;
-		if (rad < 0)
-			rad += (2 * M_PI);
-		rotation(&mt[total - 1], rad, 'x');
-	}
-	if (cam->default_orient == TRUE)
-		return ;
+	rotate_obj(orientation, &mt, &total);
 	chain_transform(mt, &cam->mt_trans, total);
 	invert_matrix(cam->mt_trans, &cam->inv_trans, 4);
 }

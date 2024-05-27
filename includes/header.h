@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:40:31 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/27 16:29:27 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 22:23:55 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "matrix.h"
 # include "mlx.h"
 # include "mlx_utils.h"
+# include "parsing.h"
 //delete debug!
 # include "debug.h"
 
@@ -55,7 +56,6 @@ typedef struct s_dlist
 {
 	t_obj			obj;
 	struct s_dlist	*next;
-	struct s_dlist	*prev;
 }	t_objlist;
 
 typedef struct s_intersect
@@ -91,16 +91,16 @@ typedef struct s_light
 	bool	is_shadow;
 }		t_light;
 
+typedef struct s_pars	t_pars;
+
+//MAIN>
+void	parsing(t_pars **pars);
+void	lexer(t_pars *pars, t_mlx *mlx);
+void	init_scene(t_mlx *mlx);
 //CAMERA>
 void	new_parent_ray(t_camera cam, t_ray *ray, float pixel[2]);
-void	cam_transform(t_camera *cam, t_vec orientation, t_vec og);
 void	calc_pixel_size(t_camera *cam);
-//SCENE>
-void	init_scene(t_mlx *mlx);
-void	init_viewport(t_mlx *mlx);
-void	new_sphere(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF]);
-void	add_obj_to_list(t_obj obj, t_objlist **list);
-void	parsing(t_mlx *mlx);
+void	cam_transform(t_camera *cam, t_vec orientation, t_vec og);
 //LIGHT>
 void	calc_sph_normal(t_light *light, t_intersect *closest);
 void	calc_cyl_normal(t_light *light, t_intersect *closest);
@@ -112,9 +112,8 @@ void	compute_final_color(t_light light, t_obj obj, t_ray *ray);
 void	new_parent_ray(t_camera cam, t_ray *ray, float pixel[2]);
 void	add_intersection_to_ray(float d, t_intersect **hit, \
 t_intersect **closest, t_obj sph);
-void	transform_object(t_mtrx mt[MAX_TRANSF], int total, \
-t_obj *obj);
 void	transform_ray(t_ray *parent, t_ray *child, t_obj obj);
+void	rotate_obj(t_vec orientation, t_mtrx (*mt)[MAX_TRANSF], int *total_ptr);
 void	copy_ray(t_ray *dst, t_ray *src);
 void	clean_ray(t_ray *ray);
 //INTERSECT
@@ -125,5 +124,6 @@ void	intersects_cylinder_caps(t_ray *parent, t_ray *child, t_obj cyl);
 void	add_intersection_to_ray(float d, t_intersect **hit, \
 t_intersect **closest, t_obj sph);
 int		find_intersection(t_ray *parent_ray, t_mlx *mlx);
+
 
 #endif

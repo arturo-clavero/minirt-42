@@ -6,12 +6,12 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/23 23:29:12 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 22:05:33 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
-
+//#include "header.h"
+/*
 void	transform_object(t_mtrx mt[MAX_TRANSF], int total, \
 t_obj *obj)
 {
@@ -28,7 +28,8 @@ t_obj *obj)
 	obj->is_transformed = TRUE;
 	invert_matrix(obj->mt_trans, &obj->inv_trans, 4);
 }
-
+*/
+/*
 void	add_obj_to_list(t_obj obj, t_objlist **list)
 {
 	t_objlist	*new;
@@ -139,7 +140,7 @@ void	parsing(t_mlx *mlx)
 	rotation(&mt[0], M_PI / 4, 'x');
 	new_cylinder(mlx, 0, mt);
 	translation(&mt[0], 0, -1, 0);
-	/*translation(&mt[0], 3, 0, 0);
+	translation(&mt[0], 3, 0, 0);
 	new_sphere(mlx, 1, mt);
 	translation(&mt[0], -3, 0, 0);
 	new_sphere(mlx, 1, mt);
@@ -172,9 +173,11 @@ void	parsing(t_mlx *mlx)
 	translation(&mt[0], -8, -8, 0);
 	new_sphere(mlx, 1, mt);
 	new_sphere(mlx, 0, mt);*/
+	/*
 	rotation(&mt[1], M_PI / 2, 'x');
 	translation(&mt[0], 0, 0, 10);
 	new_plane(mlx, 2, mt);
 	new_light(mlx->light);
 	//init_viewport(mlx);
 }
+*/

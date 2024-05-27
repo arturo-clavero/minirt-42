@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:51:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/27 16:30:46 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 20:10:06 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,6 @@ void	initialize_mlx(t_mlx *mlx)
 	mlx->obj_list = NULL;
 	mlx->ray = malloc(sizeof(t_ray));
 	mlx->light = malloc(sizeof(t_light));
+	mlx->light->diffuse = 0;
+	mlx->light->specular = 0;
 }

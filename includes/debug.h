@@ -6,14 +6,14 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:09:28 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/15 21:04:46 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/27 17:13:43 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEBUG_H
 # define DEBUG_H
 
-#include "header.h"
+# include "header.h"
 
 void		print_matrix(t_mtrx m, int mt_size);
 void		print_t_vec(t_vec vec);
