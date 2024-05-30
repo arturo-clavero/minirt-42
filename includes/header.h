@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 16:40:31 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/29 14:15:10 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:16:27 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # include "mlx_utils.h"
 # include "scene.h"
 # include "parsing.h"
+# include "lexer.h"
 //delete debug!
 # include "debug.h"
 

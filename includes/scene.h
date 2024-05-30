@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 02:16:02 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/29 14:34:42 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:18:22 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@
 # include "header.h"
 
 void	init_scene(t_mlx *mlx);
-
-//====PARSING====//
 void	init_viewport(t_mlx *mlx);
-void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx);
-void	new_sphere(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF]);
-void	add_obj_to_list(t_obj obj, t_objlist **list);
+int		find_intersection(t_ray *parent_ray, t_mlx *mlx);
 
 #endif

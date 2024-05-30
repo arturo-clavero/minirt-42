@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 14:09:28 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 12:59:13 by arturo           ###   ########.fr       */
+/*   Created: 2024/05/17 18:46:44 by arturo            #+#    #+#             */
+/*   Updated: 2024/05/30 12:58:29 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#include "header.h"
 
-# include "header.h"
-
-void		print_matrix(t_mtrx m, int mt_size);
-void		print_t_vec(t_vec vec);
-void		print_shear(float sh[6]);
-void		print_intersections(t_ray *ray);
-void		print_ray(t_ray *ray);
-void		print_set_up(t_mlx *mlx);
-#endif
+void	parsing(t_pars **pars)
+{
+	add_cam_parsing(pars);
+	add_sphere_parsing(pars);
+	add_plane_parsing(pars);
+	add_cylinder_parsing(pars);
+	add_amb_light_parsing(pars);
+	add_dif_light_parsing(pars);
+	add_spec_light_parsing(pars);
+}

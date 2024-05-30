@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:42 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 11:04:13 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:16:54 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # define AMBIENT 4
 # define DIFFUSE 5
 # define SPECULAR 6
+
+typedef struct s_mlx	t_mlx;
 
 typedef struct s_light
 {
@@ -36,7 +38,11 @@ typedef struct s_light
 	bool	is_shadow;
 }		t_light;
 
+void	is_point_in_shadow(t_light *light, t_mlx *mlx);
 void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest);
 void	compute_final_color(t_light light, t_obj obj, t_ray *ray);
+void	calc_plane_normal(t_light *light, t_intersect *closest);
+void	calc_cyl_normal(t_light *light, t_intersect *closest);
+void	calc_sph_normal(t_light *light, t_intersect *closest);
 
 #endif

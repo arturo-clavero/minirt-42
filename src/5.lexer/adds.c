@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   lexer_adds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/30 10:38:10 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 12:07:34 by arturo           ###   ########.fr       */
+/*   Created: 2024/05/30 12:55:29 by arturo            #+#    #+#             */
+/*   Updated: 2024/05/30 12:56:27 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,23 +91,5 @@ void	add_light_lexer(t_elem element, t_light	*light)
 	{
 		light->specular = element.brightness;
 		light->shine = element.shine;
-	}
-}
-
-void	lexer(t_mlx *mlx, t_pars *pars)
-{
-	while (pars)
-	{
-		if (pars->element.type == CAMERA)
-			add_cam_lexer(pars->element, mlx);
-		else if (pars->element.type == SPHERE)
-			add_sph_lexer(pars->element, mlx);
-		else if (pars->element.type == PLANE)
-			add_pln_lexer(pars->element, mlx);
-		else if (pars->element.type == CYLINDER)
-			add_cyl_lexer(pars->element, mlx);
-		else
-			add_light_lexer(pars->element, mlx->light);
-		pars = pars->next;
 	}
 }

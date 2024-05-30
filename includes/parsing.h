@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 14:11:41 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 12:07:51 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:10:12 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,13 @@ typedef struct s_pars
 }		t_pars;
 
 void	parsing(t_pars **pars);
+void	add_cam_parsing(t_pars **pars);
+void	add_cylinder_parsing(t_pars **pars);
+void	add_sphere_parsing(t_pars **pars);
+void	add_plane_parsing(t_pars **pars);
+void	add_amb_light_parsing(t_pars **pars);
+void	add_dif_light_parsing(t_pars **pars);
+void	add_spec_light_parsing(t_pars **pars);
 void	add_element_to_pars_list(t_elem elem, t_pars **pars);
-void	lex_transf_obj(t_obj *obj, t_elem e, t_mtrx (*mt)[MAX_TRANSF], int *tot_ptr);
-void	lexer(t_mlx *mlx, t_pars *pars);
-void	rotate_object(t_mtrx (*mt)[MAX_TRANSF], int *total_ptr, t_elem elem);
 
 #endif

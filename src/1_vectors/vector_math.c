@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:16:28 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/24 11:18:03 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 12:53:30 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,10 @@ void	normalize(t_vec vec, t_vec *result)
 	(*result)[3] = vec[3];
 }
 
-/// @brief Result will have opposite direction to vec, but same magnitude (or length)
-//Example> if vec->direction = (1, -2, 3), then result->direction = (-1, 2, -3);
+/// @brief Result will have opposite direction to vec, 
+//but same magnitude (or length)
+//Example> if vec->direction = (1, -2, 3), 
+//then result->direction = (-1, 2, -3);
 void	negate(t_vec vec, t_vec *result)
 {
 	int		i;

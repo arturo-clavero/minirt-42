@@ -1,40 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_utils.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 10:40:50 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 12:08:16 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:14:07 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	lex_transf_obj(t_obj *obj, t_elem e, t_mtrx (*mt)[MAX_TRANSF], int *tot_ptr)
+void	lex_transf_obj(t_obj *obj, t_elem e, t_mtrx (*mt)[MAX_TRANSF], int *ptr)
 {
 	int		total;
 
 	obj->is_transformed = FALSE;
-	total = *tot_ptr;
-	//IF ORIGIN != (0,0,0)
+	total = *ptr;
 	if (e.center[X] != 0 || e.center[Y] != 0 || e.center[Z] != 0)
 		translation(&(*mt)[++total], e.center[X], e.center[Y], e.center[Z]);
-	//IF DIAMETER != 2
 	if ((e.type == SPHERE || e.type == CYLINDER) && e.diameter != 2)
 		scalar(&(*mt)[++total], e.diameter / 2.0f, e.diameter / 2.0f, \
 		e.diameter / 2.0f);
-	*tot_ptr = total;
-	//NON DEFAULT ORIENTATION
-	/*if (e.type != SPHERE && e.orientation[Z] != mlx->default_or[e.type][Z])
-		rotation(&mt[++total], M_PI, 'x');
-	if (e.type != SPHERE && e.orientation[Y] != mlx->default_or[e.type][Y])
-		rotation(&mt[++total], e.orientation[Y] * M_PI / 2, 'x');
-	if (e.type != SPHERE && e.orientation[X] != mlx->default_or[e.type][X])
-		rotation(&mt[++total], e.orientation[X] * M_PI / 2, 'y');
-	if (++total > 0)
-		transform_object(mt, total, obj);*/
+	*ptr = total;
 }
 
 void	rotate_object(t_mtrx (*mt)[MAX_TRANSF], int *total_ptr, t_elem elem)
@@ -81,4 +70,27 @@ t_obj *obj)
 	copy_matrix(&obj->mt_trans, new_trans, 4);
 	obj->is_transformed = TRUE;
 	invert_matrix(obj->mt_trans, &obj->inv_trans, 4);
+}
+
+void	add_obj_to_list(t_obj obj, t_objlist **list)
+{
+	t_objlist	*new;
+	t_objlist	*prev;
+
+	new = malloc(sizeof(t_objlist));
+	if (!new)
+		return ;
+	new->obj = obj;
+	new->next = NULL;
+	new->prev = NULL;
+	if (*list == NULL)
+		*list = new;
+	else
+	{
+		prev = *list;
+		while (prev->next)
+			prev = prev->next;
+		new->prev = prev;
+		prev->next = new;
+	}
 }

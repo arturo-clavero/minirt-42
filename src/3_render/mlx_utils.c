@@ -6,10 +6,9 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:51:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 10:42:07 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:17:23 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "header.h"
 
@@ -59,7 +58,4 @@ void	initialize_mlx(t_mlx *mlx)
 	mlx->ray = malloc(sizeof(t_ray));
 	mlx->light = malloc(sizeof(t_light));
 	init_viewport(mlx);
-	create_vector(&mlx->default_or[CAMERA], 0, 0, 1);
-	create_vector(&mlx->default_or[PLANE], 0, 1, 0);
-	create_vector(&mlx->default_or[CYLINDER], 0, 0, 1);
 }

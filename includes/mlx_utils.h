@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:55:45 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/29 19:30:43 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:00:30 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ typedef struct s_mlx
 	t_ray		*ray;
 	t_light		*light;
 	t_camera	cam;
-	t_vec		default_or[3];
 }		t_mlx;
 
 void	ft_mlx_pixel_put(t_data *data, int x, int y, t_vec color);

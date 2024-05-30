@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/29 10:54:24 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 12:52:07 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	new_parent_ray(t_camera cam, t_ray *ray, float pixel[2])
 	{
 		matrix_by_t_vec(cam.inv_trans, ray->og, &temp, 4);
 		copy_t_vec(&ray->og, temp);
-		//	substract(target, ray->og, &ray->dir);
 		matrix_by_t_vec(cam.inv_trans, ray->dir, &temp, 4);
 		copy_t_vec(&ray->dir, temp);
 	}
@@ -77,32 +76,10 @@ int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
 	return (FALSE);
 }
 
-void	is_point_in_shadow(t_light *light, t_mlx *mlx)
-{
-	t_ray	shadow_ray;
-	float	light_to_point_dist;
-	t_vec	temp;
-
-	light->is_shadow = FALSE;
-	shadow_ray.hit = NULL;
-	shadow_ray.closest = NULL;
-	substract(light->og, light->point, &temp);
-	light_to_point_dist = sqrtf(dot_product(temp, temp));
-	normalize(temp, &shadow_ray.dir);
-	scalar_mult(light->normal, EPSILON * 2, &temp);
-	add(light->point, temp, &shadow_ray.og);
-	if (find_intersection(&shadow_ray, mlx) == TRUE \
-	&& shadow_ray.closest->dist < light_to_point_dist)
-		light->is_shadow = TRUE;
-}
-
 void	get_pixel_color(t_mlx *mlx, float pixel[2])
 {
 	if (find_intersection(mlx->ray, mlx) == TRUE)
 	{
-		//ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], 
-		//mlx->ray->closest->object.color);
-		//RAY USED FOR LIGHT CALCS IS PARENT RAY
 		calc_light_vectors(mlx->light, *(mlx->ray), \
 		mlx->ray->closest);
 		is_point_in_shadow(mlx->light, mlx);
@@ -123,15 +100,8 @@ void	init_scene(t_mlx *mlx)
 		pixel[Y] = -1;
 		while (++pixel[Y] < mlx->win_size[Y])
 		{
-			//pixel[X] = mlx->win_size[X] / 2;
-			//pixel[Y] = mlx->win_size[Y] / 2;
 			new_parent_ray(mlx->cam, mlx->ray, pixel);
 			get_pixel_color(mlx, pixel);
-			/*if (pixel[X] == mlx->win_size[X] / 2 && pixel[Y] == mlx->win_size[Y] / 2)
-			{
-				print_intersections(mlx->ray);
-				print_t_vec(mlx->ray->dir);
-			}*/
 			clean_ray(mlx->ray);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:56:56 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/29 19:30:15 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 13:02:44 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@
 # define CYLINDER 2
 # define SPHERE 3
 
-
-typedef struct s_ray t_ray;
+typedef struct s_ray	t_ray;
 
 typedef struct s_obj
 {
