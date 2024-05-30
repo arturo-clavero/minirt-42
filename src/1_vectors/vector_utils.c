@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:21:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/24 11:37:17 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 12:31:42 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,21 +57,4 @@ void	blend_colors(t_vec color1, t_vec color2, t_vec *result)
 	i = -1;
 	while (++i < 4)
 		(*result)[i] = color1[i] * color2[i];
-}
-
-//sometimes some calculations leave negative zeros and to avoid some 
-//problems in calculations we can change -0 back to 0
-//this ft may be removed after we test everything
-void	clear_negative_zeros_t_vec(t_vec *vec)
-{
-	int	i;
-
-	i = -1;
-	while (++i < 4)
-	{
-		if ((*vec)[i] == -0)
-		{
-			(*vec)[i] = +0;
-		}
-	}
 }

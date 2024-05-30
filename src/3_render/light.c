@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/24 10:59:53 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 12:39:47 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ void	calc_light_reflection(t_vec in, t_vec normal, t_vec *result)
 
 	scalar_mult(normal, (2 * dot_product(in, normal)), &temp);
 	substract(temp, in, result);
-	clear_negative_zeros_t_vec(result);
 	normalize(*result, &temp);
 	copy_t_vec(result, temp);
 }

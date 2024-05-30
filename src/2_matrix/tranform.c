@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 21:46:38 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/15 19:16:19 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 12:31:29 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void	rotation(t_mtrx *rot, float rad, char axis)
 		(*rot)[1][0] = sin(rad);
 		(*rot)[0][1] = -sin(rad);
 	}
-	//clear_negative_zeros_mt(rot);
 }
 
 void	shearing(t_mtrx *mt, float shr[6])
@@ -75,7 +74,6 @@ void	shearing(t_mtrx *mt, float shr[6])
 			s++;
 		}
 	}
-	//clear_negative_zeros_mt(mt);
 }
 
 void	chain_transform(t_mtrx mt[MAX_TRANSF], t_mtrx *final, int total)
