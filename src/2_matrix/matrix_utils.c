@@ -6,18 +6,12 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 21:35:06 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/27 15:13:14 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/15 19:10:34 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-//An indentity matrix is used as a base for transformation matrices
-//it has diagonal line of 1s from top left o bottom right and 0s>
-//{ {1, 0, 0, 0},
-//	{0, 1, 0, 0},
-//	{0, 0, 1, 0},
-//	{0, 0, 0, 1} }
 void	create_identity_matrix(t_mtrx *matrix, int mt_size)
 {
 	int	i;
@@ -37,7 +31,6 @@ void	create_identity_matrix(t_mtrx *matrix, int mt_size)
 	}
 }
 
-//creates a struct used in the function to create a sub-matrix
 t_submtrx	create_submtrx_struct(t_mtrx m, int y, int x, int mt_size)
 {
 	t_submtrx	sub;
@@ -49,7 +42,6 @@ t_submtrx	create_submtrx_struct(t_mtrx m, int y, int x, int mt_size)
 	return (sub);
 }
 
-//copies matrix "src" to matrix "dst"
 void	copy_matrix(t_mtrx *dst, t_mtrx src, int mt_size)
 {
 	int	i;
@@ -64,7 +56,24 @@ void	copy_matrix(t_mtrx *dst, t_mtrx src, int mt_size)
 	}
 }
 
-//elements -0s are changed to +0s
+int	matrix_comparison(t_mtrx m1, t_mtrx m2, int mt_size)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	while (++i < mt_size)
+	{
+		j = -1;
+		while (++j < mt_size)
+		{
+			if (float_comparison(m1[i][j], m2[i][j]) == EXIT_FAILURE)
+				return (EXIT_FAILURE);
+		}
+	}
+	return (EXIT_SUCCESS);
+}
+
 void	clear_negative_zeros_mt(t_mtrx	*m)
 {
 	int	i;

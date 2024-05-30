@@ -6,9 +6,10 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:51:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/27 20:10:06 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/30 10:42:07 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "header.h"
 
@@ -33,13 +34,23 @@ void	ft_mlx_pixel_put(t_data *data, int x, int y, t_vec color)
 	*(unsigned int *)dst = packed_rgb;
 }
 
+void	init_viewport(t_mlx *mlx)
+{
+	mlx->vp_size[X] = 80;
+	mlx->vp_size[Y] = 80;
+	mlx->vp_min[X] = -mlx->vp_size[X] / 2;
+	mlx->vp_min[Y] = mlx->vp_size[Y] / 2;
+	mlx->vp_wall = 10;
+	mlx->pixel_size = mlx->vp_size[X] / mlx->win_size[X];
+}
+
 void	initialize_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
 	mlx->win_size[X] = 800;
 	mlx->win_size[Y] = 400;
 	mlx->win = mlx_new_window(mlx->mlx, \
-	mlx->win_size[X], mlx->win_size[Y], "MINI-RT");
+	mlx->win_size[X], mlx->win_size[Y], "TEST");
 	mlx->image.img = mlx_new_image(mlx->mlx, \
 	mlx->win_size[X], mlx->win_size[Y]);
 	mlx->image.address = mlx_get_data_addr(mlx->image.img, \
@@ -47,6 +58,8 @@ void	initialize_mlx(t_mlx *mlx)
 	mlx->obj_list = NULL;
 	mlx->ray = malloc(sizeof(t_ray));
 	mlx->light = malloc(sizeof(t_light));
-	mlx->light->diffuse = 0;
-	mlx->light->specular = 0;
+	init_viewport(mlx);
+	create_vector(&mlx->default_or[CAMERA], 0, 0, 1);
+	create_vector(&mlx->default_or[PLANE], 0, 1, 0);
+	create_vector(&mlx->default_or[CYLINDER], 0, 0, 1);
 }

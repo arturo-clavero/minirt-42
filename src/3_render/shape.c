@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   intersect_shape.c                                  :+:      :+:    :+:   */
+/*   shape.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:05 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/27 17:12:49 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/24 10:57:16 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,26 +45,33 @@ void	intersects_plane(t_ray *parent_ray, t_ray *child_ray, t_obj pl)
 	add_intersection_to_ray(hit, &parent_ray->hit, &parent_ray->closest, pl);
 }
 
-void	intersects_cylinder_body(t_ray *parent, t_ray *r, t_obj cyl)
+void	intersects_cylinder_body(t_ray *parent, t_ray *child, t_obj cyl)
 {
-	t_vec		quad;
+	t_vec		quadratic;
 	float		hit;
 	float		y;
 
-	quad[A] = (r->dir[X] * r->dir[X]) + (r->dir[Z] * r->dir[Z]);
-	if (quad[A] < 0.001 && quad[A] > -0.009)
+	//normalize(child->dir, &child->dir);
+	quadratic[A] = (child->dir[X] * child->dir[X]) + \
+	(child->dir[Z] * child->dir[Z]);
+	if (quadratic[A] < 0.001 && quadratic[A] > -0.009)
 		return ;
-	quad[B] = (2 * r->og[X] * r->dir[X]) + (2 * r->og[Z] * r->dir[Z]);
-	quad[C] = (r->og[X] * r->og[X]) + (r->og[Z] * r->og[Z]) - 1;
-	quad[DISCRIMINANT] = (quad[B] * quad[B]) - (4 * quad[A] * quad[C]);
-	if (quad[DISCRIMINANT] < 0.001)
+	quadratic[B] = (2 * child->og[X] * child->dir[X]) + \
+	(2 * child->og[Z] * child->dir[Z]);
+	quadratic[C] = (child->og[X] * child->og[X]) + \
+	(child->og[Z] * child->og[Z]) - 1;
+	quadratic[DISCRIMINANT] = (quadratic[B] * quadratic[B]) \
+	- (4 * quadratic[A] * quadratic[C]);
+	if (quadratic[DISCRIMINANT] < 0.001)
 		return ;
-	hit = (-quad[B] - (sqrtf(quad[DISCRIMINANT]))) / (2 * quad[A]);
-	y = r->og[Y] + hit * r->dir[Y];
+	hit = (-quadratic[B] - (sqrtf(quadratic[DISCRIMINANT]))) \
+	/ (2 * quadratic[A]);
+	y = child->og[Y] + hit * child->dir[Y];
 	if (y > cyl.min && y < cyl.max)
 		add_intersection_to_ray(hit, &parent->hit, &parent->closest, cyl);
-	hit = (-quad[B] + (sqrtf(quad[DISCRIMINANT]))) / (2 * quad[A]);
-	y = r->og[Y] + hit * r->dir[Y];
+	hit = (-quadratic[B] + (sqrtf(quadratic[DISCRIMINANT]))) \
+	/ (2 * quadratic[A]);
+	y = child->og[Y] + hit * child->dir[Y];
 	if (y > cyl.min && y < cyl.max)
 		add_intersection_to_ray(hit, &parent->hit, &parent->closest, cyl);
 }

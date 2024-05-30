@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug.h                                            :+:      :+:    :+:   */
+/*   scene.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/15 14:09:28 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/29 10:39:50 by arturo           ###   ########.fr       */
+/*   Created: 2024/05/16 02:16:02 by arturo            #+#    #+#             */
+/*   Updated: 2024/05/29 14:34:42 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DEBUG_H
-# define DEBUG_H
+#ifndef SCENE_H
+# define SCENE_H
 
-#include "header.h"
+# include "header.h"
 
-void		print_matrix(t_mtrx m, int mt_size);
-void		print_t_vec(t_vec vec);
-void		print_shear(float sh[6]);
-void		print_intersections(t_ray *ray);
-void		print_ray(t_ray *ray);
-void		print_set_up(t_mlx *mlx);
+void	init_scene(t_mlx *mlx);
+
+//====PARSING====//
+void	init_viewport(t_mlx *mlx);
+void	new_ray(t_ray *ray, float pixel[2], t_mlx *mlx);
+void	new_sphere(t_mlx *mlx, int trans, t_mtrx mt[MAX_TRANSF]);
+void	add_obj_to_list(t_obj obj, t_objlist **list);
+
 #endif

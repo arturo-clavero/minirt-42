@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 11:32:02 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/27 15:25:20 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/14 11:37:01 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	negative_scalar(t_mtrx *scl, float x, float y, float z)
 	copy_matrix(scl, inv, 4);
 }
 
-//initiates all shearing values to 0
 void	init_shear_float(float (*sh)[6])
 {
 	int	i;
@@ -46,7 +45,6 @@ void	init_shear_float(float (*sh)[6])
 		(*sh)[i] = 0;
 }
 
-//adds a shearing value, one at a time, to struct sh
 void	add_shear_value(char change, char prop_to, int value, float (*sh)[6])
 {
 	if (change == 'x')
