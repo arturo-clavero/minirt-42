@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:57:53 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/31 08:27:31 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/31 09:12:55 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,10 @@ void	add_cam_parsing(t_pars **pars)
 		exit(2);
 	}
 	elem.fov_in_deg = 90;
+	if (elem.fov_in_deg < 0 + EPSILON)
+		elem.fov_in_deg += EPSILON;
+	if (elem.fov_in_deg > 180 - EPSILON)
+		elem.fov_in_deg -= EPSILON;
 	add_element_to_pars_list(elem, pars);
 }
 

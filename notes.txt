@@ -1,0 +1,63 @@
+TYPES OF DATA TO PARSE
+
+1.	Identifier
+identifier will be stored in t_elem type
+sp : SPHERE
+cy : CYLINDER
+pl : PLANE
+C  : CAMERA
+A  : AMBIENT
+L  : DIFFUSE
+SB : SPECULAR (*this type is not specified in subject but we are required to do spot brightness,
+ which requires a specular value and a shine value, 
+ we will parse these with our own identifier like for example SB for spot brightness);
+
+
+2.	Center coordinates
+We can store these using t_vec
+t_vec is a struct holding 4 floats, for X, Y, Z, and w which I call TYPE. X,Y,Z (defines of 0, 1, 2), are the 3d
+coordinates and the 4th float TYPE (define of 3), is 0 if it's a VECTOR or 1 if it's a POINT.
+This 4th value is important for math operations to work properly.
+When you get 3 numbers followed by a comma they should be stored in t_vec struct
+Depending on wether its a point (static location) or vector (direction or movement) you can use
+create_tupple(&point, 0, 1, 2); or create_vector(&vector, 0, 1, 2), which will add the correct 
+4th value to your t_vec struct (with X Y Z of 0, 1, 2 in this case);
+Coordinates are points so you may use > create_tupple
+
+3. Orientation vector
+This is a vector so you may use > create_vector
+Now this input has to be a "normalised" vector, this means that the "length" or "magnitude" of the 
+vector should be equal to 1. 
+So we can calculate the length with fsqrt(dot_product(vector, vector))
+And instead of saying is equal to 1 because we are working with floats and some times it wont be precise equal
+we check if its within 0.99999 - 1.000001 range using EPSILON which is a deifne for a very small number 0.000001
+If its not within this range, program will exit here...(or continue without this shape?)
+
+4. Color
+This is a vector (just for the sake of simpler math with color).
+You may use > create_vector and write R values for first float X, G values for second float Y
+and B values for third float Z.
+each RGB value must be within 0-255, if outside this range program exits here (or continue without this shape?)
+
+5. Diameters and heights
+These values should always be bigger than 0.
+
+6. FOV
+These value should be between 0 and 180. 
+Technically we should be able to accept 0 and 180 but we are being sneaky and adding an EPSILON if equal to 0
+and resting and EPSION if equal to 180.
+
+7. Light (brightness) ratio
+This is a float between 0 and 1. If outside this range we exit
+
+8. Shine in spot brightness is a value between 0 and 250 if outside this range we exit
+
+9. REQUIRED OBJECTS and allowed amounts
+/Camera = required && no more than one
+/Ambient = required && no more than  one
+/Diffuse = no more tha one
+/Specular = no more than one
+/all other shapes 0 or multiple no limit
+if we have multiple objects when only one is allowed we can exit or ignore extra objects.
+
+
