@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:42 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 13:16:54 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/31 08:32:25 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ typedef struct s_light
 	t_vec	normal;
 	t_vec	reflect;
 	t_vec	color;
-	float	intensity;
 	float	ambient;//between 0 and 1
 	float	diffuse;//between 0 and 1
 	float	specular;//between 0  and 1

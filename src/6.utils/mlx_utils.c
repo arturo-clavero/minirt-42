@@ -6,7 +6,7 @@
 /*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:51:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 13:17:23 by arturo           ###   ########.fr       */
+/*   Updated: 2024/05/31 08:32:19 by arturo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,14 @@ void	init_viewport(t_mlx *mlx)
 	mlx->pixel_size = mlx->vp_size[X] / mlx->win_size[X];
 }
 
+void	init_light(t_mlx *mlx)
+{
+	mlx->light = malloc(sizeof(t_light));
+	mlx->light->diffuse = 0;
+	mlx->light->specular = 0;
+	mlx->light->shine = 0;
+}
+
 void	initialize_mlx(t_mlx *mlx)
 {
 	mlx->mlx = mlx_init();
@@ -56,6 +64,6 @@ void	initialize_mlx(t_mlx *mlx)
 	&mlx->image.bits_per_pixel, &mlx->image.line_length, &mlx->image.endian);
 	mlx->obj_list = NULL;
 	mlx->ray = malloc(sizeof(t_ray));
-	mlx->light = malloc(sizeof(t_light));
 	init_viewport(mlx);
+	init_light(mlx);
 }
