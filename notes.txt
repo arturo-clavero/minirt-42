@@ -59,5 +59,3 @@ This is a float between 0 and 1. If outside this range we exit
 /Specular = no more than one
 /all other shapes 0 or multiple no limit
 if we have multiple objects when only one is allowed we can exit or ignore extra objects.
-
-
