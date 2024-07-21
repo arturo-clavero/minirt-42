@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:55:45 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 13:00:30 by arturo           ###   ########.fr       */
+/*   Updated: 2024/07/21 22:24:48 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_mlx
 }		t_mlx;
 
 void	ft_mlx_pixel_put(t_data *data, int x, int y, t_vec color);
-void	initialize_mlx(t_mlx *mlx);
+void	initialize_mlx(t_mlx *mlx, int width, int height, int first);
+int		key_press_hook(int keycode, t_mlx *mlx);
+int		x_button(t_mlx *mlx);
 
 #endif

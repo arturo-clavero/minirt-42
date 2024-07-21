@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:51:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/31 08:32:19 by arturo           ###   ########.fr       */
+/*   Updated: 2024/07/21 22:23:36 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,19 +51,22 @@ void	init_light(t_mlx *mlx)
 	mlx->light->shine = 0;
 }
 
-void	initialize_mlx(t_mlx *mlx)
+void	initialize_mlx(t_mlx *mlx, int width, int height, int first)
 {
 	mlx->mlx = mlx_init();
-	mlx->win_size[X] = 800;
-	mlx->win_size[Y] = 400;
+	mlx->win_size[X] = width;
+	mlx->win_size[Y] = height;
 	mlx->win = mlx_new_window(mlx->mlx, \
 	mlx->win_size[X], mlx->win_size[Y], "TEST");
 	mlx->image.img = mlx_new_image(mlx->mlx, \
 	mlx->win_size[X], mlx->win_size[Y]);
 	mlx->image.address = mlx_get_data_addr(mlx->image.img, \
 	&mlx->image.bits_per_pixel, &mlx->image.line_length, &mlx->image.endian);
-	mlx->obj_list = NULL;
-	mlx->ray = malloc(sizeof(t_ray));
+	if (first == 1)
+	{
+		mlx->obj_list = NULL;
+		mlx->ray = malloc(sizeof(t_ray));
+		init_light(mlx);
+	}
 	init_viewport(mlx);
-	init_light(mlx);
 }

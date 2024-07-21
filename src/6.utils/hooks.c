@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:36:04 by arturo            #+#    #+#             */
-/*   Updated: 2024/07/21 22:21:51 by artclave         ###   ########.fr       */
+/*   Created: 2024/07/21 22:21:42 by artclave          #+#    #+#             */
+/*   Updated: 2024/07/21 22:24:22 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(void)
+int	key_press_hook(int keycode, t_mlx *mlx)
 {
-	t_mlx	mlx;
-	t_pars	*pars;
-
-	initialize_mlx(&mlx, 800, 400, 1);
-	pars = NULL;
-	parsing(&pars);
-	lexer(&mlx, pars);
-	init_scene(&mlx);
-	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image.img, 0, 0);
-	mlx_hook(mlx.win, 2, 1, key_press_hook, &mlx);
-	mlx_hook(mlx.win, 17, 0L, x_button, &mlx);
-	mlx_loop(mlx.mlx);
-	clean(&mlx);
+	if (keycode == 65307)
+	{
+		clean(mlx);
+		exit(0);
+	}
 	return (0);
+}
+
+int	x_button(t_mlx *mlx)
+{
+	clean(mlx);
+	exit(0);
 }

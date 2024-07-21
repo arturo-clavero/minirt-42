@@ -40,6 +40,7 @@ mkdir -p obj/4_parsing/
 gcc -Wall -Wextra -Werror -Iincludes -Isrc -c src/4_parsing/utils.c -o obj/4_parsing/utils.o
 mkdir -p obj/5.lexer/
 gcc -Wall -Wextra -Werror -Iincludes -Isrc -c src/5.lexer/adds.c -o obj/5.lexer/adds.o
+ 
 mkdir -p obj/5.lexer/
 gcc -Wall -Wextra -Werror -Iincludes -Isrc -c src/5.lexer/main.c -o obj/5.lexer/main.o
 mkdir -p obj/5.lexer/
