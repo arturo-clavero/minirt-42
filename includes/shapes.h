@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shapes.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:56:56 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 13:02:44 by arturo           ###   ########.fr       */
+/*   Updated: 2024/08/03 00:48:07 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ typedef struct s_obj
 	t_vec	color;
 	float	min;
 	float	max;
-	bool	is_transformed;
 }		t_obj;
 
 typedef struct s_dlist

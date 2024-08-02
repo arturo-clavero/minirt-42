@@ -1,0 +1,2 @@
+#Program should run, but window will be black
+sp 0,0,20 20 255,0,0

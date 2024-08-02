@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   matrix.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:05:40 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/15 19:17:29 by arturo           ###   ########.fr       */
+/*   Updated: 2024/08/03 03:06:18 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MATRIX_H
 
 # include "header.h"
+#include "parsing.h"
 
 # define MAX_TRANSF 5
 # define A 0
@@ -48,11 +49,9 @@ int			invert_matrix(t_mtrx mt, t_mtrx *inv, int mt_size);
 int			matrix_comparison(t_mtrx m1, t_mtrx m2, int mt_size);
 
 /*------MATRIX TRANSFORMATIONS----------*/
-void		translation(t_mtrx *trans, float x, float y, float z);
 void		negative_translation(t_mtrx *trans, float x, float y, float z);
-void		scalar(t_mtrx *scl, float x, float y, float z);
 void		negative_scalar(t_mtrx *scl, float x, float y, float z);
-void		rotation(t_mtrx *rot, float rad, char axis);
+void		rotation_axis(t_mtrx *rot, float rad, int axis);
 void		negative_rotation(t_mtrx *rot, float rad, char axis);
 float		to_rad(float deg);
 void		shearing(t_mtrx *mt, float shr[6]);
@@ -61,5 +60,13 @@ void		add_shear_value(char change, char prop_to, \
 int value, float (*sh)[6]);
 void		chain_transform(t_mtrx mt[MAX_TRANSF], t_mtrx *final, int total);
 //void		clear_negative_zeros_mt(t_mtrx	*m);
+
+//debug
+void		print_t_matrix(t_mtrx mt);
+
+//important
+void		scale(t_elem elem, int *total, t_mtrx (*mt)[MAX_TRANSF]);
+void		rotate(int type, t_vec end, int *total, t_mtrx (*mt)[MAX_TRANSF]);
+void		translate(t_vec center, int *total, t_mtrx (*mt)[MAX_TRANSF]);
 
 #endif

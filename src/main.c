@@ -5,21 +5,42 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/08 16:36:04 by arturo            #+#    #+#             */
-/*   Updated: 2024/07/21 22:21:51 by artclave         ###   ########.fr       */
+/*   Created: 2024/07/21 18:55:23 by uolle             #+#    #+#             */
+/*   Updated: 2024/08/02 23:23:43 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int	main(void)
+int	check_file_extension(const char *filename, const char *ext)
+{
+	const char	*dot = ft_strrchr(filename, '.');
+
+	if (!dot || dot == filename)
+		return (0);
+	return (ft_strcmp(dot + 1, ext) == 0);
+}
+
+int	main(int argc, char **argv)
 {
 	t_mlx	mlx;
 	t_pars	*pars;
 
-	initialize_mlx(&mlx, 800, 400, 1);
+	printf("\n");
+
+	if (argc != 2)
+	{
+		fprintf(stderr, "Usage: %s <filename.rt>\n", argv[0]);
+		return (1);
+	}
+	if (!check_file_extension(argv[1], "rt"))
+	{
+		fprintf(stderr, "Error: File extension must be .rt\n");
+		return (1);
+	}
 	pars = NULL;
-	parsing(&pars);
+	parse_file(argv[1], &pars);
+	initialize_mlx(&mlx);
 	lexer(&mlx, pars);
 	init_scene(&mlx);
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image.img, 0, 0);

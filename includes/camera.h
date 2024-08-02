@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:03:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/30 13:00:05 by arturo           ###   ########.fr       */
+/*   Updated: 2024/08/02 23:39:05 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ typedef struct s_camera
 	float	vp_size[2];
 	float	fov;
 	float	pixel_size;
-	bool	default_orient;
 	t_mtrx	mt_trans;
 	t_mtrx	inv_trans;
 }		t_camera;

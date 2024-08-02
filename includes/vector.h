@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:56:58 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/16 12:40:41 by arturo           ###   ########.fr       */
+/*   Updated: 2024/08/02 22:21:14 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ void		normalize(t_vec vec, t_vec *result);
 void		negate(t_vec vec, t_vec *result);
 void		blend_colors(t_vec color1, t_vec color2, t_vec *result);
 void		clear_negative_zeros_t_vec(t_vec *vec);
-
+bool		are_vecs_colinear(t_vec v1, t_vec v2);
+void		print_t_vec(t_vec vec);
 #endif
