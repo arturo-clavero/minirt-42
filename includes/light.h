@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:42 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/31 08:32:25 by arturo           ###   ########.fr       */
+/*   Updated: 2024/08/03 05:24:51 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_light
 	float	specular;//between 0  and 1
 	float	shine;//between 10 and 200
 	bool	is_shadow;
+	bool	has_ambient;
 }		t_light;
 
 void	is_point_in_shadow(t_light *light, t_mlx *mlx);

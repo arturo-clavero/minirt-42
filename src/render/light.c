@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uolle <uolle@student.42.fr>                +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/07/26 16:15:21 by uolle            ###   ########.fr       */
+/*   Updated: 2024/08/03 05:24:21 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	compute_final_color(t_light light, t_obj obj, t_ray *ray)
 	normalize(light.dir, &light.dir);
 	scalar_mult(base_color, light.ambient, &ray->color);
 	dot = dot_product(light.dir, light.normal);
-	if (dot < 0 || light.is_shadow == TRUE)
+	if ((dot < 0 || light.is_shadow == TRUE) && light.has_ambient == TRUE)
 		return ;
 	scalar_mult(base_color, (light.diffuse * dot), &temp);
 	add(ray->color, temp, &ray->color);

@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:55:29 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 02:01:36 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 05:26:22 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,10 @@ void	add_obj_lexer(t_elem element, t_mlx *mlx)
 	scalar_mult(element.color_range255, (1.0f / 255.0f), &obj.color);
 	total = 0;
 	//
-
+	scale(element, &total, &mt);
 	if (obj.type != SPHERE)
 		rotate(obj.type, element.orientation, &total, &mt);
-
 	translate(element.center, &total, &mt);
-
-	scale(element, &total, &mt);
 	//
 	create_identity_matrix(&obj.mt_trans, 4);
 	chain_transform(mt, &obj.mt_trans, total);
@@ -68,6 +65,7 @@ void	add_light_lexer(t_elem element, t_light *light)
 		return ;
 	if (element.type == AMBIENT)
 	{
+		light->has_ambient = TRUE;
 		scalar_mult(element.color_range255, (1.0f / 255.0f), &light->color);
 		light->ambient = element.brightness;
 		added[0] = 1;
