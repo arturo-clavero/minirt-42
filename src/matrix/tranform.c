@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 21:46:38 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 17:01:40 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 00:17:52 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,12 +88,12 @@ void	rotate(int type, t_vec end, int *total, t_mtrx (*mt)[MAX_TRANSF])
 	//printf("angle is %f\n", r);
 	create_identity_matrix(&(*mt)[*total], 4);
 	if (fabs(r - M_PI) < EPSILON) 
-	{ // Check for 180-degree rotation
-	//rotation for (0,0,1) to (0,0,-1)
-		(*mt)[*total][0][0] = -1;
+	{ 
+		if (type == CAMERA)
+			(*mt)[*total][0][0] = -1;
+		else
+			(*mt)[*total][1][1] = -1;
 		(*mt)[*total][2][2] = -1;
-		//printf("rotation, mt[%d]:\n", *total);
-		//print_t_matrix((*mt)[*total]);
 		*total = *total + 1;
         return;
     }
