@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:55:29 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 17:09:59 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:22:20 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,12 +70,14 @@ void	add_light_lexer(t_elem element, t_light *light)
 		scalar_mult(element.color_range255, (1.0f / 255.0f), &light->color);
 		light->ambient = element.brightness;
 		added[0] = 1;
+		light->exists = TRUE;
 	}
 	else if (element.type == DIFFUSE)
 	{
 		copy_t_vec(&light->og, element.center);
 		light->diffuse = element.brightness;
 		added[1] = 1;
+		light->exists = TRUE;
 	}
 	else if (element.type == SPECULAR)
 	{

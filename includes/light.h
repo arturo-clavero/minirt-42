@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:42 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 05:24:51 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:17:01 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_light
 	float	shine;//between 10 and 200
 	bool	is_shadow;
 	bool	has_ambient;
+	bool	exists;
 }		t_light;
 
 void	is_point_in_shadow(t_light *light, t_mlx *mlx);

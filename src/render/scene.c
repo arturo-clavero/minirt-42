@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 17:11:17 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:19:35 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ void	init_scene(t_mlx *mlx)
 {
 	float		pixel[2];
 
-	if (mlx->cam.exists == FALSE)
+	if (mlx->cam.exists == FALSE || mlx->light->exists == FALSE)
 		return ;
 	pixel[X] = -1;
 	while (++pixel[X] < mlx->win_size[X])
