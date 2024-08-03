@@ -1,2 +1,0 @@
-#Program should run, but window will be black
-pl 0,0,0 0,1.0,0 255,0,225

@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:03:19 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 05:13:06 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:01:43 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ void	cam_transform(t_camera *cam, t_vec orientation, t_vec center)
 	translate(center, &total, &mt);
 	chain_transform(mt, &cam->mt_trans, total);
 	invert_matrix(cam->mt_trans, &cam->inv_trans, 4);
-	printf("CAMERA\n--------------------\n");
-	print_t_matrix(cam->inv_trans);
+	//printf("CAMERA\n--------------------\n");
+	//print_t_matrix(cam->inv_trans);
 }

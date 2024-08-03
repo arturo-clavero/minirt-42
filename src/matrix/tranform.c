@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 21:46:38 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 04:00:24 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:01:40 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	scale(t_elem elem, int *total, t_mtrx (*mt)[MAX_TRANSF])
 {
 	if (elem.type == PLANE || elem.diameter == 2)
 		return ;
-	printf("elem diameter  is : %f\n", elem.diameter);
+	//printf("elem diameter  is : %f\n", elem.diameter);
 	create_identity_matrix(&(*mt)[*total], 4);
 	(*mt)[*total][0][0] = elem.diameter / 2.f;
 	(*mt)[*total][1][1] = elem.diameter / 2.f;
 	(*mt)[*total][2][2] = elem.diameter / 2.f;
-	printf("scale, mt[%d]:\n", *total);
-	print_t_matrix((*mt)[*total]);
+	//printf("scale, mt[%d]:\n", *total);
+	//print_t_matrix((*mt)[*total]);
 	*total = *total + 1;
 }
 
@@ -78,28 +78,28 @@ void	rotate(int type, t_vec end, int *total, t_mtrx (*mt)[MAX_TRANSF])
 		return ;
 	cross_product(start, end, &u);
 	normalize(u, &u);
-	printf("start is: ");
-	print_t_vec(start);
-	printf("end is: ");
-	print_t_vec(end);
-	printf("axis is: ");
-	print_t_vec(u);
+	//printf("start is: ");
+	//print_t_vec(start);
+	//printf("end is: ");
+	//print_t_vec(end);
+	//printf("axis is: ");
+	//print_t_vec(u);
 	r = acosf(dot_product(start, end));
-	printf("angle is %f\n", r);
+	//printf("angle is %f\n", r);
 	create_identity_matrix(&(*mt)[*total], 4);
 	if (fabs(r - M_PI) < EPSILON) 
 	{ // Check for 180-degree rotation
 	//rotation for (0,0,1) to (0,0,-1)
 		(*mt)[*total][0][0] = -1;
 		(*mt)[*total][2][2] = -1;
-		printf("rotation, mt[%d]:\n", *total);
-		print_t_matrix((*mt)[*total]);
+		//printf("rotation, mt[%d]:\n", *total);
+		//print_t_matrix((*mt)[*total]);
 		*total = *total + 1;
         return;
     }
 	set_up_rotations(u, r, &(*mt)[*total]);
-	printf("rotation, mt[%d]:\n", *total);
-	print_t_matrix((*mt)[*total]);
+	//printf("rotation, mt[%d]:\n", *total);
+	//print_t_matrix((*mt)[*total]);
 	*total = *total + 1;
 }
 
@@ -113,8 +113,8 @@ void	translate(t_vec center, int *total, t_mtrx (*mt)[MAX_TRANSF])
 	(*mt)[*total][0][3] = center[X];
 	(*mt)[*total][1][3] = center[Y];
 	(*mt)[*total][2][3] = center[Z];
-	printf("translation, mt[%d]:\n", *total);
-	print_t_matrix((*mt)[*total]);
+	//printf("translation, mt[%d]:\n", *total);
+	//print_t_matrix((*mt)[*total]);
 	*total = *total + 1;
 }
 
@@ -129,8 +129,8 @@ void	chain_transform(t_mtrx mt[MAX_TRANSF], t_mtrx *final, int total)
 	if (total == 1)
 	{
 		copy_matrix(final, mt[0], 4);
-		printf("chain transform: \n");
-		print_t_matrix(*final);
+		////printf("chain transform: \n");
+		//print_t_matrix(*final);
 		return ;
 
 	}
@@ -149,8 +149,8 @@ void	chain_transform(t_mtrx mt[MAX_TRANSF], t_mtrx *final, int total)
 		}
 	}
 	copy_matrix(final, result, 4);
-	printf("chain transform: \n");
-	print_t_matrix(*final);
+	//printf("chain transform: \n");
+	//print_t_matrix(*final);
 
 }
 

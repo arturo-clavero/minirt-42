@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 11:03:44 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/02 23:39:05 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:08:54 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_camera
 	float	pixel_size;
 	t_mtrx	mt_trans;
 	t_mtrx	inv_trans;
+	bool	exists;
 }		t_camera;
 
 void	cam_transform(t_camera *cam, t_vec orientation, t_vec og);

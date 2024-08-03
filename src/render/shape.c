@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:05 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 00:44:29 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:02:54 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ int	intersects_sphere(t_ray *parent_ray, t_ray *child_ray, t_obj sph)
 	t_vec		quadratic;
 	float		hit[2];
 
-	static int debug = 0;
+	//static int debug = 0;
 	substract(child_ray->og, sph.og, &sph_to_ray);
 	quadratic[A] = dot_product(child_ray->dir, child_ray->dir);
 	quadratic[B] = 2 * (dot_product(child_ray->dir, sph_to_ray));
 	quadratic[C] = dot_product(sph_to_ray, sph_to_ray) - 1;
 	quadratic[DISCRIMINANT] = (quadratic[B] * quadratic[B]) \
 	- (4 * quadratic[A] * quadratic[C]);
-	if (debug == 0)
+/*	if (debug == 0)
 	{
 		printf("sphere origin: ");
 		print_t_vec(sph.og);
@@ -36,7 +36,7 @@ int	intersects_sphere(t_ray *parent_ray, t_ray *child_ray, t_obj sph)
 		print_t_vec(quadratic);
 		printf("discriminant = %f\n\n", quadratic[DISCRIMINANT]);
 	}
-	debug++;
+	debug++;*/
 	if (quadratic[DISCRIMINANT] < 0)
 		return (EXIT_FAILURE);
 	hit[0] = (-quadratic[B] - (sqrtf(quadratic[DISCRIMINANT]))) \

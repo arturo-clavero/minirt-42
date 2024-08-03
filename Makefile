@@ -6,13 +6,13 @@
 #    By: artclave <artclave@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 17:46:08 by uolle             #+#    #+#              #
-#    Updated: 2024/08/02 23:41:52 by artclave         ###   ########.fr        #
+#    Updated: 2024/08/03 16:58:10 by artclave         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = cc
 CPPFLAGS = -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror #-fsanitize=address
 LDLIBS = -lm
 LIB_DIR = libs
 

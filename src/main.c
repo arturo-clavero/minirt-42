@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:55:23 by uolle             #+#    #+#             */
-/*   Updated: 2024/08/02 23:23:43 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:00:43 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	t_mlx	mlx;
 	t_pars	*pars;
 
-	printf("\n");
+	//printf("\n");
 
 	if (argc != 2)
 	{

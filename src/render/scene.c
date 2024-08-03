@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 03:40:38 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:11:17 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	new_parent_ray(t_camera cam, t_ray *ray, float pixel[2])
 	t_vec	target;
 	t_vec	temp;
 
-	static int debug = 0;
+	//static int debug = 0;
 	ray->hit = NULL;
 	ray->closest = NULL;
 	offset[X] = (pixel[X] + 0.5) * cam.pixel_size;
@@ -31,7 +31,7 @@ void	new_parent_ray(t_camera cam, t_ray *ray, float pixel[2])
 	target[Z] = 1;
 	create_tupple(&ray->og, 0, 0, 0);
 	substract(target, ray->og, &ray->dir);
-	if (debug == 0){
+	/*if (debug == 0){
 		printf("NEW_PARENT_RAY\n");
 		printf("target: ");
 		print_t_vec(target);
@@ -39,19 +39,19 @@ void	new_parent_ray(t_camera cam, t_ray *ray, float pixel[2])
 		print_t_vec(ray->dir);
 		printf("og before: ");
 		print_t_vec(ray->og);
-	}
+	}*/
 	matrix_by_t_vec(cam.inv_trans, ray->og, &temp, 4);
 	copy_t_vec(&ray->og, temp);
 	matrix_by_t_vec(cam.inv_trans, ray->dir, &temp, 4);
 	copy_t_vec(&ray->dir, temp);
-	if (debug == 0){
+	/*if (debug == 0){
 		printf("direction after: ");
 		print_t_vec(ray->dir);
 		printf("og after: ");
 		print_t_vec(ray->og);
-	}
+	}*/
 	normalize(ray->dir, &ray->dir);
-	debug++;
+	//debug++;
 }
 
 void	clean_ray(t_ray *ray)
@@ -73,17 +73,17 @@ int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
 	t_objlist	*list;
 	t_ray		child_ray;
 
-	static int debug = 0;
+	//static int debug = 0;
 	list = mlx->obj_list;
 	while (list)
 	{
 		transform_ray(parent_ray, &child_ray, list->obj);
-		if (debug == 0){
+	/*	if (debug == 0){
 		printf("\nNEW_CHILD_RAY!\n");
 		printf("direction: ");
 		print_t_vec(child_ray.dir);
 		printf("origin: ");
-		print_t_vec(child_ray.og);}
+		print_t_vec(child_ray.og);}*/
 		if (list->obj.type == SPHERE)
 			intersects_sphere(parent_ray, &child_ray, list->obj);
 		else if (list->obj.type == PLANE)
@@ -95,7 +95,7 @@ int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
 		}
 		list = list->next;
 	}
-	debug++;
+//	debug++;
 	if (parent_ray->closest)
 		return (TRUE);
 	return (FALSE);
@@ -119,7 +119,8 @@ void	init_scene(t_mlx *mlx)
 {
 	float		pixel[2];
 
-
+	if (mlx->cam.exists == FALSE)
+		return ;
 	pixel[X] = -1;
 	while (++pixel[X] < mlx->win_size[X])
 	{

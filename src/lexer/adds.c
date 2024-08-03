@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:55:29 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 05:26:22 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:09:59 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	add_cam_lexer(t_elem element, t_mlx *mlx)
 	mlx->cam.half_window[Y] = mlx->win_size[Y];
 	mlx->cam.fov = to_rad(element.fov_in_deg);
 	calc_pixel_size(&mlx->cam);
+	mlx->cam.exists = TRUE;
 	added = 1;
 }
 
@@ -52,8 +53,8 @@ void	add_obj_lexer(t_elem element, t_mlx *mlx)
 	create_identity_matrix(&obj.mt_trans, 4);
 	chain_transform(mt, &obj.mt_trans, total);
 	invert_matrix(obj.mt_trans, &obj.inv_trans, 4);
-	printf("OBJECT: \n--------------------\n");
-	print_t_matrix(obj.inv_trans);
+	//printf("OBJECT: \n--------------------\n");
+	//print_t_matrix(obj.inv_trans);
 	add_obj_to_list(obj, &mlx->obj_list);
 }
 
