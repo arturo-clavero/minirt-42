@@ -1,4 +1,36 @@
 A					 0.2							255,255,255
-C	-50,0,20		0,0,1			70
-L	-40,50,0		 0.6							255,255,255
-cy	 0,0,0			0,1,0		14.2	21.42		10,0,255
+
+cy	 0,0,0			0,1,0		2		6		10,0,255
+
+#CAMERA ON Z AXIS:
+#camera facing the body of the cylinder from the 'front' and from 'behind'
+#lights are mirrored in each case so the rendered image will be the same
+
+#C	0,0,-10			0,0,1			70
+#L	-20,0,0		 	0.9							255,255,255
+
+#C	0,0,10			0,0,-1			70
+#L	20,0,0		 	0.9							255,255,255
+
+
+#CAMERA ON Y AXIS
+#camera looking up and down, at the bottom and top, of the cylinder
+#both bottom and top are in shade so it will be a flat circle, as we have kept the light to the left of the cylinder body
+
+#C	0,-10,0			0,1,0			70
+#L	-20,0,0		 	0.9							255,255,255
+
+#C	0,10,0			0,-1,0			70
+#L	-20,0,0		 	0.9							255,255,255
+
+
+#CAMERA ON X AXIS
+#camera looking right and left towards the "side" of the cylinder body, we have mirrored the lights so they are "left" to the camera
+#these images should be identical to those in camera Z axis
+
+#C	-10,0,0			1,0,0			70
+#L	0,0,20		 	0.9							255,255,255
+
+C	10,0,0			-1,0,0			70
+L	0,0,-20		 	0.9							255,255,255
+

@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 17:33:36 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 20:19:27 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,6 @@ void	init_scene(t_mlx *mlx)
 			clean_ray(mlx->ray);
 		}
 	}
-
 	pixel[X] = mlx->win_size[X] / 2;
 	pixel[Y] = mlx->win_size[Y] / 2;
 	new_parent_ray(mlx->cam, mlx->ray, pixel);

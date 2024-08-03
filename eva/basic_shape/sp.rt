@@ -1,7 +1,47 @@
 A 				0.2		255,255,255
-L 	0,0,10	 	 1 		10,0,255
-
-C	 -5,0,0 		1,0,0 			70
+sp 	  0,0,0 	2 		10,0,255
 
 
-sp 	  0,0,0 		 2 		10,0,255
+#ALL THE FOLLOWING SET UPS SHOULD RENDER THE SAME IMAGE! 
+#(blue sphere in the center, half lit from the left)
+
+
+#CAMERA ON X AXIS:
+
+C	 -5,0,0 		1,0,0 		70
+L 	  0,0,10	 	 1 		10,0,255
+#camera on the negative X axis, facing RIGHT
+#light on the positive z axis, left of sphere from camera's perspective
+
+#C	 5,0,0 		-1,0,0 		70
+#L 	0,0,-10	 	 1 		10,0,255
+#camera on the positive X axis, facing LEFT
+#light on the negative z axis, left of sphere from camera's perspective
+
+
+#CAMERA ON Y AXIS:
+
+#C	 0,-5,0 	0,1,0 		70
+#L 	-10,0,0	 	 1 		10,0,255
+#camera on the negative Y axis, facing UP
+#light on the negative x axis, left of sphere from camera's perspective
+
+#C	 0,5,0 		0,-1,0 		70
+#L 	-10,0,0	 	 1 		10,0,255
+#camera on the positive Y axis, facing DOWN
+#light on the negative x axis, left of sphere from camera's perspective
+
+
+#CAMERA ON Z AXIS:
+
+#C	0,0,-5 		0,0,1 		70
+#L 	-10,0,0	 	 1 		10,0,255
+#camera on the negative Z axis, facing FORWARD (into the 'window')
+#light on the negative x axis, left of sphere from camera's perspective
+
+#C	0,0,5 		0,0,-1 		70
+#L 	10,0,0	 	 1 		10,0,255
+#camera on the positive Z axis, facing BACKWARDS (out the 'window' // 'towards user')
+#light on the positve x axis, left of sphere from camera's perspective 
+#WARNING: x axis is mirrored when looking in negative z axis. 
+# On a paper, draw a star on the left and a circle on the right, flip the paper, is the star still on the left?

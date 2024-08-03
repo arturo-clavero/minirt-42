@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:50:01 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 00:49:21 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 20:19:02 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,19 @@ void	calc_plane_normal(t_light *light, t_intersect *closest)
 {
 	t_vec	temp;
 
-	create_vector(&light->normal, 0, 0, 1);
-	matrix_by_t_vec(closest->object.inv_trans, light->normal, &temp, 4);
+	create_vector(&temp, 0, 1, 0);
+	matrix_by_t_vec(closest->object.inv_trans, temp, &light->normal, 4);
+	static int debug;
+	if (debug == 0){
+		printf("planea normal: \n");
+		print_t_vec(light->normal);
+		printf("\n");
+	}
+	debug++;
+	/*matrix_by_t_vec(closest->object.inv_trans, light->normal, &temp, 4);
 	copy_t_vec(&light->normal, temp);
 	normalize(light->normal, &temp);
-	copy_t_vec(&light->normal, temp);
+	copy_t_vec(&light->normal, temp);*/
 }
 
 void	is_point_in_shadow(t_light *light, t_mlx *mlx)
