@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:20:30 by artclave          #+#    #+#             */
-/*   Updated: 2024/08/03 17:22:10 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:35:37 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,9 @@ void	init_light(t_mlx *mlx)
 	mlx->light->specular = 0;
 	mlx->light->shine = 0;
 	mlx->light->exists = FALSE;
+	mlx->light->has_ambient = FALSE;
+	mlx->light->has_diffuse = FALSE;
+	mlx->light->ambient = 0;
 }
 
 void	initialize_mlx(t_mlx *mlx)

@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 17:19:35 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:33:36 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,12 @@ void	get_pixel_color(t_mlx *mlx, float pixel[2])
 {
 	if (find_intersection(mlx->ray, mlx) == TRUE)
 	{
-		calc_light_vectors(mlx->light, *(mlx->ray), \
-		mlx->ray->closest);
-		is_point_in_shadow(mlx->light, mlx);
+		if (mlx->light->has_diffuse)
+		{
+			calc_light_vectors(mlx->light, *(mlx->ray), \
+			mlx->ray->closest);
+			is_point_in_shadow(mlx->light, mlx);
+		}
 		compute_final_color(*(mlx->light), mlx->ray->closest->object, \
 		mlx->ray);
 		ft_mlx_pixel_put(&mlx->image, (int)pixel[X], (int)pixel[Y], \

@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 05:24:21 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/03 17:33:44 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ void	compute_final_color(t_light light, t_obj obj, t_ray *ray)
 	float	dot;
 
 	blend_colors(light.color, obj.color, &base_color);
+	scalar_mult(base_color, light.ambient, &ray->color);
+	if (light.has_diffuse == FALSE)
+		return ;
 	substract(light.og, light.point, &light.dir);
 	normalize(light.dir, &light.dir);
-	scalar_mult(base_color, light.ambient, &ray->color);
 	dot = dot_product(light.dir, light.normal);
 	if ((dot < 0 || light.is_shadow == TRUE) && light.has_ambient == TRUE)
 		return ;
