@@ -1,0 +1,18 @@
+A 								0.2			255,255,255
+L		-5,5,-10				1			255,255,255
+sp		0,0,15					2			255,0,0
+sp		0,0,0					2			0,0,255
+C		5,0,-15		0,0,1		50
+
+#if we put the camera directly in front of the spheres so at x and y of 0,0 we will be looking straight on at one sphere in fron of the other of same diamter
+#we wou;d not see the spheres as the front blue one will cover the red one
+#however while keeping parallel directions (cam points in z axis and spheres were translated in z axis and have equal x and y)
+#if we offset the camera in any direction (in this example x) we will be able to see both spheres
+
+#below is the same map as above except the camera is placed in the same x and y coordinates as the spheres: 
+
+#A 								0.2			255,255,255
+#L		-5,5,-10				1			255,255,255
+#sp		0,0,15					2			255,0,0
+#sp		0,0,0					2			0,0,255
+#C		0,0,-15		0,0,1		50

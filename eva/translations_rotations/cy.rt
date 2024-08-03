@@ -1,0 +1,35 @@
+#1. cylinder in y axis and camera in front of cylinder: 
+#A 								0.2			255,255,255
+#L		-10,10,-5				1			255,255,255
+#cy		0,0,0		0,1,0		2,6			255,0,0
+#C		0,0,-15		0,0,1		50
+
+
+#2. same set up as number 1 but cylinder is further rotated 90deg in z axis which means its facing x axis
+#A 								0.2			255,255,255
+#L		-10,10,-5				1			255,255,255
+#cy		0,0,0		1,0,0		2,6			255,0,0
+#C		0,0,-15		0,0,1		50
+
+#3. Here just for fun we will display cylinders facing all sorts of funky directions
+#red cylinders will face x y and z axis straight on
+#blue cylinders will be between 2 axis, so diagonal between x and y, diagonal between x and z and diagonal between z and y
+#the green cylinder will be between 3 axis
+#you may use a vector visualizer to see which directions the non 1 vectors are facing
+#feel free to add any direction but the value must be normalised and the number should be as exact as possible
+#in the case of 0.70710678118,0.70710678118,0 for example, 0.707, 0.707, 0 will not work as its not precise enough sorry
+
+A 								0.2			255,255,255
+L		-10,10,-5				1			255,255,255
+cy		0,0,0		1,0,0		2,6			255,0,0
+cy		0,0,0		0,1,0		2,6			255,0,0
+cy		0,0,0		0,0,1		2,6			255,0,0
+cy		0,0,0		0.70710678118,0.70710678118,0	1,7  0,0,255
+cy		0,0,0		0.70710678118,-0.70710678118,0	1,7  0,0,255
+cy		0,0,0		0,0.70710678118,0.70710678118	1,7  0,0,255
+cy		0,0,0		0,-0.70710678118,0.70710678118	1,7  0,0,255
+
+cy		0,0,0		0.70710678118,0,0.70710678118	1,7  0,255,255
+cy		0,0,0		-0.70710678118,0,0.70710678118	1,7  0,255,255
+#why don't these last ones work? 
+C		0,0,-15		0,0,1		50

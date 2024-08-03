@@ -1,0 +1,13 @@
+
+#scene with spehre in front of camera and light left of the camera
+#low ambience for some drama
+A 								0.05			255,255,255
+sp		0,0,0					2			125,0,0
+C		0,0,-5		0,0,1		50
+L		-25,0,-5					1			255,255,255
+
+#same scene but light is to the right of the camera
+#A 								0.05			255,255,255
+#sp		0,0,0					2			125,0,0
+#C		0,0,-5		0,0,1		50
+#L		25,0,-5					1			255,255,255

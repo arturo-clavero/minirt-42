@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 21:38:31 by uolle             #+#    #+#             */
-/*   Updated: 2024/07/31 16:18:01 by uolle            ###   ########.fr       */
+/*   Updated: 2024/08/04 01:29:07 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	add_cam_parsing(t_pars **pars, char *line)
 	if (tokens[0])
 		ft_parse_vector(&tokens[0], elem.center);
 	else
-		pars_error("Error: Missing camera center\n", pars);
+		pars_error("Error: Missing camera center\n", pars, NULL);
 	ft_check_orientation(tokens, &elem, pars, &len);
 	check_limit_value(CAMERA, elem.fov_in_deg, pars);
 	if (elem.fov_in_deg < 0 + EPSILON)
@@ -47,11 +47,11 @@ void	add_cylinder_parsing(t_pars **pars, char *line)
 	ft_parse_vector(&tokens[3], elem.orientation);
 	len = sqrtf(dot_product(elem.orientation, elem.orientation));
 	if (len > 1 + EPSILON || len < 1 - EPSILON)
-		pars_error("Cylinder orientation not normalised\n", pars);
+		pars_error("Cylinder orientation not normalised\n", pars, NULL);
 	elem.diameter = ft_atof(tokens[6]);
 	elem.height = ft_atof(tokens[7]);
 	if (elem.height < 0 || elem.diameter < 0)
-		pars_error("Cylinder size values have to be positive\n", pars);
+		pars_error("Cylinder size values have to be positive\n", pars, NULL);
 	create_tupple(&elem.color_range255, ft_atoi(tokens[8]), ft_atoi(tokens[9]),
 		ft_atoi(tokens[10]));
 	check_limit_color(elem.color_range255, pars);
@@ -72,7 +72,7 @@ void	add_sphere_parsing(t_pars **pars, char *line)
 	create_tupple(&elem.color_range255, ft_atoi(tokens[4]), ft_atoi(tokens[5]),
 		ft_atoi(tokens[6]));
 	if (elem.diameter < 0)
-		pars_error("Sphere size values have to be positive\n", pars);
+		pars_error("Sphere size values have to be positive\n", pars, NULL);
 	check_limit_color(elem.color_range255, pars);
 	add_element_to_pars_list(elem, pars);
 }
@@ -117,7 +117,7 @@ void	add_plane_parsing(t_pars **pars, char *line)
 	ft_parse_vector(&tokens[3], elem.orientation);
 	len = sqrtf(dot_product(elem.orientation, elem.orientation));
 	if (len > 1 + EPSILON || len < 1 - EPSILON)
-		pars_error("Plane orientation not normalised\n", pars);
+		pars_error("Plane orientation not normalised\n", pars, NULL);
 	create_tupple(&elem.color_range255, ft_atoi(tokens[6]), ft_atoi(tokens[7]),
 		ft_atoi(tokens[8]));
 	check_limit_color(elem.color_range255, pars);

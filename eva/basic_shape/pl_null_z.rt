@@ -1,6 +1,7 @@
 A					 0.2		255,255,255
 
 #in this file we will interpret null z to be the z value of the center
+#however in camera y axis and camera x axis cases orientation of plane in z axis will also be null
 #we will change the orientation of the plane so it faces the camera in different orientations
 #by camera facing plane we will assume that we should be making "backdrops"
 #We will check with a close light to see a spot in a center and a far away light to see the plane evenly lit
@@ -9,10 +10,10 @@ A					 0.2		255,255,255
 
 #CAMERA Z AXIS
 
-#pl		0,0,0		0,0,1		0,0,255
-#C		0,0,15		0,0,-1		70
+pl		0,0,0		0,0,1		0,0,255
+C		0,0,15		0,0,-1		70
 #L		0,0,30		0.5			255,255,255
-#L		0,0,2		0.5			255,255,255
+L		0,0,2		0.5			255,255,255
 
 #pl		0,0,0		0,0,-1		0,0,255
 #C		0,0,-15		0,0,1		70
@@ -27,7 +28,20 @@ A					 0.2		255,255,255
 #L		0,30,0		0.5			255,255,255
 #L		0,2,0		0.5			255,255,255
 
-pl		0,0,0		0,-1,0		0,0,255
-C		0,-15,0		0,1,0		70
-L		0,-30,0		0.5			255,255,255
+#pl		0,0,0		0,-1,0		0,0,255
+#C		0,-15,0		0,1,0		70
+#L		0,-30,0		0.5			255,255,255
 #L		0,-2,0		0.5			255,255,255
+
+
+#CAMERA X AXIS
+
+#pl		0,0,0		1,0,0		0,0,255
+#C		15,0,0		-1,0,0		70
+#L		30,0,0		0.5			255,255,255
+#L		2,0,0		0.5			255,255,255
+
+#pl		0,0,0		-1,0,0		0,0,255
+#C		-15,0,0		1,0,0		70
+#L		-30,0,0		0.5			255,255,255
+#L		-2,0,0		0.5			255,255,255

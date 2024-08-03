@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: uolle <uolle@student.42.fr>                +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/26 16:43:33 by uolle             #+#    #+#             */
-/*   Updated: 2024/07/26 17:01:06 by uolle            ###   ########.fr       */
+/*   Updated: 2024/08/04 01:30:54 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_validation_tokens(char *token, int *i)
 	while (token[++j] != '\0')
 		if (ft_isalpha(token[j]) && token[j] != ',' && token[j] != '.'
 			&& token[j] != ' ')
-			pars_error("Error: Invalid tokens\n", NULL);
+			pars_error("Error: Invalid tokens\n", NULL, NULL);
 	*i = j;
 }
 
@@ -42,12 +42,12 @@ void	ft_check_orientation(char *tokens[7], t_elem *elem, t_pars **pars,
 		ft_parse_vector(&tokens[3], elem->orientation);
 		*len = sqrtf(dot_product(elem->orientation, elem->orientation));
 		if (*len > 1 + EPSILON || *len < 1 - EPSILON)
-			pars_error("Camera orientation not normalised\n", pars);
+			pars_error("Camera orientation not normalised\n", pars, NULL);
 	}
 	else
-		pars_error("Error: Missing camera orientation\n", pars);
+		pars_error("Error: Missing camera orientation\n", pars, NULL);
 	if (tokens[5])
 		elem->fov_in_deg = ft_atoi(tokens[6]);
 	else
-		pars_error("Error: Missing camera field of view\n", pars);
+		pars_error("Error: Missing camera field of view\n", pars, NULL);
 }

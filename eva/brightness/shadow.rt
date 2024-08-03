@@ -1,0 +1,12 @@
+
+#So we got a floating sphere on a plane and a light straight on top of the sphere quite far actually but still on top of it
+#use the second light which is much closer and you will see a larger shadow
+
+A				0.5		255,255,255
+
+#L	0,175,0		1		255,255,255
+L	0,4,0		1		255,255,255
+
+sp	0,2,0		2		125,0,125
+pl	0,0,0		0,1,0	0,125,125
+C	0,2,-10		0,0,1	70
