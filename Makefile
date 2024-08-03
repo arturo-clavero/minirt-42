@@ -6,7 +6,7 @@
 #    By: artclave <artclave@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/07/26 17:46:08 by uolle             #+#    #+#              #
-#    Updated: 2024/08/03 16:58:10 by artclave         ###   ########.fr        #
+#    Updated: 2024/08/04 01:48:23 by artclave         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS = src/lexer/adds.c \
 			 src/matrix/matrix_inversion.c \
        src/matrix/matrix_op.c \
        src/matrix/matrix_utils.c \
-       src/matrix/tranform.c \
+       src/matrix/transform.c \
+	   src/matrix/rotations.c \
        src/parsing/add_light.c \
 			 src/parsing/add_other.c \
        src/parsing/error.c \
@@ -54,7 +55,6 @@ HEADERS = includes/camera.h \
           includes/matrix.h \
 					includes/mlx_utils.h \
           includes/parsing.h \
-		  includes/debug.h \
 					includes/ray.h \
 					includes/scene.h \
 					includes/shapes.h \

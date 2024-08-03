@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/22 17:33:59 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/04 01:31:38 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 01:45:04 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_limit_value(int type, float value, t_pars **pars)
 		pars_error("Light specular shine needs to be between 0 and 250\n",
 			pars, NULL);
 	else if (type == -42 && (value < 0 || value > 1))
-		pars_error("Light brigthness needs to be between 0 and 1\n", pars, NULL);
+		pars_error("Light value needs to be between 0 and 1\n", pars, NULL);
 }
 
 void	pars_error(char *error_message, t_pars **par, char *ln)

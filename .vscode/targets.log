@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Aug  3 23:45:03 2024
+# Make data base, printed on Sun Aug  4 01:48:32 2024
 
 # Variables
 
@@ -31,7 +31,6 @@ VSCODE_CRASH_REPORTER_PROCESS_TYPE = extensionHost
 # environment
 VSCODE_CWD = /home/artclave
 # makefile (from 'Makefile', line 70)
- 
 LIBS = -L$(LIB_DIR) -lmlx_Linux -lXext -lX11 -lm -lbsd -L$(GNL_DIR) -lget_next_line -L$(LIBFT_DIR) -lft
 # environment
 LC_ADDRESS = en_US.UTF-8
@@ -61,6 +60,7 @@ OLDPWD = /home/artclave
 ^D = $(patsubst %/,%,$(dir $^))
 # automatic
 %F = $(notdir $%)
+ 
 # environment
 VSCODE_CODE_CACHE_PATH = /home/artclave/.config/Code/CachedData/5437499feb04f7a586f677b155b039bc2b3669eb
 # environment
@@ -80,7 +80,7 @@ CURDIR := /home/artclave/Desktop/minirt-42
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # makefile (from 'Makefile', line 23)
-SRCS = src/lexer/adds.c src/lexer/main.c src/lexer/utils.c src/matrix/matrix_inversion.c src/matrix/matrix_op.c src/matrix/matrix_utils.c src/matrix/tranform.c src/parsing/add_light.c src/parsing/add_other.c src/parsing/error.c src/parsing/main.c src/parsing/utils.c src/parsing/utils_2.c src/render/camera.c src/render/light.c src/render/light_utils.c src/render/ray.c src/render/scene.c src/render/shape.c src/utils/clean.c src/utils/hook.c src/utils/mlx_utils.c src/vectors/math_utils.c src/vectors/vector_math.c src/vectors/vector_op.c src/vectors/vector_utils.c src/main.c
+SRCS = src/lexer/adds.c src/lexer/main.c src/lexer/utils.c src/matrix/matrix_inversion.c src/matrix/matrix_op.c src/matrix/matrix_utils.c src/matrix/transform.c src/matrix/rotations.c src/parsing/add_light.c src/parsing/add_other.c src/parsing/error.c src/parsing/main.c src/parsing/utils.c src/parsing/utils_2.c src/render/camera.c src/render/light.c src/render/light_utils.c src/render/ray.c src/render/scene.c src/render/shape.c src/utils/clean.c src/utils/hook.c src/utils/mlx_utils.c src/vectors/math_utils.c src/vectors/vector_math.c src/vectors/vector_op.c src/vectors/vector_utils.c src/main.c
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
@@ -131,8 +131,8 @@ SHELL = /bin/sh
 MAKECMDGOALS := all
 # environment
 XMODIFIERS = @im=ibus
-# makefile (from 'Makefile', line 51)
-HEADERS = includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
+# makefile (from 'Makefile', line 52)
+HEADERS = includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
 # environment
@@ -255,7 +255,6 @@ LIB_DIR = libs
 XDG_GREETER_DATA_DIR = /var/lib/lightdm-data/artclave
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
- 
 # makefile (from 'Makefile', line 13)
 CC = cc
 # environment
@@ -265,7 +264,7 @@ GDMSESSION = ubuntu
 # environment
 LC_IDENTIFICATION = en_US.UTF-8
 # variable set hash-table stats:
-# Load=126/1024=12%, Rehash=0, Collisions=25/173=14%
+# Load=126/1024=12%, Rehash=0, Collisions=25/180=14%
 
 # Pattern-specific Variable Values
 
@@ -273,24 +272,20 @@ LC_IDENTIFICATION = en_US.UTF-8
 
 # Directories
 
-# src/matrix (device 2064, inode 12659780): 6 files, no impossibilities so far.
-# src/vectors (device 2064, inode 29390190): 6 files, no impossibilities so far.
-# src/render (device 2064, inode 20979646): 8 files, no impossibilities so far.
-# src/lexer (device 2064, inode 8446342): 5 files, no impossibilities so far.
-# src (device 2064, inode 4205549): 3 files, no impossibilities so far.
-# . (device 2064, inode 22425): 12 files, no impossibilities.
-# includes (device 2064, inode 8411700): 15 files, no impossibilities so far.
-# src/utils (device 2064, inode 26701469): 5 files, no impossibilities so far.
-# src/parsing (device 2064, inode 16873800): 8 files, no impossibilities so far.
+# src/lexer (device 2064, inode 8446342): 3 files, no impossibilities so far.
+# src (device 2064, inode 4205549): No files, no impossibilities so far.
+# . (device 2064, inode 22425): 11 files, no impossibilities.
+# includes (device 2064, inode 8411700): 14 files, no impossibilities so far.
 
-# 68 files, no impossibilities in 9 directories.
+# 28 files, no impossibilities in 4 directories.
 
 # Implicit Rules
 
-obj/%.o: src/%.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
+obj/%.o: src/%.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
 #  recipe to execute (from 'Makefile', line 81):
 	$(MKDIR) $(dir $@)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+ 
 
 # 1 implicit rules, 0 (0.0%) terminal.
 # Files
@@ -298,57 +293,21 @@ obj/%.o: src/%.c includes/camera.h includes/lexer.h includes/light.h includes/ma
 # Not a target:
 includes/parsing.h:
 #  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.601076
-#  File has been updated.
-#  Successfully updated.
-
-obj/matrix/matrix_op.o: src/matrix/matrix_op.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'matrix/matrix_op'
-#  Last modified 2024-08-03 17:35:54.976765269
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-# Not a target:
-src/vectors/vector_math.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-02 20:06:05.553164
-#  File has been updated.
-#  Successfully updated.
-
-obj/matrix/matrix_inversion.o: src/matrix/matrix_inversion.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'matrix/matrix_inversion'
-#  Last modified 2024-08-03 17:35:54.936763709
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-# Not a target:
-src/utils/mlx_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 17:35:37.028063796
+#  Last modified 2024-08-04 01:24:51.835598653
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-src/lexer/utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 00:03:13.783234
-#  File has been updated.
-#  Successfully updated.
+obj/matrix/matrix_op.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-src/render/light_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 20:19:02.370807314
-#  File has been updated.
-#  Successfully updated.
+obj/matrix/matrix_inversion.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 includes/header.h:
@@ -357,36 +316,23 @@ includes/header.h:
 #  File has been updated.
 #  Successfully updated.
 
-obj/lexer/utils.o: src/lexer/utils.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'lexer/utils'
-#  Last modified 2024-08-03 17:35:54.900762306
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/lexer/utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-obj/utils/mlx_utils.o: src/utils/mlx_utils.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'utils/mlx_utils'
-#  Last modified 2024-08-03 17:35:55.628790688
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/utils/mlx_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-obj/main.o: src/main.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'main'
-#  Last modified 2024-08-03 17:35:55.816798018
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
- 
+# Not a target:
+obj/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 includes/matrix.h:
@@ -395,152 +341,79 @@ includes/matrix.h:
 #  File has been updated.
 #  Successfully updated.
 
-obj/render/scene.o: src/render/scene.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'render/scene'
-#  Last modified 2024-08-03 20:19:31.559811722
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-obj/lexer/main.o: src/lexer/main.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'lexer/main'
-#  Last modified 2024-08-03 17:35:54.864760902
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-obj/utils/hook.o: src/utils/hook.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'utils/hook'
-#  Last modified 2024-08-03 17:35:55.592789285
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/render/scene.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-includes/debug.h:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-02 23:39:51.072748
-#  File has been updated.
-#  Successfully updated.
-
-obj/parsing/main.o: src/parsing/main.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'parsing/main'
-#  Last modified 2024-08-03 17:35:55.216774626
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-obj/vectors/vector_utils.o: src/vectors/vector_utils.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'vectors/vector_utils'
-#  Last modified 2024-08-03 17:35:55.776796459
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+obj/lexer/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-src/parsing/main.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.605076
-#  File has been updated.
-#  Successfully updated.
+obj/utils/hook.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+obj/parsing/main.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+
+# Not a target:
+obj/vectors/vector_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2024-08-03 16:58:10.180645809
+#  Last modified 2024-08-04 01:48:23.728567762
 #  File has been updated.
 #  Successfully updated.
 
 # Not a target:
-src/matrix/matrix_op.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.601076
-#  File has been updated.
-#  Successfully updated.
-
-obj/vectors/vector_op.o: src/vectors/vector_op.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'vectors/vector_op'
-#  Last modified 2024-08-03 17:35:55.740795056
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+obj/vectors/vector_op.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-src/lexer/main.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 17:34:43.081934447
-#  File has been updated.
-#  Successfully updated.
-
-obj/parsing/utils.o: src/parsing/utils.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'parsing/utils'
-#  Last modified 2024-08-03 17:35:55.256776185
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-obj/render/light_utils.o: src/render/light_utils.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'render/light_utils'
-#  Last modified 2024-08-03 20:19:03.49484599
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
- 
+obj/matrix/transform.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-src/parsing/utils_2.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.605076
-#  File has been updated.
-#  Successfully updated.
+obj/parsing/utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-src/parsing/error.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.605076
-#  File has been updated.
-#  Successfully updated.
+obj/render/light_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 includes/ray.h:
 #  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.601076
+#  Last modified 2024-08-04 01:43:18.998022564
 #  File has been updated.
 #  Successfully updated.
 
-obj/matrix/matrix_utils.o: src/matrix/matrix_utils.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'matrix/matrix_utils'
-#  Last modified 2024-08-03 17:35:55.012766674
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/matrix/matrix_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 clean:
 #  Phony target (prerequisite of .PHONY).
@@ -552,49 +425,23 @@ clean:
 	$(MAKE) -C $(GNL_DIR) clean
 	$(MAKE) -C $(LIBFT_DIR) clean
 
-obj/render/shape.o: src/render/shape.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'render/shape'
-#  Last modified 2024-08-03 17:35:55.520786478
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/matrix/rotations.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-src/render/ray.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 00:47:42.985393
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-src/render/shape.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 17:02:54.321859004
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-src/main.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 17:00:43.813623539
-#  File has been updated.
-#  Successfully updated.
+obj/render/shape.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 re: fclean all
 #  Phony target (prerequisite of .PHONY).
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has not been updated.
-
-# Not a target:
-src/parsing/add_light.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.601076
-#  File has been updated.
-#  Successfully updated.
 
 libs/libft/libft.a:
 #  Implicit rule search has not been done.
@@ -604,29 +451,36 @@ libs/libft/libft.a:
 #  recipe to execute (from 'Makefile', line 88):
 	$(MAKE) -C $(LIBFT_DIR)
 
-obj/vectors/math_utils.o: src/vectors/math_utils.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'vectors/math_utils'
-#  Last modified 2024-08-03 17:35:55.664792092
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
 # Not a target:
-src/matrix/tranform.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 17:01:40.099449542
-#  File has been updated.
-#  Successfully updated.
+obj/vectors/math_utils.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-obj/lexer/adds.o: src/lexer/adds.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
+obj/lexer/adds.o: src/lexer/adds.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
 #  Implicit rule search has been done.
 #  Implicit/static pattern stem: 'lexer/adds'
-#  Last modified 2024-08-03 18:40:40.786780928
+#  Last modified 2024-08-04 01:30:57.948319393
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# automatic
+# @ := obj/lexer/adds.o
+# automatic
+# * := lexer/adds
+# automatic
+# < := src/lexer/adds.c
+# automatic
+# + := src/lexer/adds.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
+# automatic
+# % := 
+# automatic
+# ^ := src/lexer/adds.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
+# automatic
+# ? := includes/ray.h
+# automatic
+# | := 
+# variable set hash-table stats:
+# Load=8/32=25%, Rehash=0, Collisions=2/18=11%
 #  recipe to execute (from 'Makefile', line 81):
 	$(MKDIR) $(dir $@)
 	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
@@ -637,24 +491,15 @@ obj/lexer/adds.o: src/lexer/adds.c includes/camera.h includes/lexer.h includes/l
 #  Modification time never checked.
 #  File has not been updated.
 
-obj/matrix/tranform.o: src/matrix/tranform.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'matrix/tranform'
-#  Last modified 2024-08-03 17:35:55.052768232
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
- 
 all: libs/libft/libft.a libs/get_next_line/libget_next_line.a miniRT
 #  Phony target (prerequisite of .PHONY).
 #  Command line target.
 #  Implicit rule search has not been done.
 #  File does not exist.
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 
 fclean: clean
 #  Phony target (prerequisite of .PHONY).
@@ -673,42 +518,23 @@ src/lexer/adds.c:
 #  File has been updated.
 #  Successfully updated.
 
-obj/parsing/add_light.o: src/parsing/add_light.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'parsing/add_light'
-#  Last modified 2024-08-03 17:35:55.096769948
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/parsing/add_light.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
-src/parsing/add_other.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.605076
-#  File has been updated.
-#  Successfully updated.
+obj/render/camera.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-obj/render/camera.o: src/render/camera.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'render/camera'
-#  Last modified 2024-08-03 18:38:03.454222623
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-obj/render/light.o: src/render/light.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'render/light'
-#  Last modified 2024-08-03 17:35:55.368780553
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/render/light.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 includes/light.h:
@@ -725,39 +551,25 @@ libs/get_next_line/libget_next_line.a:
 #  recipe to execute (from 'Makefile', line 85):
 	$(MAKE) -C $(GNL_DIR)
 
-obj/utils/clean.o: src/utils/clean.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'utils/clean'
-#  Last modified 2024-08-03 17:35:55.556787881
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/utils/clean.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 includes/lexer.h:
 #  Implicit rule search has been done.
 #  Last modified 2024-08-02 23:37:17.803356
 #  File has been updated.
+ 
 #  Successfully updated.
 
 # Not a target:
-src/render/scene.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 20:19:27.967688119
-#  File has been updated.
-#  Successfully updated.
-
-obj/render/ray.o: src/render/ray.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'render/ray'
-#  Last modified 2024-08-03 17:35:55.44078336
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+obj/render/ray.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 includes/shapes.h:
@@ -767,81 +579,20 @@ includes/shapes.h:
 #  Successfully updated.
 
 # Not a target:
-src/vectors/math_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.605076
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-src/matrix/matrix_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-02 22:22:03.991131
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
 includes/mlx_utils.h:
 #  Implicit rule search has been done.
 #  Last modified 2024-08-01 16:55:06.601076
 #  File has been updated.
- 
 #  Successfully updated.
 
 # Not a target:
-src/render/light.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 17:33:44.78359473
-#  File has been updated.
-#  Successfully updated.
-
-obj/parsing/add_other.o: src/parsing/add_other.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'parsing/add_other'
-#  Last modified 2024-08-03 17:35:55.140771664
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-# Not a target:
-src/render/camera.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-03 18:38:01.702159011
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-src/parsing/utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.605076
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-src/utils/clean.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.605076
-#  File has been updated.
-#  Successfully updated.
+obj/parsing/add_other.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 includes/scene.h:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.601076
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-src/utils/hook.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.605076
-#  File has been updated.
-#  Successfully updated.
-
-# Not a target:
-src/matrix/matrix_inversion.c:
 #  Implicit rule search has been done.
 #  Last modified 2024-08-01 16:55:06.601076
 #  File has been updated.
@@ -853,41 +604,22 @@ src/matrix/matrix_inversion.c:
 #  File has not been updated.
 
 # Not a target:
-src/vectors/vector_utils.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-02 22:26:50.489517
-#  File has been updated.
-#  Successfully updated.
+obj/parsing/utils_2.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-obj/parsing/utils_2.o: src/parsing/utils_2.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'parsing/utils_2'
-#  Last modified 2024-08-03 17:35:55.292777589
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/vectors/vector_math.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
-obj/vectors/vector_math.o: src/vectors/vector_math.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'vectors/vector_math'
-#  Last modified 2024-08-03 17:35:55.704793652
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-obj/parsing/error.o: src/parsing/error.c includes/camera.h includes/lexer.h includes/light.h includes/matrix.h includes/mlx_utils.h includes/parsing.h includes/debug.h includes/ray.h includes/scene.h includes/shapes.h includes/vector.h includes/header.h
-#  Implicit rule search has been done.
-#  Implicit/static pattern stem: 'parsing/error'
-#  Last modified 2024-08-03 17:35:55.176773067
-#  File has been updated.
-#  Successfully updated.
-#  recipe to execute (from 'Makefile', line 81):
-	$(MKDIR) $(dir $@)
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+# Not a target:
+obj/parsing/error.o:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 # Not a target:
 includes/camera.h:
@@ -895,22 +627,16 @@ includes/camera.h:
 #  Last modified 2024-08-03 17:08:54.637574434
 #  File has been updated.
 #  Successfully updated.
- 
 
-miniRT: obj/lexer/adds.o obj/lexer/main.o obj/lexer/utils.o obj/matrix/matrix_inversion.o obj/matrix/matrix_op.o obj/matrix/matrix_utils.o obj/matrix/tranform.o obj/parsing/add_light.o obj/parsing/add_other.o obj/parsing/error.o obj/parsing/main.o obj/parsing/utils.o obj/parsing/utils_2.o obj/render/camera.o obj/render/light.o obj/render/light_utils.o obj/render/ray.o obj/render/scene.o obj/render/shape.o obj/utils/clean.o obj/utils/hook.o obj/utils/mlx_utils.o obj/vectors/math_utils.o obj/vectors/vector_math.o obj/vectors/vector_op.o obj/vectors/vector_utils.o obj/main.o
+miniRT: obj/lexer/adds.o obj/lexer/main.o obj/lexer/utils.o obj/matrix/matrix_inversion.o obj/matrix/matrix_op.o obj/matrix/matrix_utils.o obj/matrix/transform.o obj/matrix/rotations.o obj/parsing/add_light.o obj/parsing/add_other.o obj/parsing/error.o obj/parsing/main.o obj/parsing/utils.o obj/parsing/utils_2.o obj/render/camera.o obj/render/light.o obj/render/light_utils.o obj/render/ray.o obj/render/scene.o obj/render/shape.o obj/utils/clean.o obj/utils/hook.o obj/utils/mlx_utils.o obj/vectors/math_utils.o obj/vectors/vector_math.o obj/vectors/vector_op.o obj/vectors/vector_utils.o obj/main.o
 #  Implicit rule search has not been done.
-#  Last modified 2024-08-03 20:19:31.599813099
+#  Last modified 2024-08-04 01:31:40.645804559
 #  File has been updated.
-#  Successfully updated.
+#  Needs to be updated (-q is set).
+# variable set hash-table stats:
+# Load=0/32=0%, Rehash=0, Collisions=0/7=0%
 #  recipe to execute (from 'Makefile', line 78):
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(OBJS) $(LIBS) -o $@ $(LDLIBS)
-
-# Not a target:
-src/vectors/vector_op.c:
-#  Implicit rule search has been done.
-#  Last modified 2024-08-01 16:55:06.605076
-#  File has been updated.
-#  Successfully updated.
 
 # Not a target:
 includes/vector.h:
@@ -920,19 +646,19 @@ includes/vector.h:
 #  Successfully updated.
 
 # files hash-table stats:
-# Load=77/1024=8%, Rehash=0, Collisions=55/857=6%
+# Load=51/1024=5%, Rehash=0, Collisions=3/128=2%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 161 / storage = 2412 B / avg = 14 B
-# current buf: size = 8162 B / used = 2412 B / count = 161 / avg = 14 B
+# strcache buffers: 1 (0) / strings = 79 / storage = 1151 B / avg = 14 B
+# current buf: size = 8162 B / used = 1151 B / count = 79 / avg = 14 B
 
-# strcache performance: lookups = 881 / hit rate = 81%
+# strcache performance: lookups = 132 / hit rate = 40%
 # hash-table stats:
-# Load=161/8192=2%, Rehash=0, Collisions=0/881=0%
-# Finished Make data base on Sat Aug  3 23:45:03 2024
+# Load=79/8192=1%, Rehash=0, Collisions=0/132=0%
+# Finished Make data base on Sun Aug  4 01:48:32 2024
 
  

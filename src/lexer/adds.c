@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:55:29 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 18:40:38 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 01:52:44 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,13 @@ void	add_obj_lexer(t_elem element, t_mlx *mlx)
 	create_tupple(&obj.og, 0, 0, 0);
 	scalar_mult(element.color_range255, (1.0f / 255.0f), &obj.color);
 	total = 0;
-	//
 	scale(element, &total, &mt);
 	if (obj.type != SPHERE)
 		rotate(obj.type, element.orientation, &total, &mt);
 	translate(element.center, &total, &mt);
-	//
 	create_identity_matrix(&obj.mt_trans, 4);
 	chain_transform(mt, &obj.mt_trans, total);
 	invert_matrix(obj.mt_trans, &obj.inv_trans, 4);
-	//printf("OBJECT: \n--------------------\n");
-	//print_t_matrix(obj.inv_trans);
 	add_obj_to_list(obj, &mlx->obj_list);
 }
 
@@ -79,11 +75,5 @@ void	add_light_lexer(t_elem element, t_light *light)
 		added[1] = 1;
 		light->has_diffuse = TRUE;
 		light->exists = TRUE;
-	}
-	else if (element.type == SPECULAR)
-	{
-		light->specular = element.brightness;
-		light->shine = element.shine;
-		added[2] = 1;
 	}
 }

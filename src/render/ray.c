@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:50:23 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 00:47:42 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 01:43:31 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	update_closest_hit(t_intersect **closest, t_intersect *new)
 		*closest = new;
 }
 
-void	add_intersection_to_ray(float d, t_intersect **hit, \
+void	add_hit_to_ray(float d, t_intersect **hit, \
 t_intersect **closest, t_obj sph)
 {
 	t_intersect	*ne;
