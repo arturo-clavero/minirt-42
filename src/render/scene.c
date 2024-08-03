@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/04 01:53:46 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 06:32:12 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,13 @@ int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
 	list = mlx->obj_list;
 	while (list)
 	{
+		//print_t_matrix(list->obj->inv_trans);
 		transform_ray(parent_ray, &child_ray, list->obj);
-		if (list->obj.type == SPHERE)
+		if (list->obj->type == SPHERE)
 			intersects_sphere(parent_ray, &child_ray, list->obj);
-		else if (list->obj.type == PLANE)
+		else if (list->obj->type == PLANE)
 			intersects_plane(parent_ray, &child_ray, list->obj);
-		else if (list->obj.type == CYLINDER)
+		else if (list->obj->type == CYLINDER)
 		{
 			intersects_cylinder_caps(parent_ray, &child_ray, list->obj);
 			intersects_cylinder_body(parent_ray, &child_ray, list->obj);
@@ -70,12 +71,12 @@ int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
 	}
 	if (parent_ray->closest)
 		return (TRUE);
-	return (FALSE);
+	return (-1);
 }
 
 void	get_pixel_color(t_mlx *mlx, float pixel[2])
 {
-	if (find_intersection(mlx->ray, mlx) == TRUE)
+	if (find_intersection(mlx->ray, mlx) != -1)
 	{
 		if (mlx->light->has_diffuse)
 		{

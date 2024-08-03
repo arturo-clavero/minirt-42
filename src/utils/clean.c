@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arturo <arturo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 08:38:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/05/31 09:27:42 by arturo           ###   ########.fr       */
+/*   Updated: 2024/08/04 06:26:25 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	clean(t_mlx *mlx)
 	while (mlx->obj_list)
 	{
 		temp = mlx->obj_list->next;
+		free(mlx->obj_list->obj);
 		free (mlx->obj_list);
 		mlx->obj_list = temp;
 	}

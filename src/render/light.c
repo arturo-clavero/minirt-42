@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:22 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 17:33:44 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 05:36:43 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest)
 	add(ray.og, temp, &light->point);
 	negate(ray.dir, &light->eye);
 	normalize(light->eye, &light->eye);
-	if (closest->object.type == SPHERE)
+	if (closest->object->type == SPHERE)
 		calc_sph_normal(light, closest);
-	else if (closest->object.type == PLANE)
+	else if (closest->object->type == PLANE)
 		calc_plane_normal(light, closest);
-	else if (closest->object.type == CYLINDER)
+	else if (closest->object->type == CYLINDER)
 		calc_cyl_normal(light, closest);
 }
 
@@ -38,13 +38,13 @@ void	calc_light_reflection(t_vec in, t_vec normal, t_vec *result)
 	copy_t_vec(result, temp);
 }
 
-void	compute_final_color(t_light light, t_obj obj, t_ray *ray)
+void	compute_final_color(t_light light, t_obj *obj, t_ray *ray)
 {
 	t_vec	base_color;
 	t_vec	temp;
 	float	dot;
 
-	blend_colors(light.color, obj.color, &base_color);
+	blend_colors(light.color, obj->color, &base_color);
 	scalar_mult(base_color, light.ambient, &ray->color);
 	if (light.has_diffuse == FALSE)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:56:56 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 00:48:07 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 05:47:04 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ typedef struct s_obj
 
 typedef struct s_dlist
 {
-	t_obj			obj;
+	t_obj			*obj;
 	struct s_dlist	*next;
 	struct s_dlist	*prev;
 }	t_objlist;
 
-int		intersects_sphere(t_ray *parent_ray, t_ray *child_ray, t_obj sph);
-void	intersects_plane(t_ray *parent_ray, t_ray *child_ray, t_obj pl);
-void	intersects_cylinder_body(t_ray *parent, t_ray *child, t_obj cyl);
-void	intersects_cylinder_caps(t_ray *parent, t_ray *child, t_obj cyl);
+int		intersects_sphere(t_ray *parent_ray, t_ray *child_ray, t_obj *sph);
+void	intersects_plane(t_ray *parent_ray, t_ray *child_ray, t_obj *pl);
+void	intersects_cylinder_body(t_ray *parent, t_ray *child, t_obj *cyl);
+void	intersects_cylinder_caps(t_ray *parent, t_ray *child, t_obj *cyl);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/01 12:20:30 by artclave          #+#    #+#             */
-/*   Updated: 2024/08/03 17:35:37 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 03:46:00 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ void	initialize_mlx(t_mlx *mlx)
 	&mlx->image.bits_per_pixel, &mlx->image.line_length, &mlx->image.endian);
 	mlx->obj_list = NULL;
 	mlx->cam.exists = FALSE;
+	mlx->is_selected = FALSE;
 	mlx->ray = malloc(sizeof(t_ray));
+	mlx->mouse_ray = malloc(sizeof(t_ray));
 	init_viewport(mlx);
 	init_light(mlx);
 }

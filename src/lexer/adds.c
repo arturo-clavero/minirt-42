@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 12:55:29 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/04 01:52:44 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 05:56:34 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,26 +31,27 @@ void	add_obj_lexer(t_elem element, t_mlx *mlx)
 {
 	t_mtrx	mt[MAX_TRANSF];
 	int		total;
-	t_obj	obj;
+	t_obj	*obj;
 
-	obj.type = element.type;
-	obj.r = 1;
+	obj = malloc(sizeof(t_obj));
+	obj->type = element.type;
+	obj->r = 1;
 	if (element.type == CYLINDER)
 	{
 		element.height /= (element.diameter / 2);
-		obj.max = element.height / 2.0f;
-		obj.min = obj.max * -1.0f;
+		obj->max = element.height / 2.0f;
+		obj->min = obj->max * -1.0f;
 	}
-	create_tupple(&obj.og, 0, 0, 0);
-	scalar_mult(element.color_range255, (1.0f / 255.0f), &obj.color);
+	create_tupple(&obj->og, 0, 0, 0);
+	scalar_mult(element.color_range255, (1.0f / 255.0f), &obj->color);
 	total = 0;
 	scale(element, &total, &mt);
-	if (obj.type != SPHERE)
-		rotate(obj.type, element.orientation, &total, &mt);
+	if (obj->type != SPHERE)
+		rotate(obj->type, element.orientation, &total, &mt);
 	translate(element.center, &total, &mt);
-	create_identity_matrix(&obj.mt_trans, 4);
-	chain_transform(mt, &obj.mt_trans, total);
-	invert_matrix(obj.mt_trans, &obj.inv_trans, 4);
+	create_identity_matrix(&obj->mt_trans, 4);
+	chain_transform(mt, &obj->mt_trans, total);
+	invert_matrix(obj->mt_trans, &obj->inv_trans, 4);
 	add_obj_to_list(obj, &mlx->obj_list);
 }
 

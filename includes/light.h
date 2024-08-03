@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/16 12:04:42 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 17:35:53 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 05:36:25 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_light
 
 void	is_point_in_shadow(t_light *light, t_mlx *mlx);
 void	calc_light_vectors(t_light *light, t_ray ray, t_intersect *closest);
-void	compute_final_color(t_light light, t_obj obj, t_ray *ray);
+void	compute_final_color(t_light light, t_obj *obj, t_ray *ray);
 void	calc_plane_normal(t_light *light, t_intersect *closest);
 void	calc_cyl_normal(t_light *light, t_intersect *closest);
 void	calc_sph_normal(t_light *light, t_intersect *closest);

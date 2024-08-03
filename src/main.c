@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/21 18:55:23 by uolle             #+#    #+#             */
-/*   Updated: 2024/08/04 01:53:35 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 06:29:34 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ int	main(int argc, char **argv)
 	mlx_put_image_to_window(mlx.mlx, mlx.win, mlx.image.img, 0, 0);
 	mlx_hook(mlx.win, 2, 1, key_press_hook, &mlx);
 	mlx_hook(mlx.win, 17, 0L, x_button, &mlx);
+	//new shit!
+	mlx_mouse_hook(mlx.win, click_obj, &mlx);
+	mlx_key_hook(mlx.win, key_event, &mlx);
+	//end new shit!
 	mlx_loop(mlx.mlx);
 	clean(&mlx);
 	return (0);

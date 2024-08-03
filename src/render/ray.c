@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:50:23 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/04 01:43:31 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 05:49:41 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	update_closest_hit(t_intersect **closest, t_intersect *new)
 }
 
 void	add_hit_to_ray(float d, t_intersect **hit, \
-t_intersect **closest, t_obj sph)
+t_intersect **closest, t_obj *sph)
 {
 	t_intersect	*ne;
 	t_intersect	*prev;
@@ -56,13 +56,13 @@ void	copy_ray(t_ray *dst, t_ray *src)
 	copy_t_vec(&dst->og, src->og);
 }
 
-void	transform_ray(t_ray *parent, t_ray *child, t_obj obj)
+void	transform_ray(t_ray *parent, t_ray *child, t_obj *obj)
 {
 	t_vec	temp;
 
 	copy_ray(child, parent);
-	matrix_by_t_vec(obj.inv_trans, child->dir, &temp, 4);
+	matrix_by_t_vec(obj->inv_trans, child->dir, &temp, 4);
 	copy_t_vec(&child->dir, temp);
-	matrix_by_t_vec(obj.inv_trans, child->og, &temp, 4);
+	matrix_by_t_vec(obj->inv_trans, child->og, &temp, 4);
 	copy_t_vec(&child->og, temp);
 }

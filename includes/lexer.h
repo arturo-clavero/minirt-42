@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 13:12:16 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/02 23:37:17 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 05:52:38 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 void	lexer(t_mlx *mlx, t_pars *pars);
 void	add_cam_lexer(t_elem element, t_mlx *mlx);
 void	add_light_lexer(t_elem element, t_light	*light);
-void	add_obj_to_list(t_obj obj, t_objlist **list);
+void	add_obj_to_list(t_obj *obj, t_objlist **list);
 void	add_obj_lexer(t_elem element, t_mlx *mlx);
 
 #endif
