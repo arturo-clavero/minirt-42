@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/08 19:21:14 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/02 22:26:50 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 14:16:57 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,4 @@ void	blend_colors(t_vec color1, t_vec color2, t_vec *result)
 	i = -1;
 	while (++i < 4)
 		(*result)[i] = color1[i] * color2[i];
-}
-
-void		print_t_vec(t_vec vec){
-	for (int i = 0; i < 4; i++){
-		printf("%.2f ", vec[i]);
-	}
-	printf("\n");
 }

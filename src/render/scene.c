@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:53:55 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/04 06:32:12 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 14:29:58 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	find_intersection(t_ray *parent_ray, t_mlx *mlx)
 	list = mlx->obj_list;
 	while (list)
 	{
-		//print_t_matrix(list->obj->inv_trans);
 		transform_ray(parent_ray, &child_ray, list->obj);
 		if (list->obj->type == SPHERE)
 			intersects_sphere(parent_ray, &child_ray, list->obj);
@@ -95,6 +94,10 @@ void	init_scene(t_mlx *mlx)
 {
 	float		pixel[2];
 
+	mlx->image.img = mlx_new_image(mlx->mlx, mlx->win_size[X], \
+	mlx->win_size[Y]);
+	mlx->image.address = mlx_get_data_addr(mlx->image.img, \
+	&mlx->image.bits_per_pixel, &mlx->image.line_length, &mlx->image.endian);
 	if (mlx->cam.exists == FALSE || mlx->light->exists == FALSE)
 		return ;
 	pixel[X] = -1;
@@ -108,4 +111,5 @@ void	init_scene(t_mlx *mlx)
 			clean_ray(mlx->ray);
 		}
 	}
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->image.img, 0, 0);
 }

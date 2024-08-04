@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/13 21:35:06 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/02 22:22:03 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 14:17:28 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,4 @@ void	copy_matrix(t_mtrx *dst, t_mtrx src, int mt_size)
 		while (++j < mt_size)
 			(*dst)[i][j] = src[i][j];
 	}
-}
-
-void	print_t_matrix(t_mtrx mt){
-	for (int i =0; i < 4; i++)
-		print_t_vec(mt[i]);
-	printf("\n");
 }

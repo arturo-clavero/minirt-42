@@ -6,6 +6,7 @@ make[1]: Entering directory '/home/artclave/Desktop/minirt-42/libs/libft'
 mkdir -p objs/file/
 gcc -Wall -Werror -Wextra -I includes -c srcs/file/ft_putchar_fd.c -o objs/file/ft_putchar_fd.o
 echo "\033[0;94m[INFO] - Compiling: srcs/file/ft_putchar_fd.c\033[0m"
+ 
 mkdir -p objs/file/
 gcc -Wall -Werror -Wextra -I includes -c srcs/file/ft_putendl_fd.c -o objs/file/ft_putendl_fd.o
 echo "\033[0;94m[INFO] - Compiling: srcs/file/ft_putendl_fd.c\033[0m"
@@ -15,6 +16,7 @@ echo "\033[0;94m[INFO] - Compiling: srcs/file/ft_putnbr_fd.c\033[0m"
 mkdir -p objs/file/
 gcc -Wall -Werror -Wextra -I includes -c srcs/file/ft_putstr_fd.c -o objs/file/ft_putstr_fd.o
 echo "\033[0;94m[INFO] - Compiling: srcs/file/ft_putstr_fd.c\033[0m"
+ 
 mkdir -p objs/mem/
 gcc -Wall -Werror -Wextra -I includes -c srcs/mem/ft_bzero.c -o objs/mem/ft_bzero.o
 echo "\033[0;94m[INFO] - Compiling: srcs/mem/ft_bzero.c\033[0m"
@@ -28,12 +30,14 @@ echo "\033[0;94m[INFO] - Compiling: srcs/mem/ft_memchr.c\033[0m"
 mkdir -p objs/mem/
 gcc -Wall -Werror -Wextra -I includes -c srcs/mem/ft_memcmp.c -o objs/mem/ft_memcmp.o
 echo "\033[0;94m[INFO] - Compiling: srcs/mem/ft_memcmp.c\033[0m"
+ 
 mkdir -p objs/mem/
 gcc -Wall -Werror -Wextra -I includes -c srcs/mem/ft_memcpy.c -o objs/mem/ft_memcpy.o
 echo "\033[0;94m[INFO] - Compiling: srcs/mem/ft_memcpy.c\033[0m"
 mkdir -p objs/mem/
 gcc -Wall -Werror -Wextra -I includes -c srcs/mem/ft_memmove.c -o objs/mem/ft_memmove.o
 echo "\033[0;94m[INFO] - Compiling: srcs/mem/ft_memmove.c\033[0m"
+ 
 mkdir -p objs/mem/
 gcc -Wall -Werror -Wextra -I includes -c srcs/mem/ft_memset.c -o objs/mem/ft_memset.o
 echo "\033[0;94m[INFO] - Compiling: srcs/mem/ft_memset.c\033[0m"
@@ -44,13 +48,14 @@ echo "\033[0;94m[INFO] - Compiling: srcs/misc/ft_isalnum.c\033[0m"
 mkdir -p objs/misc/
 gcc -Wall -Werror -Wextra -I includes -c srcs/misc/ft_isalpha.c -o objs/misc/ft_isalpha.o
 echo "\033[0;94m[INFO] - Compiling: srcs/misc/ft_isalpha.c\033[0m"
+ 
 mkdir -p objs/misc/
 gcc -Wall -Werror -Wextra -I includes -c srcs/misc/ft_isascii.c -o objs/misc/ft_isascii.o
 echo "\033[0;94m[INFO] - Compiling: srcs/misc/ft_isascii.c\033[0m"
- 
 mkdir -p objs/misc/
 gcc -Wall -Werror -Wextra -I includes -c srcs/misc/ft_isdigit.c -o objs/misc/ft_isdigit.o
 echo "\033[0;94m[INFO] - Compiling: srcs/misc/ft_isdigit.c\033[0m"
+ 
 mkdir -p objs/misc/
 gcc -Wall -Werror -Wextra -I includes -c srcs/misc/ft_isprint.c -o objs/misc/ft_isprint.o
 echo "\033[0;94m[INFO] - Compiling: srcs/misc/ft_isprint.c\033[0m"
@@ -59,31 +64,32 @@ gcc -Wall -Werror -Wextra -I includes -c srcs/misc/ft_ispsace.c -o objs/misc/ft_
 echo "\033[0;94m[INFO] - Compiling: srcs/misc/ft_ispsace.c\033[0m"
 mkdir -p objs/nbr/
 gcc -Wall -Werror -Wextra -I includes -c srcs/nbr/ft_atoi.c -o objs/nbr/ft_atoi.o
+ 
 echo "\033[0;94m[INFO] - Compiling: srcs/nbr/ft_atoi.c\033[0m"
 mkdir -p objs/nbr/
 gcc -Wall -Werror -Wextra -I includes -c srcs/nbr/ft_itoa.c -o objs/nbr/ft_itoa.o
 echo "\033[0;94m[INFO] - Compiling: srcs/nbr/ft_itoa.c\033[0m"
 mkdir -p objs/nbr/
 gcc -Wall -Werror -Wextra -I includes -c srcs/nbr/ft_atof.c -o objs/nbr/ft_atof.o
- 
 echo "\033[0;94m[INFO] - Compiling: srcs/nbr/ft_atof.c\033[0m"
+ 
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_split.c -o objs/str/ft_split.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_split.c\033[0m"
- 
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_strchr.c -o objs/str/ft_strchr.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strchr.c\033[0m"
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_strcmp.c -o objs/str/ft_strcmp.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strcmp.c\033[0m"
+ 
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_strdup.c -o objs/str/ft_strdup.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strdup.c\033[0m"
- 
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_striteri.c -o objs/str/ft_striteri.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_striteri.c\033[0m"
+ 
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_strjoin.c -o objs/str/ft_strjoin.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strjoin.c\033[0m"
@@ -97,10 +103,10 @@ echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strlcpy.c\033[0m"
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_strlen.c -o objs/str/ft_strlen.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strlen.c\033[0m"
+ 
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_strmapi.c -o objs/str/ft_strmapi.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strmapi.c\033[0m"
- 
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_strncmp.c -o objs/str/ft_strncmp.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strncmp.c\033[0m"
@@ -114,14 +120,15 @@ echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strrchr.c\033[0m"
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_strtrim.c -o objs/str/ft_strtrim.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_strtrim.c\033[0m"
+ 
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_substr.c -o objs/str/ft_substr.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_substr.c\033[0m"
 mkdir -p objs/str/
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_tolower.c -o objs/str/ft_tolower.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_tolower.c\033[0m"
- 
 mkdir -p objs/str/
+ 
 gcc -Wall -Werror -Wextra -I includes -c srcs/str/ft_toupper.c -o objs/str/ft_toupper.o
 echo "\033[0;94m[INFO] - Compiling: srcs/str/ft_toupper.c\033[0m"
 mkdir -p objs/str/
@@ -150,7 +157,6 @@ cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/
  
 mkdir -p obj/lexer/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/lexer/main.c -o obj/lexer/main.o
- 
 mkdir -p obj/lexer/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/lexer/utils.c -o obj/lexer/utils.o
  
@@ -159,48 +165,41 @@ cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/
  
 mkdir -p obj/matrix/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/matrix/matrix_op.c -o obj/matrix/matrix_op.o
- 
 mkdir -p obj/matrix/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/matrix/matrix_utils.c -o obj/matrix/matrix_utils.o
- 
 mkdir -p obj/matrix/
-cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/matrix/transform.c -o obj/matrix/transform.o
  
+cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/matrix/transform.c -o obj/matrix/transform.o
 mkdir -p obj/matrix/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/matrix/rotations.c -o obj/matrix/rotations.o
  
 mkdir -p obj/parsing/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/parsing/add_light.c -o obj/parsing/add_light.o
- 
 mkdir -p obj/parsing/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/parsing/add_other.c -o obj/parsing/add_other.o
  
 mkdir -p obj/parsing/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/parsing/error.c -o obj/parsing/error.o
- 
 mkdir -p obj/parsing/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/parsing/main.c -o obj/parsing/main.o
  
 mkdir -p obj/parsing/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/parsing/utils.c -o obj/parsing/utils.o
- 
 mkdir -p obj/parsing/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/parsing/utils_2.c -o obj/parsing/utils_2.o
  
 mkdir -p obj/render/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/render/camera.c -o obj/render/camera.o
- 
 mkdir -p obj/render/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/render/light.c -o obj/render/light.o
- 
 mkdir -p obj/render/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/render/light_utils.c -o obj/render/light_utils.o
- 
 mkdir -p obj/render/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/render/ray.c -o obj/render/ray.o
  
 mkdir -p obj/render/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/render/scene.c -o obj/render/scene.o
+ 
 mkdir -p obj/render/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/render/shape.c -o obj/render/shape.o
  
@@ -227,6 +226,7 @@ cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/
  
 mkdir -p obj/
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes -c src/main.c -o obj/main.o
+ 
 cc -Wall -Wextra -Werror  -Iincludes -Isrc -Ilibs/get_next_line/includes -Ilibs/libft/includes obj/lexer/adds.o obj/lexer/main.o obj/lexer/utils.o obj/matrix/matrix_inversion.o obj/matrix/matrix_op.o obj/matrix/matrix_utils.o obj/matrix/transform.o obj/matrix/rotations.o obj/parsing/add_light.o obj/parsing/add_other.o obj/parsing/error.o obj/parsing/main.o obj/parsing/utils.o obj/parsing/utils_2.o obj/render/camera.o obj/render/light.o obj/render/light_utils.o obj/render/ray.o obj/render/scene.o obj/render/shape.o obj/utils/clean.o obj/utils/hook.o obj/utils/mlx_utils.o obj/vectors/math_utils.o obj/vectors/vector_math.o obj/vectors/vector_op.o obj/vectors/vector_utils.o obj/main.o -Llibs -lmlx_Linux -lXext -lX11 -lm -lbsd -Llibs/get_next_line -lget_next_line -Llibs/libft -lft -o miniRT -lm
 make: Leaving directory '/home/artclave/Desktop/minirt-42'
  

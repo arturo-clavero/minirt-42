@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 18:55:45 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/04 04:30:30 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 14:28:58 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 # include "header.h"
 # include <X11/X.h> 
 
-#define KEY_LEFT  65361
-#define KEY_UP    65362
-#define KEY_RIGHT 65363
-#define KEY_DOWN  65364
+# define KEY_LEFT  65361
+# define KEY_UP    65362
+# define KEY_RIGHT 65363
+# define KEY_DOWN  65364
 
 typedef struct s_data
 {
@@ -56,6 +56,5 @@ int		x_button(t_mlx *mlx);
 int		click_obj(int button, int x, int y, t_mlx *mlx);
 int		obj_follow_mouse(int x, int y, t_mlx *mlx);
 int		key_event(int keycode, t_mlx *mlx);
-
 
 #endif

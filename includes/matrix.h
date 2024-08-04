@@ -6,7 +6,7 @@
 /*   By: artclave <artclave@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 14:05:40 by arturo            #+#    #+#             */
-/*   Updated: 2024/08/03 03:06:18 by artclave         ###   ########.fr       */
+/*   Updated: 2024/08/04 14:29:14 by artclave         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define MATRIX_H
 
 # include "header.h"
-#include "parsing.h"
+# include "parsing.h"
 
 # define MAX_TRANSF 5
 # define A 0
